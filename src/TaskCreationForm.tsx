@@ -18,7 +18,6 @@ export const TaskCreationForm = ({ onCreate }: IProps) => {
       onCreate({ id: count++, name: inputValue, isDone: false })
     }
     setValue('')
-    
   };
 
   const handleEnter = (key: string) => {

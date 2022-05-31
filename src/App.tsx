@@ -15,9 +15,10 @@ function App() {
     setTasks((tasks) => tasks.filter(({ id }) => task.id !== id));
   };
 
-  const changeStatus = tasks.map((task) => {
+  const changeStatus = (task: ITask) => {
+    setTasks((tasks) => tasks.map((task) => {
     // (task.id === { id }) 
-    if (task.id) {
+    if (task.id === 1) {
       return {
         ...task,
         isDone: !task.isDone
@@ -25,7 +26,8 @@ function App() {
     } else {
       return task;
     }
-  });
+    }))
+  };
 
   return (
     <>
