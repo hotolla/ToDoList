@@ -16,9 +16,9 @@ function App() {
   };
 
   const changeStatus = (task: ITask) => {
-    setTasks((tasks) => tasks.map((task) => {
+    setTasks((tasks) => tasks.map((item) => {
     // (task.id === { id }) 
-    if (task.id === 1) {
+    if (item.id === task.id) {
       return {
         ...task,
         isDone: !task.isDone
