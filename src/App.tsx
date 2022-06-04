@@ -15,18 +15,18 @@ function App() {
     setTasks((tasks) => tasks.filter(({ id }) => task.id !== id));
   };
 
-  const changeStatus = (task: ITask) => {
-    setTasks((tasks) => tasks.map((task) => {
-    // (task.id === { id }) 
-    if (task.id === 1) {
+  const changeStatus = ({id}: ITask) => {
+    setTasks((tasks) => tasks.map((item) => {
+    //  item.id === id ? (...item, isDone: !item.isDone) : item));
+    if (item.id === id) {
       return {
-        ...task,
-        isDone: !task.isDone
+        ...item,
+        isDone: !item.isDone
       }; 
     } else {
-      return task;
+      return item;
     }
-    }))
+  }))
   };
 
   return (
