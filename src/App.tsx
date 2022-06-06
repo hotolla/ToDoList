@@ -20,11 +20,13 @@ function App() {
        task.id === id ? {...task, isDone: !task.isDone} : task));
   };
 
+  const editTask = (taskId: number, taskName: string) => {}
+
   return (
     <>
       <Container maxWidth="xs" sx={{ mt: 2 }}>
         <TaskCreationForm onCreate={createTask} />
-        <List tasks={tasks} onEdit={changeStatus} onDelete={deleteTask}/>
+        <List tasks={tasks} onEdit={changeStatus} onDelete={deleteTask} onEditTask={editTask}/>
         
       </Container>
 

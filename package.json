@@ -17,7 +17,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build"
+    "build": "react-scripts build",
+    "test": "react-scripts test"
   },
   "eslintConfig": {
     "extends": [
@@ -36,5 +37,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@testing-library/react": "^13.3.0",
+    "@types/jest": "^28.1.1",
+    "@types/mocha": "^9.1.1"
   }
 }
