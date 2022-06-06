@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Container, CssBaseline } from '@mui/material';
 import { TaskCreationForm } from './TaskCreationForm';
-import { List } from './List';
+import { List } from './components/List/List';
 import { ITask } from "./types/task.types";
 
 function App() {
@@ -15,18 +15,9 @@ function App() {
     setTasks((tasks) => tasks.filter(({ id }) => task.id !== id));
   };
 
-  const changeStatus = (task: ITask) => {
-    setTasks((tasks) => tasks.map((item) => {
-    // (task.id === { id }) 
-    if (item.id === task.id) {
-      return {
-        ...task,
-        isDone: !task.isDone
-      }; 
-    } else {
-      return task;
-    }
-    }))
+  const changeStatus = ({id}: ITask) => {
+     setTasks((tasks) => tasks.map((task) => 
+       task.id === id ? {...task, isDone: !task.isDone} : task));
   };
 
   return (
@@ -43,3 +34,4 @@ function App() {
 }
 
 export default App;
+ 
