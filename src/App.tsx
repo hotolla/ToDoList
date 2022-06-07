@@ -15,19 +15,21 @@ function App() {
     setTasks((tasks) => tasks.filter(({ id }) => task.id !== id));
   };
 
-  const changeStatus = ({id}: ITask) => {
-     setTasks((tasks) => tasks.map((task) => 
-       task.id === id ? {...task, isDone: !task.isDone} : task));
-  };
+  // const changeStatus = ({id}: ITask) => {
+  //   setTasks((tasks) => tasks.map((task) => {
+  //     return task.id === id ? { ...task, isDone: !task.isDone } : task;
+  //   }));
+  // };
 
-  const editTask = (taskId: number, taskName: string) => {}
+  const editTask = (changedTask: ITask) => {
+    setTasks((tasks) => tasks.map((task) => task.id === changedTask.id ? changedTask : task));
+  };
 
   return (
     <>
       <Container maxWidth="xs" sx={{ mt: 2 }}>
         <TaskCreationForm onCreate={createTask} />
-        <List tasks={tasks} onEdit={changeStatus} onDelete={deleteTask} onEditTask={editTask}/>
-        
+        <List tasks={tasks} onEdit={editTask} onDelete={deleteTask}/>
       </Container>
 
       <CssBaseline />

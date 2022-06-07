@@ -6,20 +6,14 @@ export interface IProps {
   tasks: ITask[];
   onDelete: (task: ITask) => void;
   onEdit: (task: ITask) => void;
-  editTask: (task: ITask) => void;
 }
 
-export const List = ({ tasks, onEdit, onDelete, editTask }: IProps) => {
-  
+export const List = ({ tasks, onEdit, onDelete }: IProps) => {
   return (
-    <>
     <MuiList dense>
-        {tasks.map((task) => (
-        <Task key={task.id} task={task} onDelete={onDelete} onEdit={onEdit}/> 
+      {tasks.map((task) => (
+        <Task key={task.id} task={task} onDelete={onDelete} onEdit={onEdit} /> 
       ))} 
-     
     </MuiList>
-    <button>Test</button>
-    </>
   );
 };
