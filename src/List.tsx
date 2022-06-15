@@ -15,9 +15,9 @@ export const List = () => {
   
   return (
     <>
-    <Typography>Total:{totalCount}</Typography>
-    <Typography>Total Done Tasks:{totalDoneTasks}</Typography>
-    <Typography>Total Not Done Tasks:{totalPendingTasks}</Typography>
+    <Typography>Total: {totalCount}</Typography>
+    <Typography>Total Done Tasks: {totalDoneTasks}</Typography>
+    <Typography>Total Pending Tasks: {totalPendingTasks}</Typography>
 
     <MuiList dense>
         {tasks.map((task) => (
