@@ -1,25 +1,30 @@
-import { List as MuiList } from "@mui/material";
-import { Task } from './Task'
-import { ITask } from "./types/task.types";
+import { List as MuiList, Typography } from "@mui/material";
+import { useSelector } from "react-redux";
+import { RootState } from "./store/store";
+import { Task } from './Task';
 
-export interface IProps {
-  tasks: ITask[];
-  onDelete: (task: ITask) => void;
-  onEdit: (task: ITask) => void;
-  editTask: (task: ITask) => void;
-}
+// export interface IProps {
+// }
 
-export const List = ({ tasks, onEdit, onDelete, editTask }: IProps) => {
+export const List = () => {
+  const tasks = useSelector((state: RootState) => state.newTask.tasks);
+  const totalCount = useSelector((state: RootState) => state.newTask.totalCount);
+  const totalDoneTasks = useSelector((state: RootState) => state.newTask.totalDoneTasks);
+  const totalPendingTasks = useSelector((state: RootState) => state.newTask.totalPendingTasks);
+
   
   return (
     <>
+    <Typography>Total:{totalCount}</Typography>
+    <Typography>Total Done Tasks:{totalDoneTasks}</Typography>
+    <Typography>Total Not Done Tasks:{totalPendingTasks}</Typography>
+
     <MuiList dense>
         {tasks.map((task) => (
-        <Task key={task.id} task={task} onDelete={onDelete} onEdit={onEdit}/> 
+        <Task key={task.id} task={task}/> 
       ))} 
      
     </MuiList>
-    <button>Test</button>
     </>
   );
 };

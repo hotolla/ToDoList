@@ -1,51 +1,67 @@
-import { ListItem, ListItemText, IconButton, TextField } from '@mui/material';
+import { ListItem, ListItemText, IconButton, TextField, Checkbox, ListItemIcon } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
-import EditIcon from '@mui/icons-material/Edit';
 import { ITask } from './types/task.types';
+import { changeTaskStatus, deleteTask } from './store/taskReducer';
+import { editTask } from './store/taskReducer';
+import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 
 interface Props {
   task: ITask;
-  onDelete: (task: ITask) => void;
-  onEdit: (task: ITask) => void;
 }
 
-export const Task = ({ task, onEdit, onDelete }: Props) => {
-  const [isEditable, setIsEditable] = useState(false)
-  const [inputValue, setInputValue] = useState(task.name)
+export const Task = ({ task }: Props) => {
+  const dispatch = useDispatch();
 
+  const [ isEditable, setIsEditable ] = useState(false);
+  const [ inputValue, setInputValue ] = useState(task.name);
 
+  const toggleIsEditable = () => {
+    setIsEditable((isEditable) => !isEditable);
+  };
 
   return (
-    <ListItem>
-      {!isEditable ? (<ListItemText
-        primary={task.name}
-        sx={{
-          border: task.isDone ? '2px solid green' : '2px solid red',
-          mb: '20px',
-          p: '15px',
-        }}
-        onDoubleClick={() => setIsEditable((isEditable) => !isEditable)}
-      />) : <TextField 
-      value={inputValue}
-      onChange={<Icon 
-      onClick={() => {
-      setIsEditable(false)
-      callBack(task.id, inputValue)
-      />}
-       >}}
-      <IconButton>
-        <EditIcon />
-      </IconButton>
-      <IconButton
-        edge="end"
-        aria-label="delete"
-        onClick={() => {
-          onDelete(task);
-        }}
-      >
-        <DeleteIcon />
-      </IconButton>
+    <ListItem
+      disableGutters
+      secondaryAction={
+        <IconButton
+          edge="end"
+          aria-label="delete"
+          onClick={() => {
+            dispatch(deleteTask(task));
+          }}
+        >
+          <DeleteIcon />
+        </IconButton>
+      }
+    >
+      <ListItemIcon>
+        <Checkbox
+          edge="start"
+          checked={task.isDone}
+          onChange={() => {
+            dispatch(changeTaskStatus(task));
+          }}
+        />
+      </ListItemIcon>
+      
+      {!isEditable ? (
+        <ListItemText
+          primary={task.name}
+          onClick={toggleIsEditable}
+        />
+       ) : ( 
+        <TextField
+          fullWidth
+          size="small"
+          value={inputValue}
+          onBlur={() => {
+            toggleIsEditable();
+            dispatch(editTask({...task, name: inputValue}));
+          }}
+          onChange={(e) => {setInputValue(e.target.value)}}
+        />
+       )} 
     </ListItem>
   );
 };
