@@ -38,7 +38,6 @@ export const tasksSlice = createSlice({
         if (task.id !== action.payload.id) {
           return task;
         } else {
-// your code here
           state.totalDoneTasks = state.totalDoneTasks + 1;
           state.totalPendingTasks = state.totalPendingTasks - 1;
           return { ...task, isDone: !task.isDone };
