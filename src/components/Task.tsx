@@ -1,8 +1,7 @@
 import { ListItem, ListItemText, IconButton, TextField, Checkbox, ListItemIcon } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { ITask } from './types/task.types';
-import { changeTaskStatus, deleteTask } from './store/taskReducer';
-import { editTask } from './store/taskReducer';
+import { ITask } from '../types/task.types';
+import { changeTaskStatus, deleteTask, editTask } from '../store/taskReducer';
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 
@@ -12,7 +11,6 @@ interface Props {
 
 export const Task = ({ task }: Props) => {
   const dispatch = useDispatch();
-
   const [ isEditable, setIsEditable ] = useState(false);
   const [ inputValue, setInputValue ] = useState(task.name);
 

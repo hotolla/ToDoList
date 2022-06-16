@@ -44,10 +44,13 @@ export const tasksSlice = createSlice({
         }
       });
     },
+    allTask: (state, action) => {
+      state.tasks = state.tasks.filter(({id}) => action.payload.id === id);
+    }
   },
 });
 
-export const { createTask, deleteTask, editTask, changeTaskStatus } =
+export const { createTask, deleteTask, editTask, changeTaskStatus, allTask } =
   tasksSlice.actions;
 
 export default tasksSlice.reducer;
