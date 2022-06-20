@@ -26,7 +26,19 @@
     "extends": [
       "react-app",
       "react-app/jest"
-    ]
+    ],
+    "rules": {
+      "max-len": [ "warn", { "code": 120 } ],
+      "array-bracket-spacing": [ "warn", "always" ],
+      "object-curly-spacing": [ "warn", "always" ],
+      "arrow-parens": [ "warn", "always" ],
+      "semi": "warn",
+      "no-alert": "warn",
+      "no-console": "warn",
+      "no-debugger": "warn",
+      "comma-dangle": [ "warn", "never" ],
+      "import/no-anonymous-default-export": 0
+    }
   },
   "browserslist": {
     "production": [

@@ -2,7 +2,7 @@ import { FormEvent, useState } from "react";
 import { Grid, TextField, Button } from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';
 import { useDispatch } from "react-redux";
-import { createTask } from "../store/taskReducer";
+import { createTask } from "../store/tasksSlice";
 
 const height = 42;
 

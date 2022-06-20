@@ -1,7 +1,7 @@
 import { ListItem, ListItemText, IconButton, TextField, Checkbox, ListItemIcon } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { ITask } from '../types/task.types';
-import { changeTaskStatus, deleteTask, editTask } from '../store/taskReducer';
+import { changeTaskStatus, deleteTask, editTask } from '../store/tasksSlice';
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 
