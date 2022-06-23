@@ -8,7 +8,7 @@ const height = 42;
 
 export const TaskCreationForm = () => {
   const dispatch = useDispatch();
-  const [inputValue, setValue] = useState('')
+  const [ inputValue, setValue ] = useState('');
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -25,7 +25,7 @@ export const TaskCreationForm = () => {
           placeholder="Enter task..."
           value={inputValue}
           onChange={(e) => {
-           setValue(e.target.value)}
+           setValue(e.target.value);}
           }
           variant="outlined"
           InputProps={{

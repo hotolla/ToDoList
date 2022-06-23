@@ -55,9 +55,9 @@ export const Task = ({ task }: Props) => {
           value={inputValue}
           onBlur={() => {
             toggleIsEditable();
-            dispatch(editTask({...task, name: inputValue}));
+            dispatch(editTask({ ...task, name: inputValue }));
           }}
-          onChange={(e) => {setInputValue(e.target.value)}}
+          onChange={(e) =>  {setInputValue(e.target.value);}}
         />
        )} 
     </ListItem>

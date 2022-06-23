@@ -20,7 +20,7 @@ const initialState: TasksState = {
   filter: TasksFilter.Total,
   totalTasks: 0,
   totalDoneTasks: 0,
-  totalPendingTasks: 0,
+  totalPendingTasks: 0
 };
 
 export const tasksSlice = createSlice({
@@ -59,7 +59,7 @@ export const tasksSlice = createSlice({
     toggleFilter: (state, { payload }) => {
       state.filter = payload;
     }
-  },
+  }
 });
 
 export const { 
