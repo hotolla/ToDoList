@@ -28,15 +28,32 @@
       "react-app/jest"
     ],
     "rules": {
-      "max-len": [ "warn", { "code": 120 } ],
-      "array-bracket-spacing": [ "warn", "always" ],
-      "object-curly-spacing": [ "warn", "always" ],
-      "arrow-parens": [ "warn", "always" ],
+      "max-len": [
+        "warn",
+        {
+          "code": 120
+        }
+      ],
+      "array-bracket-spacing": [
+        "warn",
+        "always"
+      ],
+      "object-curly-spacing": [
+        "warn",
+        "always"
+      ],
+      "arrow-parens": [
+        "warn",
+        "always"
+      ],
       "semi": "warn",
       "no-alert": "warn",
       "no-console": "warn",
       "no-debugger": "warn",
-      "comma-dangle": [ "warn", "never" ],
+      "comma-dangle": [
+        "warn",
+        "never"
+      ],
       "import/no-anonymous-default-export": 0
     }
   },
@@ -55,6 +72,7 @@
   "devDependencies": {
     "@testing-library/react": "^13.3.0",
     "@types/jest": "^28.1.1",
-    "@types/mocha": "^9.1.1"
+    "@types/mocha": "^9.1.1",
+    "json-server": "^0.17.0"
   }
 }
