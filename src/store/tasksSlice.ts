@@ -27,6 +27,9 @@ export const tasksSlice = createSlice({
   name: 'tasks',
   initialState,
   reducers: {
+    setTasks: (state, action: PayloadAction<Array<ITask>>) => {
+      state.tasks = action.payload;
+    },
     createTask: (state, action: PayloadAction<ITask>) => {
       state.tasks.push(action.payload);
       state.totalTasks += 1;
@@ -67,7 +70,8 @@ export const {
   deleteTask,
   editTask,
   changeTaskStatus,
-  toggleFilter
+  toggleFilter,
+  setTasks
 } = tasksSlice.actions;
 
 export default tasksSlice.reducer;

@@ -1,11 +1,24 @@
-import { List as MuiList, Typography } from "@mui/material";
-import { useMemo } from "react";
-import { useAppSelector } from "../store";
-import { TasksFilter } from "../store/tasksSlice";
+import { List as MuiList, Typography } from '@mui/material';
+import { useEffect, useMemo } from 'react';
+import { useDispatch } from 'react-redux';
+import { API } from '../api/tasks.api';
+import { useAppSelector } from '../store';
+import { setTasks, TasksFilter } from '../store/tasksSlice';
 import { Task } from './Task';
 
 export const List = () => {
+  const dispatch = useDispatch();
   const tasks = useAppSelector(({ tasks }) => tasks.tasks);
+
+  const fetchTasks = async () => {
+    const { data } = await API.get('tasks');
+    dispatch(setTasks(data));
+  };
+
+  useEffect(() => {
+    fetchTasks();
+  }, []);
+
   const filter = useAppSelector(({ tasks }) => tasks.filter);
   const filteredTasks = useMemo(() => {
     if (filter === TasksFilter.Total) {
@@ -15,21 +28,19 @@ export const List = () => {
     return tasks.filter((task) => {
       const isDone = task.isDone && filter === TasksFilter.Done;
       const isInProgress = !task.isDone && filter === TasksFilter.InProgress;
-      
+
       return isDone || isInProgress;
     });
-  }, [ filter, tasks ]);
+  }, [filter, tasks]);
 
   return (
     <MuiList dense>
       {!filteredTasks.length && (
-        <Typography align="center">
-          No tasks found
-        </Typography>
+        <Typography align="center">No tasks found</Typography>
       )}
 
       {filteredTasks.map((task) => (
-        <Task key={task.id} task={task}/> 
+        <Task key={task.id} task={task} />
       ))}
     </MuiList>
   );

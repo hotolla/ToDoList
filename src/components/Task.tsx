@@ -1,9 +1,17 @@
-import { ListItem, ListItemText, IconButton, TextField, Checkbox, ListItemIcon } from '@mui/material';
+import {
+  ListItem,
+  ListItemText,
+  IconButton,
+  TextField,
+  Checkbox,
+  ListItemIcon,
+} from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { ITask } from '../types/task.types';
 import { changeTaskStatus, deleteTask, editTask } from '../store/tasksSlice';
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
+import { API } from '../api/tasks.api';
 
 interface Props {
   task: ITask;
@@ -11,12 +19,34 @@ interface Props {
 
 export const Task = ({ task }: Props) => {
   const dispatch = useDispatch();
-  const [ isEditable, setIsEditable ] = useState(false);
-  const [ inputValue, setInputValue ] = useState(task.name);
+  const [isEditable, setIsEditable] = useState(false);
+  const [inputValue, setInputValue] = useState(task.name);
 
   const toggleIsEditable = () => {
     setIsEditable((isEditable) => !isEditable);
   };
+
+  const deleteTask1 = async (task: ITask) => {
+    await API.delete(`tasks/${task.id}`);
+    dispatch(deleteTask(task));
+  };
+
+  const changeStatus1 = async (task: ITask) => {
+    const { data } = await API.put(`tasks/${task.id}`, {
+      ...task,
+      isDone: !task.isDone,
+    });
+    dispatch(changeTaskStatus(data));
+  };
+
+  const changeName = async (task: ITask) => {
+    const { data } = await API.put(`tasks/${task.id}`, {
+      ...task,
+      name: inputValue,
+    });
+    dispatch(editTask(data));
+    toggleIsEditable();
+  }; 
 
   return (
     <ListItem
@@ -26,7 +56,7 @@ export const Task = ({ task }: Props) => {
           edge="end"
           aria-label="delete"
           onClick={() => {
-            dispatch(deleteTask(task));
+            deleteTask1(task);
           }}
         >
           <DeleteIcon />
@@ -38,28 +68,26 @@ export const Task = ({ task }: Props) => {
           edge="start"
           checked={task.isDone}
           onChange={() => {
-            dispatch(changeTaskStatus(task));
+            changeStatus1(task);
           }}
         />
       </ListItemIcon>
-      
+
       {!isEditable ? (
-        <ListItemText
-          primary={task.name}
-          onClick={toggleIsEditable}
-        />
-       ) : ( 
+        <ListItemText primary={task.name} onClick={toggleIsEditable} />
+      ) : (
         <TextField
           fullWidth
           size="small"
           value={inputValue}
           onBlur={() => {
-            toggleIsEditable();
-            dispatch(editTask({ ...task, name: inputValue }));
+            changeName(task);
           }}
-          onChange={(e) =>  {setInputValue(e.target.value);}}
+          onChange={(e) => {
+            setInputValue(e.target.value);
+          }}
         />
-       )} 
+      )}
     </ListItem>
   );
 };
