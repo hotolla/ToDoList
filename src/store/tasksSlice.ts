@@ -2,14 +2,14 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ITask } from '../types/task.types';
 
 export enum TasksFilter {
-  Total = "TOTAL",
-  Done = "DONE",
-  InProgress = "IN_PROGRESS"
+  Total = 'TOTAL',
+  Done = 'DONE',
+  InProgress = 'IN_PROGRESS',
 }
 
 export interface TasksState {
   tasks: ITask[];
-  filter: TasksFilter,
+  filter: TasksFilter;
   totalTasks: number;
   totalDoneTasks: number;
   totalPendingTasks: number;
@@ -20,7 +20,7 @@ const initialState: TasksState = {
   filter: TasksFilter.Total,
   totalTasks: 0,
   totalDoneTasks: 0,
-  totalPendingTasks: 0
+  totalPendingTasks: 0,
 };
 
 export const tasksSlice = createSlice({
@@ -36,7 +36,7 @@ export const tasksSlice = createSlice({
       state.totalPendingTasks += 1;
     },
     deleteTask: (state, { payload }: PayloadAction<ITask>) => {
-      const countType = payload.isDone ? "totalDoneTasks" : "totalPendingTasks";
+      const countType = payload.isDone ? 'totalDoneTasks' : 'totalPendingTasks';
 
       state.tasks = state.tasks.filter(({ id }) => payload.id !== id);
       state.totalTasks -= 1;
@@ -54,24 +54,23 @@ export const tasksSlice = createSlice({
         } else {
           state.totalDoneTasks += payload.isDone ? -1 : 1;
           state.totalPendingTasks += payload.isDone ? 1 : -1;
-          
           return { ...task, isDone: !task.isDone };
         }
       });
     },
-    toggleFilter: (state, { payload }) => {
+    toggleFilter: (state, { payload }: PayloadAction<TasksFilter>) => {
       state.filter = payload;
-    }
-  }
+    },
+  },
 });
 
-export const { 
+export const {
   createTask,
   deleteTask,
   editTask,
   changeTaskStatus,
   toggleFilter,
-  setTasks
+  setTasks,
 } = tasksSlice.actions;
 
 export default tasksSlice.reducer;
