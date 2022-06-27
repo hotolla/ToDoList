@@ -3,3 +3,9 @@ export interface ITask {
     name: string;
     isDone: boolean;
   };
+
+  export interface TaskProgress {
+    total: number
+    isDone: number
+    inProgress: number
+  }

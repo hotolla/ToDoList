@@ -1,14 +1,15 @@
 import { RootState } from './store';
 import { createSelector } from 'reselect';
 import { TasksFilter } from './tasksSlice';
+import { ITask, TaskProgress } from '../types/task.types';
 
-const filterSelector = (state: RootState) => state.tasks.filter;
-const tasksSelector = (state: RootState) => state.tasks.tasks;
+export const filterSelector = (state: RootState): TasksFilter => state.todo.filter;
+export const tasksSelector = (state: RootState) => state.todo.tasks;
 
 export const filteredTasksSelector = createSelector(
   filterSelector,
   tasksSelector,
-  (filter, tasks) => {
+  (filter, tasks): ITask[] => {
     if (filter === TasksFilter.Total) {
       return tasks;
     }
@@ -18,5 +19,16 @@ export const filteredTasksSelector = createSelector(
 
       return isDone || isInProgress;
     });
+  }
+);
+
+export const badgeSelector = createSelector(
+  tasksSelector,
+  (tasks): TaskProgress => {
+    return {
+      total: tasks.length,
+      isDone: tasks.filter(task => task.isDone).length,
+      inProgress: tasks.filter(task => !task.isDone).length
+    }
   }
 );
