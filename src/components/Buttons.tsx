@@ -6,8 +6,6 @@ import { badgeSelector, filterSelector } from '../store/tasks.selector';
 
 export const Buttons = () => {
   const dispatch = useDispatch();
-  // const filter = (state: RootState) => state.tasks.filter;
-
   const filter = useAppSelector(filterSelector);
   const { total, isDone, inProgress } = useAppSelector(badgeSelector);
 

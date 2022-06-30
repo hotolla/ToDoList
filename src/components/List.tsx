@@ -1,31 +1,34 @@
-import { List as MuiList, Typography } from '@mui/material';
-import { useEffect, useMemo } from 'react';
-import { useDispatch } from 'react-redux';
-import { API } from '../api/tasks.api';
-import { useAppSelector } from '../store';
-import { filteredTasksSelector } from '../store/tasks.selector';
-import { setTasks, TasksFilter } from '../store/tasksSlice';
+import { List as MuiList, Typography, CircularProgress } from '@mui/material';
+import { useEffect} from 'react';
+import { useAppDispatch, useAppSelector } from '../store';
+import {
+  errorSelector,
+  filteredTasksSelector,
+  loadingSelector,
+} from '../store/tasks.selector';
+import { fetchTasks } from '../store/tasks.thunk';
 import { ITask } from '../types/task.types';
 import { Task } from './Task';
 
 export const List = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const tasks = useAppSelector(filteredTasksSelector);
-
-  const fetchTasks = async () => {
-    const { data } = await API.get('tasks');
-    dispatch(setTasks(data));
-  };
+  const loading = useAppSelector(loadingSelector);
+  const errorMessage = useAppSelector(errorSelector);
 
   useEffect(() => {
-    fetchTasks();
+    dispatch(fetchTasks());
   }, []);
 
   return (
     <MuiList dense>
-      {!tasks.length && <Typography align="center">No tasks found</Typography>}
+      {loading && <CircularProgress size={36} style={{marginLeft: '50%', marginTop: 12}}/>}
+      {errorMessage && <div>{errorMessage}</div>}
+      {!loading && !errorMessage && !tasks.length && (
+        <Typography align="center">No tasks found</Typography>
+      )}
 
-      {tasks.map((task: ITask) => (
+      {!loading && tasks.map((task: ITask) => (
         <Task key={task.id} task={task} />
       ))}
     </MuiList>

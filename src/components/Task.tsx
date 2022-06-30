@@ -8,17 +8,17 @@ import {
 } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { ITask } from '../types/task.types';
-import { changeTaskStatus, deleteTask, editTask } from '../store/tasksSlice';
-import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 import { API } from '../api/tasks.api';
+import { useAppDispatch } from '../store';
+import { deleteTaskThunk, changeStatusTaskThunk, editTaskThunk } from '../store/tasks.thunk';
 
 interface Props {
   task: ITask;
 }
 
 export const Task = ({ task }: Props) => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const [isEditable, setIsEditable] = useState(false);
   const [inputValue, setInputValue] = useState(task.name);
 
@@ -26,27 +26,9 @@ export const Task = ({ task }: Props) => {
     setIsEditable((isEditable) => !isEditable);
   };
 
-  const deleteTask1 = async (task: ITask) => {
-    await API.delete(`tasks/${task.id}`);
-    dispatch(deleteTask(task));
+  const changeName = (task: ITask) => {
+    dispatch(editTaskThunk({task, newName: inputValue}));
   };
-
-  const changeStatus1 = async (task: ITask) => {
-    const { data } = await API.put(`tasks/${task.id}`, {
-      ...task,
-      isDone: !task.isDone,
-    });
-    dispatch(changeTaskStatus(data));
-  };
-
-  const changeName = async (task: ITask) => {
-    const { data } = await API.put(`tasks/${task.id}`, {
-      ...task,
-      name: inputValue,
-    });
-    dispatch(editTask(data));
-    toggleIsEditable();
-  }; 
 
   return (
     <ListItem
@@ -55,9 +37,7 @@ export const Task = ({ task }: Props) => {
         <IconButton
           edge="end"
           aria-label="delete"
-          onClick={() => {
-            deleteTask1(task);
-          }}
+          onClick={() => dispatch(deleteTaskThunk(task))}
         >
           <DeleteIcon />
         </IconButton>
@@ -67,9 +47,7 @@ export const Task = ({ task }: Props) => {
         <Checkbox
           edge="start"
           checked={task.isDone}
-          onChange={() => {
-            changeStatus1(task);
-          }}
+          onChange={() => dispatch(changeStatusTaskThunk(task))}
         />
       </ListItemIcon>
 

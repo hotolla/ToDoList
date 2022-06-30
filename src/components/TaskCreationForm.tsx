@@ -1,25 +1,18 @@
 import { FormEvent, useState } from 'react';
 import { Grid, TextField, Button } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
-import { useDispatch } from 'react-redux';
-import { createTask } from '../store/tasksSlice';
-import { API } from '../api/tasks.api';
-import { ITask } from '../types/task.types';
+import { createTodo } from '../store/tasks.thunk';
+import { useAppDispatch } from '../store';
 
 const height = 42;
 
 export const TaskCreationForm = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const [inputValue, setValue] = useState('');
-
-  const createTaskOnServer = async (newTask: ITask) => {
-    const { data } = await API.post('tasks', newTask);
-    dispatch(createTask(data));
-  };
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    createTaskOnServer({ id: Date.now(), name: inputValue, isDone: false });
+    dispatch(createTodo({ id: Date.now(), name: inputValue, isDone: false } ));
     setValue('');
   };
 

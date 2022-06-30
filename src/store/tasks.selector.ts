@@ -5,6 +5,8 @@ import { ITask, TaskProgress } from '../types/task.types';
 
 export const filterSelector = (state: RootState): TasksFilter => state.todo.filter;
 export const tasksSelector = (state: RootState) => state.todo.tasks;
+export const loadingSelector = (state: RootState) => state.todo.loading;
+export const errorSelector = (state: RootState) => state.todo.errorMessage;
 
 export const filteredTasksSelector = createSelector(
   filterSelector,
