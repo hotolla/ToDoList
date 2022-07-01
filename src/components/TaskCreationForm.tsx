@@ -25,20 +25,20 @@ export const TaskCreationForm = () => {
       onSubmit={handleSubmit}
     >
       <Grid item xs>
-        <TextField
-          fullWidth
-          placeholder="Enter task..."
-          value={inputValue}
-          onChange={(e) => {
-            setValue(e.target.value);
-          }}
-          variant="outlined"
-          InputProps={{
-            sx: {
-              height,
-            },
-          }}
-        />
+      <TextField
+        fullWidth
+        placeholder="Enter task..."
+        value={inputValue}
+        onChange={(e) => {
+          setValue(e.target.value);
+        }}
+        variant="outlined"
+        InputProps={{
+          sx: {
+            height,
+          },
+        }}
+      />
       </Grid>
 
       <Grid item>

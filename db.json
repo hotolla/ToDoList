@@ -1,44 +1,24 @@
 {
   "tasks": [
     {
-      "id": 1,
-      "name": "json-server",
-      "isDone": true
-    },
-    {
-      "id": 2,
-      "name": "json",
-      "isDone": true
-    },
-    {
-      "id": 1656064611418,
-      "name": "test 222",
-      "isDone": true
-    },
-    {
-      "id": 1656343335482,
-      "name": "345",
+      "id": 1656681000074,
+      "name": "testModal",
       "isDone": false
     },
     {
-      "id": 1656512139784,
-      "name": "testTEST!!!!",
+      "id": 1656682146519,
+      "name": "test3",
       "isDone": false
     },
     {
-      "id": 1656578669614,
-      "name": "TEST",
+      "id": 1656682455204,
+      "name": "task ",
       "isDone": false
     },
     {
-      "id": 1656578711219,
-      "name": "TEST@",
+      "id": 1656682739780,
+      "name": "тест модал",
       "isDone": false
-    },
-    {
-      "id": 1656583108209,
-      "name": "ReduxTEST",
-      "isDone": true
     }
   ]
 }

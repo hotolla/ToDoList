@@ -1,4 +1,4 @@
-import { List as MuiList, Typography, CircularProgress } from '@mui/material';
+import { List as MuiList, Typography, CircularProgress, Modal } from '@mui/material';
 import { useEffect} from 'react';
 import { useAppDispatch, useAppSelector } from '../store';
 import {
@@ -9,6 +9,7 @@ import {
 import { fetchTasks } from '../store/tasks.thunk';
 import { ITask } from '../types/task.types';
 import { Task } from './Task';
+import { TodoModal } from './TodoModal';
 
 export const List = () => {
   const dispatch = useAppDispatch();
@@ -22,6 +23,7 @@ export const List = () => {
 
   return (
     <MuiList dense>
+
       {loading && <CircularProgress size={36} style={{marginLeft: '50%', marginTop: 12}}/>}
       {errorMessage && <div>{errorMessage}</div>}
       {!loading && !errorMessage && !tasks.length && (
@@ -31,6 +33,10 @@ export const List = () => {
       {!loading && tasks.map((task: ITask) => (
         <Task key={task.id} task={task} />
       ))}
+
+      <TodoModal />
+
     </MuiList>
+
   );
 };
