@@ -1,46 +1,60 @@
-import { Box, Button, Modal } from "@mui/material";
-import { useState } from "react";
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from "@mui/material";
 import { makeStyles } from '@mui/styles';
 import { TaskCreationForm } from "./TaskCreationForm";
+import { createTodo } from '../store/tasks.thunk';
+import { useAppDispatch } from "../store";
 import { ITask } from "../types/task.types";
 
-const useStyles = makeStyles(() => ({
+
+const useStyles = makeStyles((theme) => {
+return ({
   createTaskButton: {
     borderRadius: "50px"
   },
   modalWindow: {
     border: "2px solid black",
-    position: "absolute" as "absolute",
+    position: "absolute",
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
-    width: "400",
-    padding: "20",
+    maxWidth: 400,
+    padding: theme.spacing(3),
     color: "#3333ff"
   },
-}));
+})});
 
 type Props = {
-  onSubmit: (task: ITask) => void;
+  isOpen: boolean;
+  onClose: () => void;
+  task: ITask;
 }
 
-export const TodoModal = (onSubmit: Props) => {
+export const TodoModal = ({ isOpen, onClose, task }: Props) => {
   const classes = useStyles();
-  //   const [open, setOpen] = useState(false);
-  // const handleOpen = () => setOpen(true);
-  // const handleClose = () => setOpen(false);
+  const dispatch = useAppDispatch();
 
   return (
     <div >
-      <Modal
-        open={props.open}
-        onClose={props.handleClose}
+      <Dialog
+        open={isOpen}
+        onClose={onClose}
       >
-        <Box className={classes.modalWindow}>
-        <h2 >Create new task</h2>
-        <TaskCreationForm onModalClose= {onSubmit.handleClose} />
-        </Box>
-      </Modal>
+        <DialogTitle>
+          Create new Task
+        </DialogTitle>
+
+        <TaskCreationForm onSubmit={onClose}/>
+
+        <DialogActions>
+          <Button onClick={onClose}>
+            Cancel
+          </Button>
+          <Button onClick={() => dispatch(createTodo(task))}>
+            Save
+          </Button>
+        </DialogActions>
+
+      </Dialog>
     </div>
   )
 }

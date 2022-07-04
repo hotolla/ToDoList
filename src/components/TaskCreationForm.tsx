@@ -3,17 +3,26 @@ import { Grid, TextField, Button } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import { createTodo } from '../store/tasks.thunk';
 import { useAppDispatch } from '../store';
+import { ITask } from '../types/task.types';
 
 const height = 42;
 
-export const TaskCreationForm = () => {
+interface Props {
+  onSubmit: (task: ITask) => void;
+}
+
+export const TaskCreationForm = ({ onSubmit }: Props) => {
   const dispatch = useAppDispatch();
   const [inputValue, setValue] = useState('');
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    dispatch(createTodo({ id: Date.now(), name: inputValue, isDone: false } ));
+
+    const task = { id: Date.now(), name: inputValue, isDone: false };
+
+    dispatch(createTodo(task));
     setValue('');
+    onSubmit(task);
   };
 
   return (
@@ -25,20 +34,27 @@ export const TaskCreationForm = () => {
       onSubmit={handleSubmit}
     >
       <Grid item xs>
-      <TextField
-        fullWidth
-        placeholder="Enter task..."
-        value={inputValue}
-        onChange={(e) => {
-          setValue(e.target.value);
-        }}
-        variant="outlined"
-        InputProps={{
-          sx: {
-            height,
-          },
-        }}
-      />
+        <TextField
+          fullWidth
+          placeholder="Enter name task..."
+          value={inputValue}
+          onChange={(e) => {
+            setValue(e.target.value);
+          }}
+          variant="outlined"
+          InputProps={{
+            sx: {
+              height,
+            },
+          }}
+        />
+          <TextField
+            margin="dense"
+            multiline
+            fullWidth
+            maxRows={4}
+            placeholder="Enter description..."
+          />
       </Grid>
 
       <Grid item>
@@ -52,6 +68,7 @@ export const TaskCreationForm = () => {
         >
           Add
         </Button>
+        
       </Grid>
     </Grid>
   );

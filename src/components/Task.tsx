@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import {
   ListItem,
   ListItemText,
@@ -8,7 +9,6 @@ import {
 } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { ITask } from '../types/task.types';
-import { useState } from 'react';
 import { API } from '../api/tasks.api';
 import { useAppDispatch } from '../store';
 import { deleteTaskThunk, changeStatusTaskThunk, editTaskThunk } from '../store/tasks.thunk';
