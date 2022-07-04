@@ -32,7 +32,6 @@ export const Task = ({ task }: Props) => {
 
   return (
     <ListItem
-      disableGutters
       secondaryAction={
         <IconButton
           edge="end"

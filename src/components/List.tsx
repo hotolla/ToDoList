@@ -1,4 +1,4 @@
-import { List as MuiList, Typography, CircularProgress, Modal } from '@mui/material';
+import { List as MuiList, Typography, CircularProgress, Modal, Paper } from '@mui/material';
 import { useEffect} from 'react';
 import { useAppDispatch, useAppSelector } from '../store';
 import {
@@ -10,17 +10,17 @@ import { fetchTasks } from '../store/tasks.thunk';
 import { ITask } from '../types/task.types';
 import { Task } from './Task';
 
-const useStyles = makeStyles(() => ({
-  menuButton: {
-  },
-  title: {
-    flexGrow: 5,
+// const useStyles = makeStyles(() => ({
+//   menuButton: {
+//   },
+//   title: {
+//     flexGrow: 5,
 
-  },
-}));
+//   },
+// }));
 
 export const List = () => {
-  const classes = useStyles();
+  // const classes = useStyles();
 
   const dispatch = useAppDispatch();
   const tasks = useAppSelector(filteredTasksSelector);
@@ -32,18 +32,20 @@ export const List = () => {
   }, []);
 
   return (
-    <MuiList dense color="white">
-      {loading && <CircularProgress size={36} style={{marginLeft: '50%', marginTop: 12}}/>}
+    <Paper>
+      <MuiList dense>
+        {loading && <CircularProgress size={36} style={{marginLeft: '50%', marginTop: 12}}/>}
 
-      {errorMessage && <div>{errorMessage}</div>}
-      
-      {!loading && !errorMessage && !tasks.length && (
-        <Typography align="center">No tasks found</Typography>
-      )}
+        {errorMessage && <div>{errorMessage}</div>}
+        
+        {!loading && !errorMessage && !tasks.length && (
+          <Typography align="center">No tasks found</Typography>
+        )}
 
-      {!loading && tasks.map((task: ITask) => (
-        <Task key={task.id} task={task} />
-      ))}
-    </MuiList>
+        {!loading && tasks.map((task: ITask) => (
+          <Task key={task.id} task={task} />
+        ))}
+      </MuiList>
+    </Paper>
   );
 };

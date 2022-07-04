@@ -38,11 +38,9 @@ export const TodoModal = ({ isOpen, onClose }: Props) => {
   const classes = useStyles();
 
   return (
-    <div>
-      <Dialog open={isOpen} onClose={onClose}>
-        <DialogTitle>Create new Task</DialogTitle>
-        <TaskCreationForm closeModal={onClose} />
-      </Dialog>
-    </div>
+    <Dialog open={isOpen} onClose={onClose}>
+      <DialogTitle>Create new Task</DialogTitle>
+      <TaskCreationForm closeModal={onClose} />
+    </Dialog>
   );
 };
