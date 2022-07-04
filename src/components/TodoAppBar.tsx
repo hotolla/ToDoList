@@ -19,7 +19,7 @@ export const TodoAppBar = () => {
                 <IconButton edge="start" className={classes.menuButton} color="inherit">
                 <MenuIcon />
                 </IconButton>
-                <Typography>Website todo</Typography>
+                <Typography align="center">Website todo</Typography>
             </Toolbar>
         </AppBar>
     )

@@ -3,15 +3,14 @@ import { Grid, TextField, Button } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import { createTodo } from '../store/tasks.thunk';
 import { useAppDispatch } from '../store';
-import { ITask } from '../types/task.types';
 
 const height = 42;
 
 interface Props {
-  onSubmit: (task: ITask) => void;
+  closeModal: () => void;
 }
 
-export const TaskCreationForm = ({ onSubmit }: Props) => {
+export const TaskCreationForm = ({ closeModal }: Props) => {
   const dispatch = useAppDispatch();
   const [inputValue, setValue] = useState('');
 
@@ -19,10 +18,8 @@ export const TaskCreationForm = ({ onSubmit }: Props) => {
     e.preventDefault();
 
     const task = { id: Date.now(), name: inputValue, isDone: false };
-
     dispatch(createTodo(task));
-    setValue('');
-    onSubmit(task);
+    closeModal();
   };
 
   return (
@@ -48,13 +45,13 @@ export const TaskCreationForm = ({ onSubmit }: Props) => {
             },
           }}
         />
-          <TextField
-            margin="dense"
-            multiline
-            fullWidth
-            maxRows={4}
-            placeholder="Enter description..."
-          />
+        <TextField
+          margin="dense"
+          multiline
+          fullWidth
+          maxRows={4}
+          placeholder="Enter description..."
+        />
       </Grid>
 
       <Grid item>
@@ -68,7 +65,6 @@ export const TaskCreationForm = ({ onSubmit }: Props) => {
         >
           Add
         </Button>
-        
       </Grid>
     </Grid>
   );
