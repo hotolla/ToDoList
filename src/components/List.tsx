@@ -1,3 +1,4 @@
+import { makeStyles } from '@mui/styles';
 import { List as MuiList, Typography, CircularProgress, Modal, Paper } from '@mui/material';
 import { useEffect} from 'react';
 import { useAppDispatch, useAppSelector } from '../store';
@@ -10,7 +11,15 @@ import { fetchTasks } from '../store/tasks.thunk';
 import { ITask } from '../types/task.types';
 import { Task } from './Task';
 
+const useStyles = makeStyles({
+  container: {
+    overflowY: "auto",
+    height: "60vh"
+  },
+});
+
 export const List = () => {
+  const classes = useStyles();
   const dispatch = useAppDispatch();
   const tasks = useAppSelector(filteredTasksSelector);
   const loading = useAppSelector(loadingSelector);
@@ -21,8 +30,8 @@ export const List = () => {
   }, []);
 
   return (
-    <Paper>
-      <MuiList dense>
+    <Paper className={classes.container}>
+      <MuiList dense >
         {loading && <CircularProgress size={36} style={{marginLeft: '50%', marginTop: 12}}/>}
 
         {errorMessage && <div>{errorMessage}</div>}

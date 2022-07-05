@@ -25,7 +25,7 @@ export const TaskCreationForm = ({ closeModal }: Props) => {
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
 
-    const task = { id: Date.now(), name: inputValue, isDone: false };
+    const task = { id: Date.now(), name: inputValue, description: inputValue, isDone: false };
     dispatch(createTodo(task));
     closeModal();
   };
