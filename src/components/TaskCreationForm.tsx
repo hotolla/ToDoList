@@ -3,6 +3,7 @@ import { Grid, TextField, Button } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import { createTodo } from '../store/tasks.thunk';
 import { useAppDispatch } from '../store';
+import { makeStyles } from '@mui/styles';
 
 const height = 42;
 
@@ -10,7 +11,14 @@ interface Props {
   closeModal: () => void;
 }
 
+const useStyles = makeStyles((theme) => ({
+  container: {
+    padding: theme.spacing(3)
+  },
+}));
+
 export const TaskCreationForm = ({ closeModal }: Props) => {
+  const classes = useStyles();
   const dispatch = useAppDispatch();
   const [inputValue, setValue] = useState('');
 
@@ -27,7 +35,9 @@ export const TaskCreationForm = ({ closeModal }: Props) => {
       container
       spacing={2}
       alignItems="center"
+      direction="column"
       component="form"
+      className={classes.container}
       onSubmit={handleSubmit}
     >
       <Grid item xs>

@@ -1,45 +1,44 @@
-import {
-  Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-} from '@mui/material';
+import { Dialog, DialogTitle, IconButton } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { TaskCreationForm } from './TaskCreationForm';
-import { createTodo } from '../store/tasks.thunk';
-import { useAppDispatch } from '../store';
-import { ITask } from '../types/task.types';
-
-const useStyles = makeStyles((theme) => {
-  return {
-    createTaskButton: {
-      borderRadius: '50px',
-    },
-    modalWindow: {
-      border: '2px solid black',
-      position: 'absolute',
-      top: '50%',
-      left: '50%',
-      transform: 'translate(-50%, -50%)',
-      maxWidth: 400,
-      padding: theme.spacing(3),
-      color: '#3333ff',
-    },
-  };
-});
+import CloseIcon from '@mui/icons-material/Close';
 
 type Props = {
   isOpen: boolean;
   onClose: () => void;
 };
 
+const useStyles = makeStyles((theme) => ({
+  formContainer: {
+    display: "flex",
+    flexDirection: "column",
+  },
+  title: {
+    color: theme.palette.primary.main,
+  }
+}));
+
 export const TodoModal = ({ isOpen, onClose }: Props) => {
   const classes = useStyles();
 
   return (
-    <Dialog open={isOpen} onClose={onClose}>
-      <DialogTitle>Create new Task</DialogTitle>
+    <Dialog open={isOpen} onClose={onClose} className={classes.formContainer}>
+
+      <DialogTitle className={classes.title}>
+        Create new Task
+      <IconButton edge="end"
+        sx={{
+          position: 'absolute',
+          right: 26,
+          top: 8,
+          color: (theme) => theme.palette.primary.main,
+        }}
+        onClick={onClose}
+      >
+        <CloseIcon />
+      </IconButton>
+      </DialogTitle>
+      
       <TaskCreationForm closeModal={onClose} />
     </Dialog>
   );

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { makeStyles } from '@mui/styles';
 import {
   ListItem,
   ListItemText,
@@ -9,7 +10,6 @@ import {
 } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { ITask } from '../types/task.types';
-import { API } from '../api/tasks.api';
 import { useAppDispatch } from '../store';
 import { deleteTaskThunk, changeStatusTaskThunk, editTaskThunk } from '../store/tasks.thunk';
 
@@ -17,7 +17,15 @@ interface Props {
   task: ITask;
 }
 
+const useStyles = makeStyles((theme) => ({
+  color: {
+    color: theme.palette.secondary.main,
+  }
+}));
+
 export const Task = ({ task }: Props) => {
+  const classes = useStyles();
+
   const dispatch = useAppDispatch();
   const [isEditable, setIsEditable] = useState(false);
   const [inputValue, setInputValue] = useState(task.name);
@@ -38,7 +46,7 @@ export const Task = ({ task }: Props) => {
           aria-label="delete"
           onClick={() => dispatch(deleteTaskThunk(task))}
         >
-          <DeleteIcon />
+          <DeleteIcon className={classes.color}/>
         </IconButton>
       }
     >

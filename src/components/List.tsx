@@ -10,18 +10,7 @@ import { fetchTasks } from '../store/tasks.thunk';
 import { ITask } from '../types/task.types';
 import { Task } from './Task';
 
-// const useStyles = makeStyles(() => ({
-//   menuButton: {
-//   },
-//   title: {
-//     flexGrow: 5,
-
-//   },
-// }));
-
 export const List = () => {
-  // const classes = useStyles();
-
   const dispatch = useAppDispatch();
   const tasks = useAppSelector(filteredTasksSelector);
   const loading = useAppSelector(loadingSelector);
