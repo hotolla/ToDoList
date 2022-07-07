@@ -15,5 +15,8 @@ export const theme = createTheme({
     background: {
       default: '#E4E9FF',
     },
+    action: {
+      disabledBackground: '#E4E9FF',
+    },
   },
 });

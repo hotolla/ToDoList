@@ -1,5 +1,5 @@
 import { makeStyles } from '@mui/styles';
-import { List as MuiList, Typography, CircularProgress, Modal, Paper } from '@mui/material';
+import { List as MuiList, Typography, CircularProgress, Paper } from '@mui/material';
 import { useEffect} from 'react';
 import { useAppDispatch, useAppSelector } from '../store';
 import {
@@ -11,12 +11,23 @@ import { fetchTasks } from '../store/tasks.thunk';
 import { ITask } from '../types/task.types';
 import { Task } from './Task';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   container: {
     overflowY: "auto",
-    height: "60vh"
+    height: "60vh",
+    "&::-webkit-scrollbar": {
+    width: 15
   },
-});
+    "&::-webkit-scrollbar-track": {
+    boxShadow: "inset 0 0 8px grey",
+    borderRadius: 4
+  },
+    "&::-webkit-scrollbar-thumb": {
+    background: theme.palette.primary.main,
+    borderRadius: 10
+  },
+}
+}));
 
 export const List = () => {
   const classes = useStyles();

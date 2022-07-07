@@ -15,6 +15,9 @@ const useStyles = makeStyles((theme) => ({
   container: {
     padding: theme.spacing(3)
   },
+  disabledButton: {
+    backgroundColor: theme.palette.action.disabledBackground
+  },
 }));
 
 export const TaskCreationForm = ({ closeModal }: Props) => {
@@ -67,6 +70,7 @@ export const TaskCreationForm = ({ closeModal }: Props) => {
       <Grid item>
         <Button
           disabled={!inputValue}
+          classes={{ disabled: classes.disabledButton }}
           type="submit"
           variant="contained"
           startIcon={<AddIcon />}

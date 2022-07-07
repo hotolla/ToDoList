@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { makeStyles } from '@mui/styles';
 import {
   ListItem,
@@ -9,9 +10,14 @@ import {
   ListItemIcon,
 } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
+import DescriptionIcon from '@mui/icons-material/Description';
 import { ITask } from '../types/task.types';
 import { useAppDispatch } from '../store';
-import { deleteTaskThunk, changeStatusTaskThunk, editTaskThunk } from '../store/tasks.thunk';
+import {
+  deleteTaskThunk,
+  changeStatusTaskThunk,
+  editTaskThunk,
+} from '../store/tasks.thunk';
 
 interface Props {
   task: ITask;
@@ -20,7 +26,7 @@ interface Props {
 const useStyles = makeStyles((theme) => ({
   color: {
     color: theme.palette.secondary.main,
-  }
+  },
 }));
 
 export const Task = ({ task }: Props) => {
@@ -35,7 +41,7 @@ export const Task = ({ task }: Props) => {
   };
 
   const changeName = (task: ITask) => {
-    dispatch(editTaskThunk({task, newName: inputValue}));
+    dispatch(editTaskThunk({ task, newName: inputValue }));
   };
 
   return (
@@ -46,7 +52,7 @@ export const Task = ({ task }: Props) => {
           aria-label="delete"
           onClick={() => dispatch(deleteTaskThunk(task))}
         >
-          <DeleteIcon className={classes.color}/>
+          <DeleteIcon className={classes.color} />
         </IconButton>
       }
     >
@@ -73,6 +79,11 @@ export const Task = ({ task }: Props) => {
           }}
         />
       )}
+        <Link to={`/todo/${task.id}`}>
+          <IconButton aria-label="open">
+            <DescriptionIcon className={classes.color} />
+        </IconButton>
+      </Link>
     </ListItem>
   );
 };
