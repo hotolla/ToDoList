@@ -41,15 +41,8 @@ export const Task = ({ task }: Props) => {
   const dispatch = useAppDispatch();
   const [isEditable, setIsEditable] = useState(false);
   const [inputValue, setInputValue] = useState(task.name);
-//здесь использовать или перебрасывать?
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
 
-  const handleClose = () => {
-    setOpen(false);
-  };
-
+  const toggleDeleteModal = () => setOpen(!open)
   const toggleIsEditable = () => {
     setIsEditable((isEditable) => !isEditable);
   };
@@ -70,17 +63,17 @@ export const Task = ({ task }: Props) => {
         <IconButton
           edge="end"
           aria-label="delete"
-          onClick={handleClickOpen}
+          onClick={toggleDeleteModal}
         >
           <DeleteIcon className={classes.color} />
         </IconButton>
       }
     >
-      <Dialog open={open} onClose={handleClose}>
+      <Dialog open={open} onClose={toggleDeleteModal}>
         <DialogTitle>Delete task?</DialogTitle>
         <DialogActions>
           <Button onClick={() => dispatch(deleteTaskThunk(task))}>Yes</Button>
-          <Button onClick={handleClose}>No</Button>
+          <Button onClick={toggleDeleteModal}>No</Button>
         </DialogActions>
       </Dialog>
 

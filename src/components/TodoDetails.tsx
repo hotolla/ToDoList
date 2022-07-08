@@ -43,11 +43,14 @@ export const TodoDetails = () => {
       </Link>
       </Typography>
 
-      <Typography>
-        Task status: 
+      <Typography className={classes.title}>
+        Task status:
       </Typography>
 
-          
+      <Typography >
+      {(task?.isDone) ? "Done" : "In Progress"}
+      </Typography>
+
       <Typography className={classes.title}>
         Description:
       </Typography>
