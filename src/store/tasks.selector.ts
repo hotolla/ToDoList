@@ -24,6 +24,13 @@ export const filteredTasksSelector = createSelector(
   }
 );
 
+export const currentTaskSelector = createSelector(
+  tasksSelector,
+  (tasks) => (id: string | undefined) => {
+    return tasks.find(task => task.id === +id!)
+  }
+)
+
 export const badgeSelector = createSelector(
   tasksSelector,
   (tasks): TaskProgress => {

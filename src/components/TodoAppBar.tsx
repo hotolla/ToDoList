@@ -4,7 +4,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 export const TodoAppBar = () => {
   return (
     <AppBar position="sticky">
-      <Toolbar>
+      <Toolbar >
         <IconButton edge="start" color="inherit">
           <MenuIcon />
         </IconButton>

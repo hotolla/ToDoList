@@ -24,11 +24,13 @@ export const TaskCreationForm = ({ closeModal }: Props) => {
   const classes = useStyles();
   const dispatch = useAppDispatch();
   const [inputValue, setValue] = useState('');
+  const [inputValueDecr, setValueDecr] = useState('');
+
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
 
-    const task = { id: Date.now(), name: inputValue, description: inputValue, isDone: false };
+    const task = { id: Date.now(), name: inputValue, description: inputValueDecr, isDone: false };
     dispatch(createTodo(task));
     closeModal();
   };
@@ -62,7 +64,11 @@ export const TaskCreationForm = ({ closeModal }: Props) => {
           margin="dense"
           multiline
           fullWidth
+          value={inputValueDecr}
           maxRows={4}
+          onChange={(e) => {
+            setValueDecr(e.target.value);
+          }}
           placeholder="Enter description..."
         />
       </Grid>

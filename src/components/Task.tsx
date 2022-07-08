@@ -8,6 +8,10 @@ import {
   TextField,
   Checkbox,
   ListItemIcon,
+  Dialog,
+  DialogTitle,
+  DialogActions,
+  Button,
 } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import DescriptionIcon from '@mui/icons-material/Description';
@@ -21,6 +25,7 @@ import {
 
 interface Props {
   task: ITask;
+  // onClose: () => void;
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -31,10 +36,19 @@ const useStyles = makeStyles((theme) => ({
 
 export const Task = ({ task }: Props) => {
   const classes = useStyles();
+  const [open, setOpen] = useState(false);
 
   const dispatch = useAppDispatch();
   const [isEditable, setIsEditable] = useState(false);
   const [inputValue, setInputValue] = useState(task.name);
+//здесь использовать или перебрасывать?
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   const toggleIsEditable = () => {
     setIsEditable((isEditable) => !isEditable);
@@ -44,18 +58,32 @@ export const Task = ({ task }: Props) => {
     dispatch(editTaskThunk({ task, newName: inputValue }));
   };
 
+  const handleBlur = () => {
+    toggleIsEditable();
+    if (inputValue === task.name) return;
+    changeName(task);
+  };
+
   return (
     <ListItem
       secondaryAction={
         <IconButton
           edge="end"
           aria-label="delete"
-          onClick={() => dispatch(deleteTaskThunk(task))}
+          onClick={handleClickOpen}
         >
           <DeleteIcon className={classes.color} />
         </IconButton>
       }
     >
+      <Dialog open={open} onClose={handleClose}>
+        <DialogTitle>Delete task?</DialogTitle>
+        <DialogActions>
+          <Button onClick={() => dispatch(deleteTaskThunk(task))}>Yes</Button>
+          <Button onClick={handleClose}>No</Button>
+        </DialogActions>
+      </Dialog>
+
       <ListItemIcon>
         <Checkbox
           edge="start"
@@ -68,20 +96,19 @@ export const Task = ({ task }: Props) => {
         <ListItemText primary={task.name} onClick={toggleIsEditable} />
       ) : (
         <TextField
+          autoFocus
           fullWidth
           size="small"
           value={inputValue}
-          onBlur={() => {
-            changeName(task);
-          }}
+          onBlur={handleBlur}
           onChange={(e) => {
             setInputValue(e.target.value);
           }}
         />
       )}
-        <Link to={`/todo/${task.id}`}>
-          <IconButton aria-label="open">
-            <DescriptionIcon className={classes.color} />
+      <Link to={`/todo/${task.id}`}>
+        <IconButton aria-label="open">
+          <DescriptionIcon className={classes.color} />
         </IconButton>
       </Link>
     </ListItem>
