@@ -1,15 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App';
-import { store } from './store/store';
 import { Provider } from 'react-redux';
+import App from './App';
 import { ThemeProvider } from '@mui/material';
 import { BrowserRouter } from 'react-router-dom';
 import { theme } from './config/theme';
+import { createStore } from './store';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+
+const store = createStore()
 
 root.render(
   <React.StrictMode>

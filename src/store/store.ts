@@ -1,15 +1,37 @@
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
-import { configureStore } from '@reduxjs/toolkit';
+import {
+  applyMiddleware,
+  combineReducers,
+  configureStore,
+  getDefaultMiddleware,
+} from '@reduxjs/toolkit';
 import tasksReducer from './tasksSlice';
+import createSagaMiddleware from 'redux-saga';
+import rootSaga from './rootSaga';
 
-export const store = configureStore({
-  reducer: {
-    todo: tasksReducer
-  }
-});
+const createRootReducer = () => {
+  return combineReducers({
+    todo: tasksReducer,
+  })
+}
 
-export type RootState = ReturnType<typeof store.getState>;
-export type AppDispatch = typeof store.dispatch;
+export const createStore = () => {
+  const sagaMiddleware = createSagaMiddleware();
 
-export const useAppDispatch: () => AppDispatch = useDispatch;
+  const store = configureStore({
+    reducer: createRootReducer(),
+    middleware: getDefaultMiddleware({
+      serializableCheck: false, // not used in current project
+    }).concat([sagaMiddleware]),
+  });
+
+  sagaMiddleware.run(rootSaga);
+
+  return store
+};
+
+export type RootState = ReturnType<ReturnType<typeof createRootReducer>>;
+export type AppDispatch = ReturnType<typeof createStore>['dispatch'];
+
+export const useAppDispatch = () => useDispatch<AppDispatch>();
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;

@@ -22,10 +22,10 @@ import {
   changeStatusTaskThunk,
   editTaskThunk,
 } from '../store/tasks.thunk';
+import { deleteTaskAction, changeStatusTaskAction, editTaskAction } from '../store/tasks.actions';
 
 interface Props {
   task: ITask;
-  // onClose: () => void;
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -48,7 +48,7 @@ export const Task = ({ task }: Props) => {
   };
 
   const changeName = (task: ITask) => {
-    dispatch(editTaskThunk({ task, newName: inputValue }));
+    dispatch(editTaskAction({ task, newName: inputValue }));
   };
 
   const handleBlur = () => {
@@ -72,7 +72,7 @@ export const Task = ({ task }: Props) => {
       <Dialog open={open} onClose={toggleDeleteModal}>
         <DialogTitle>Delete task?</DialogTitle>
         <DialogActions>
-          <Button onClick={() => dispatch(deleteTaskThunk(task))}>Yes</Button>
+          <Button onClick={() => dispatch(deleteTaskAction(task))}>Yes</Button>
           <Button onClick={toggleDeleteModal}>No</Button>
         </DialogActions>
       </Dialog>
@@ -81,7 +81,7 @@ export const Task = ({ task }: Props) => {
         <Checkbox
           edge="start"
           checked={task.isDone}
-          onChange={() => dispatch(changeStatusTaskThunk(task))}
+          onChange={() => dispatch(changeStatusTaskAction(task))}
         />
       </ListItemIcon>
 

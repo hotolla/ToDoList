@@ -5,14 +5,12 @@ import {
   CircularProgress,
   Paper,
 } from '@mui/material';
-import { useEffect } from 'react';
-import { useAppDispatch, useAppSelector } from '../store';
+import { useAppSelector } from '../store';
 import {
   errorSelector,
   filteredTasksSelector,
   loadingSelector,
 } from '../store/tasks.selector';
-import { fetchTasks } from '../store/tasks.thunk';
 import { ITask } from '../types/task.types';
 import { Task } from './Task';
 import { scrollBarStyling } from '../config/theme';
@@ -27,14 +25,9 @@ const useStyles = makeStyles((theme) => ({
 
 export const List = () => {
   const classes = useStyles();
-  const dispatch = useAppDispatch();
   const tasks = useAppSelector(filteredTasksSelector);
   const loading = useAppSelector(loadingSelector);
   const errorMessage = useAppSelector(errorSelector);
-
-  useEffect(() => {
-    dispatch(fetchTasks());
-  }, []);
 
   return (
     <Paper className={classes.container}>
