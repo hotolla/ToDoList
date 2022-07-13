@@ -17,11 +17,6 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import DescriptionIcon from '@mui/icons-material/Description';
 import { ITask } from '../types/task.types';
 import { useAppDispatch } from '../store';
-import {
-  deleteTaskThunk,
-  changeStatusTaskThunk,
-  editTaskThunk,
-} from '../store/tasks.thunk';
 import { deleteTaskAction, changeStatusTaskAction, editTaskAction } from '../store/tasks.actions';
 
 interface Props {

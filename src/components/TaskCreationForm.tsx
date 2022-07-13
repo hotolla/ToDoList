@@ -4,6 +4,7 @@ import AddIcon from '@mui/icons-material/Add';
 import { createTodo } from '../store/tasks.thunk';
 import { useAppDispatch } from '../store';
 import { makeStyles } from '@mui/styles';
+import { createTodoAction } from '../store/tasks.actions';
 
 const height = 42;
 
@@ -31,7 +32,7 @@ export const TaskCreationForm = ({ closeModal }: Props) => {
     e.preventDefault();
 
     const task = { id: Date.now(), name: inputValue, description: inputValueDecr, isDone: false };
-    dispatch(createTodo(task));
+    dispatch(createTodoAction(task));
     closeModal();
   };
 

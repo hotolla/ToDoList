@@ -1,6 +1,11 @@
 import { takeLatest, put } from 'redux-saga/effects';
-import { deleteTaskAction, getTasksAction, changeStatusTaskAction, editTaskAction } from './tasks.actions';
-import { deleteTaskThunk, fetchTasks, changeStatusTaskThunk, editTaskThunk } from './tasks.thunk';
+import { createTodoAction, deleteTaskAction, getTasksAction, changeStatusTaskAction, editTaskAction } from './tasks.actions';
+import { createTodo, deleteTaskThunk, fetchTasks, changeStatusTaskThunk, editTaskThunk } from './tasks.thunk';
+
+export function* getCreateTodoWorkerSaga(action: ReturnType<typeof createTodoAction>) {
+  console.log('createTodoSaga!!!!');
+  yield put(createTodo(action.payload) as any);
+}
 
 export function* getTasksWorkerSaga() {
   console.log('getTasksWorkerSaga!');
@@ -22,8 +27,10 @@ export function* changeStatusTaskWorkerSaga(action: ReturnType<typeof changeStat
     yield put(editTaskThunk({task: action.payload.task, newName: action.payload.newName}) as any);
   }
 
+
 export function* tasksSagaWatcher() {
   console.log('tasksSagaWatcher!');
+  yield takeLatest(createTodoAction, getCreateTodoWorkerSaga);
   yield takeLatest(getTasksAction, getTasksWorkerSaga);
   yield takeLatest(deleteTaskAction, deleteTaskWorkerSaga);
   yield takeLatest(changeStatusTaskAction, changeStatusTaskWorkerSaga);
