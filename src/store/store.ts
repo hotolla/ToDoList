@@ -12,8 +12,8 @@ import rootSaga from './rootSaga';
 const createRootReducer = () => {
   return combineReducers({
     todo: tasksReducer,
-  })
-}
+  });
+};
 
 export const createStore = () => {
   const sagaMiddleware = createSagaMiddleware();
@@ -27,7 +27,7 @@ export const createStore = () => {
 
   sagaMiddleware.run(rootSaga);
 
-  return store
+  return store;
 };
 
 export type RootState = ReturnType<ReturnType<typeof createRootReducer>>;
