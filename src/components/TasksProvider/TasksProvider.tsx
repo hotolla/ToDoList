@@ -10,12 +10,14 @@ interface ITasksProviderProps {
 
 interface ITasksProviderValue extends ITasksState {
   addTask: (task: ITask) => void;
+  deleteTask: (task: ITask) => void;
 }
 
 export const TasksContext = createContext<ITasksProviderValue>({
   ...initialState,
 
-  addTask: () => {}
+  addTask: () => {},
+  deleteTask: () => {}, 
 });
 
 export const TasksProvider = ({ children }: ITasksProviderProps) => {
@@ -25,7 +27,11 @@ export const TasksProvider = ({ children }: ITasksProviderProps) => {
     dispatch({ type: Types.AddTask, payload: task });
   };
 
-  const providerValue = { ...state, addTask };
+  const deleteTask = (task: ITask) => {
+    dispatch({ type: Types.DeleteTask, payload: task });
+  };
+
+  const providerValue = { ...state, addTask, deleteTask };
 
   return (
     <TasksContext.Provider value={providerValue}>

@@ -1,10 +1,9 @@
 import { FormEvent, useContext, useState } from 'react';
 import { Grid, TextField, Button } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
-import { createTodo } from '../store/tasks.thunk';
 import { useAppDispatch } from '../store';
 import { makeStyles } from '@mui/styles';
-import { TasksContext, TasksProvider } from './TasksProvider';
+import { TasksContext } from './TasksProvider';
 
 const height = 42;
 
@@ -23,7 +22,6 @@ const useStyles = makeStyles((theme) => ({
 
 export const TaskCreationForm = ({ closeModal }: Props) => {
   const classes = useStyles();
-  const dispatch = useAppDispatch();
   const [inputValue, setValue] = useState('');
   const [inputValueDecr, setValueDecr] = useState('');
   const { addTask } = useContext(TasksContext);

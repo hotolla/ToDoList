@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { makeStyles } from '@mui/styles';
 import {
@@ -17,12 +17,9 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import DescriptionIcon from '@mui/icons-material/Description';
 import { ITask } from '../types/task.types';
 import { useAppDispatch } from '../store';
-import {
-  deleteTaskThunk,
-  changeStatusTaskThunk,
-  editTaskThunk,
-} from '../store/tasks.thunk';
 import { deleteTaskAction, changeStatusTaskAction, editTaskAction } from '../store/tasks.actions';
+import { TasksContext } from './TasksProvider';
+
 
 interface Props {
   task: ITask;
@@ -37,6 +34,7 @@ const useStyles = makeStyles((theme) => ({
 export const Task = ({ task }: Props) => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
+  const { deleteTask } = useContext(TasksContext);
 
   const dispatch = useAppDispatch();
   const [isEditable, setIsEditable] = useState(false);
@@ -72,7 +70,7 @@ export const Task = ({ task }: Props) => {
       <Dialog open={open} onClose={toggleDeleteModal}>
         <DialogTitle>Delete task?</DialogTitle>
         <DialogActions>
-          <Button onClick={() => dispatch(deleteTaskAction(task))}>Yes</Button>
+          <Button onClick={() => dispatch(deleteTask(task))}>Yes</Button>
           <Button onClick={toggleDeleteModal}>No</Button>
         </DialogActions>
       </Dialog>
