@@ -1,6 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
 import './App.css';
-import { Box} from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { TodoAppBar } from './components/TodoAppBar';
 import { Main } from './components/Main';
@@ -24,15 +23,16 @@ function App() {
   const classes = useStyles();
   
   return (
-    <Box className={classes.container}>
-      <Box className={classes.main}>
+    <div className={classes.container}>
+      <div className={classes.main}>
         <TodoAppBar />
+
         <Routes>
           <Route path="/" element={<Main />} />
           <Route path="/todo/:id" element={<TodoDetails />} />
         </Routes>
-      </Box>
-    </Box>
+      </div>
+    </div>
   );
 }
 

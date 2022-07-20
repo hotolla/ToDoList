@@ -1,11 +1,14 @@
-import { PayloadAction } from '@reduxjs/toolkit';
 import { ITask } from "../../types/task.types";
-import { TasksState } from './initialState';
+import { ITasksState } from './initialState';
+import { Types } from "./types";
 
-export const reducer = (state: TasksState, action: PayloadAction<ITask>) => {
+export type Action = { type: Types.AddTask; payload: ITask }
+
+export const reducer = (state: ITasksState, action: Action) => {
   switch (action.type) {
-    case 'createTask':
+    case Types.AddTask:
       return {...state, tasks: [action.payload, ...state.tasks]};
+    default: 
+      return state;
   }
-
 } 

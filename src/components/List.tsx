@@ -1,3 +1,4 @@
+import { useContext } from 'react';
 import { makeStyles } from '@mui/styles';
 import {
   List as MuiList,
@@ -14,6 +15,7 @@ import {
 import { ITask } from '../types/task.types';
 import { Task } from './Task';
 import { scrollBarStyling } from '../config/theme';
+import { TasksContext } from './TasksProvider';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -25,9 +27,10 @@ const useStyles = makeStyles((theme) => ({
 
 export const List = () => {
   const classes = useStyles();
-  const tasks = useAppSelector(filteredTasksSelector);
   const loading = useAppSelector(loadingSelector);
   const errorMessage = useAppSelector(errorSelector);
+  const { tasks } = useContext(TasksContext);
+console.log(tasks);
 
   return (
     <Paper className={classes.container}>
