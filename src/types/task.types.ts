@@ -10,3 +10,4 @@ export interface TaskProgress {
   isDone: number;
   inProgress: number;
 };
+

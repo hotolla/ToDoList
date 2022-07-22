@@ -70,7 +70,7 @@ export const Task = ({ task }: Props) => {
       <Dialog open={open} onClose={toggleDeleteModal}>
         <DialogTitle>Delete task?</DialogTitle>
         <DialogActions>
-          <Button onClick={() => dispatch(deleteTask(task))}>Yes</Button>
+          <Button onClick={() => deleteTask(task)}>Yes</Button>
           <Button onClick={toggleDeleteModal}>No</Button>
         </DialogActions>
       </Dialog>

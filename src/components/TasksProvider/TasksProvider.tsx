@@ -3,6 +3,7 @@ import { reducer } from "./reducer";
 import { initialState, ITasksState } from './initialState';
 import { ITask } from '../../types/task.types';
 import { Types } from "./types";
+import { TasksFilter } from "./TasksFilter";
 
 interface ITasksProviderProps {
   children: ReactNode;
@@ -11,13 +12,17 @@ interface ITasksProviderProps {
 interface ITasksProviderValue extends ITasksState {
   addTask: (task: ITask) => void;
   deleteTask: (task: ITask) => void;
+  toggleFilter: (filter: TasksFilter) => void;
+  fetchTasks: (task: ITask) => void;
 }
 
 export const TasksContext = createContext<ITasksProviderValue>({
   ...initialState,
 
   addTask: () => {},
-  deleteTask: () => {}, 
+  deleteTask: () => {},
+  toggleFilter: () => {},
+  fetchTasks: () => {}
 });
 
 export const TasksProvider = ({ children }: ITasksProviderProps) => {
@@ -31,7 +36,15 @@ export const TasksProvider = ({ children }: ITasksProviderProps) => {
     dispatch({ type: Types.DeleteTask, payload: task });
   };
 
-  const providerValue = { ...state, addTask, deleteTask };
+  const toggleFilter = (filter: TasksFilter) => {
+    dispatch({ type: Types.ToggleFilter, payload: filter});
+  };
+
+  const fetchTasks = (task: ITask) => {
+    dispatch({ type: Types.FetchTasks, payload: task });
+  };
+
+  const providerValue = { ...state, addTask, deleteTask, toggleFilter, fetchTasks};
 
   return (
     <TasksContext.Provider value={providerValue}>
