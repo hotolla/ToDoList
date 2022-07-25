@@ -1,7 +1,7 @@
 import { Dialog, DialogTitle, IconButton } from '@mui/material';
 import { makeStyles } from '@mui/styles';
-import { TaskCreationForm } from './TaskCreationForm';
 import CloseIcon from '@mui/icons-material/Close';
+import { TaskCreationForm } from './TaskCreationForm';
 
 type Props = {
   isOpen: boolean;

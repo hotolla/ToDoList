@@ -16,8 +16,6 @@ import {
 import DeleteIcon from '@mui/icons-material/Delete';
 import DescriptionIcon from '@mui/icons-material/Description';
 import { ITask } from '../types/task.types';
-import { useAppDispatch } from '../store';
-import { deleteTaskAction, changeStatusTaskAction, editTaskAction } from '../store/tasks.actions';
 import { TasksContext } from './TasksProvider';
 
 
@@ -36,7 +34,6 @@ export const Task = ({ task }: Props) => {
   const [open, setOpen] = useState(false);
   const { deleteTask } = useContext(TasksContext);
 
-  const dispatch = useAppDispatch();
   const [isEditable, setIsEditable] = useState(false);
   const [inputValue, setInputValue] = useState(task.name);
 
@@ -46,7 +43,6 @@ export const Task = ({ task }: Props) => {
   };
 
   const changeName = (task: ITask) => {
-    dispatch(editTaskAction({ task, newName: inputValue }));
   };
 
   const handleBlur = () => {
@@ -79,7 +75,7 @@ export const Task = ({ task }: Props) => {
         <Checkbox
           edge="start"
           checked={task.isDone}
-          onChange={() => dispatch(changeStatusTaskAction(task))}
+          // onChange={() => dispatch(changeStatusTaskAction(task))}
         />
       </ListItemIcon>
 
