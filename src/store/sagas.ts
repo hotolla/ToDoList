@@ -1,6 +1,8 @@
 import { takeLatest, put } from 'redux-saga/effects';
 import { createTodoAction, deleteTaskAction, getTasksAction, changeStatusTaskAction, editTaskAction } from './tasks.actions';
 import { createTodo, deleteTaskThunk, fetchTasks, changeStatusTaskThunk, editTaskThunk } from './tasks.thunk';
+//TS  ReturnType | & // put effect
+// put === dispatch
 
 export function* getCreateTodoWorkerSaga(action: ReturnType<typeof createTodoAction>) {
   console.log('createTodoSaga!!!!');
@@ -27,7 +29,7 @@ export function* changeStatusTaskWorkerSaga(action: ReturnType<typeof changeStat
     yield put(editTaskThunk({task: action.payload.task, newName: action.payload.newName}) as any);
   }
 
-
+//here the first
 export function* tasksSagaWatcher() {
   console.log('tasksSagaWatcher!');
   yield takeLatest(createTodoAction, getCreateTodoWorkerSaga);

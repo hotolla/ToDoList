@@ -10,6 +10,8 @@ export const createTodo = createAsyncThunk<ITask, ITask>(
   }
 );
 
+//HTTP post('adress or endpoint', body ==> {})
+
 export const fetchTasks = createAsyncThunk<ITask[]>(
   'todo/fetchTasks',
   async () => {
