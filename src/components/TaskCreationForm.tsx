@@ -1,8 +1,10 @@
 import { FormEvent, useContext, useState } from 'react';
-import { Grid, TextField, Button } from '@mui/material';
+import { useForm, Controller } from "react-hook-form";
+import { Grid, Button } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import { makeStyles } from '@mui/styles';
 import { TasksContext } from './TasksProvider';
+import { TextField } from './TextField';
 
 const height = 42;
 
@@ -24,6 +26,7 @@ export const TaskCreationForm = ({ closeModal }: Props) => {
   const [inputValue, setValue] = useState('');
   const [inputValueDecr, setValueDecr] = useState('');
   const { addTask } = useContext(TasksContext);
+  const form = useForm();
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -32,6 +35,7 @@ export const TaskCreationForm = ({ closeModal }: Props) => {
 
     addTask(task);
     closeModal();
+    form.handleSubmit(e);
   };
 
   return (
@@ -47,27 +51,18 @@ export const TaskCreationForm = ({ closeModal }: Props) => {
       <Grid item xs>
         <TextField
           fullWidth
+          name="name"
           placeholder="Enter name task..."
           value={inputValue}
-          onChange={(e) => {
-            setValue(e.target.value);
-          }}
           variant="outlined"
-          InputProps={{
-            sx: {
-              height,
-            },
-          }}
         />
+
         <TextField
-          margin="dense"
-          multiline
           fullWidth
-          value={inputValueDecr}
+          multiline
+          name="decription"
+          margin="dense"
           maxRows={4}
-          onChange={(e) => {
-            setValueDecr(e.target.value);
-          }}
           placeholder="Enter description..."
         />
       </Grid>
