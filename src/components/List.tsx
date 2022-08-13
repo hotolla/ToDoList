@@ -6,31 +6,22 @@ import {
   CircularProgress,
   Paper,
 } from '@mui/material';
-import { useAppSelector } from '../store';
-import {
-  errorSelector,
-  filteredTasksSelector,
-  loadingSelector,
-} from '../store/tasks.selector';
 import { ITask } from '../types/task.types';
 import { Task } from './Task';
 import { scrollBarStyling } from '../config/theme';
 import { TasksContext } from './TasksProvider';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles({
   container: {
     overflowY: 'auto',
     height: '60vh',
-    ...scrollBarStyling,
-  },
-}));
+    ...scrollBarStyling
+  }
+});
 
 export const List = () => {
   const classes = useStyles();
-  const loading = useAppSelector(loadingSelector);
-  const errorMessage = useAppSelector(errorSelector);
-  const { tasks } = useContext(TasksContext);
-console.log(tasks);
+  const { tasks, loading } = useContext(TasksContext);
 
   return (
     <Paper className={classes.container}>
@@ -42,14 +33,11 @@ console.log(tasks);
           />
         )}
 
-        {errorMessage && <div>{errorMessage}</div>}
-
-        {!loading && !errorMessage && !tasks.length && (
+        {!tasks.length ? (
           <Typography align="center">No tasks found</Typography>
-        )}
-
-        {!loading &&
-          tasks.map((task: ITask) => <Task key={task.id} task={task} />)}
+        ) : tasks.map((task: ITask) => (
+          <Task key={task.id} task={task} />
+        ))}
       </MuiList>
     </Paper>
   );

@@ -10,5 +10,5 @@ export interface ITasksState {
 export const initialState: ITasksState = {
   tasks: [],
   filter: TasksFilter.Total,
-  loading: false,
+  loading: false
 };

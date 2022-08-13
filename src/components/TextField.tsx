@@ -12,14 +12,14 @@ export const TextField = ({ name, ...props }: Props) => {
     <Controller
       name={name}
       control={control}
-      render={({ field: { onChange, value } }) => (
+      render={({ field: { value, onChange } }) => (
         <MuiTextField
-          value={value}
+          value={value || ''}
           onChange={onChange}
 
           {...props}
         />
-    )}
-  />
-  )
-} 
+      )}
+    />
+  );
+};
