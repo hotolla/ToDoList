@@ -12,8 +12,10 @@ export const TextField = ({ name, ...props }: Props) => {
     <Controller
       name={name}
       control={control}
-      render={({ field: { value, onChange } }) => (
+      render={({ field: { value, onChange }, fieldState: { error } }) => (
         <MuiTextField
+          error={!!error}
+          helperText={error?.message}
           value={value || ''}
           onChange={onChange}
 

@@ -1,5 +1,4 @@
 import { Routes, Route } from 'react-router-dom';
-import './App.css';
 import { makeStyles } from '@mui/styles';
 import { TodoAppBar } from './components/TodoAppBar';
 import { Main } from './components/Main';

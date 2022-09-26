@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
 export const TodoDetails = () => {
   const classes = useStyles();
   const { id } = useParams();
-  const task = { id, name: 'Learn JS', description: 'very fast', isDone: true };
+  const task = { id, name: 'Learn JS', description: 'very fast', isDone: true, time: "2 days" };
   
   return (
     <Paper className={classes.container}>
@@ -59,6 +59,15 @@ export const TodoDetails = () => {
       <Typography className={classes.description}>
         {task?.description}
       </Typography>
+
+      <Typography className={classes.title}>
+        Description:
+      </Typography>
+
+      <Typography className={classes.description}>
+        {task?.time}
+      </Typography>
+
     </Paper>
   );
 };
