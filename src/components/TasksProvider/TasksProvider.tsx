@@ -1,7 +1,8 @@
 import { createContext, ReactNode, useReducer } from "react";
+import { ITask } from '../../types/task.types';
+import * as tasksApi from '../../api/tasks';
 import { reducer } from "./reducer";
 import { initialState, ITasksState } from './initialState';
-import { ITask } from '../../types/task.types';
 import { Types } from "./types";
 import { TasksFilter } from "./TasksFilter";
 
@@ -40,8 +41,10 @@ export const TasksProvider = ({ children }: ITasksProviderProps) => {
     dispatch({ type: Types.ToggleFilter, payload: filter });
   };
 
-  const fetchTasks = (tasks: ITask[]) => {
-    dispatch({ type: Types.FetchTasks, payload: tasks });
+  const fetchTasks = () => {
+    tasksApi.fetchTasks().then((tasks) => {
+      dispatch({ type: Types.FetchTasks, payload: tasks });
+    });
   };
 
   const providerValue = {

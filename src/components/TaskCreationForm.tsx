@@ -42,6 +42,7 @@ const schema = Yup.object({
 export const TaskCreationForm = ({ closeModal }: Props) => {
   const classes = useStyles();
   const { addTask } = useContext(TasksContext);
+  const { deleteTask } = useContext(TasksContext);
   const form = useForm({
     defaultValues,
     resolver: yupResolver(schema)

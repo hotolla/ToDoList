@@ -1,6 +1,5 @@
 import { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { makeStyles } from '@mui/styles';
 import {
   ListItem,
   ListItemText,
@@ -11,27 +10,19 @@ import {
   Dialog,
   DialogTitle,
   DialogActions,
-  Button,
+  Button
 } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import DescriptionIcon from '@mui/icons-material/Description';
 import { ITask } from '../types/task.types';
 import { TasksContext } from './TasksProvider';
 
-
 interface Props {
   task: ITask;
 }
 
-const useStyles = makeStyles((theme) => ({
-  color: {
-    color: theme.palette.secondary.main,
-  },
-}));
-
 export const Task = ({ task }: Props) => {
-  const classes = useStyles();
-  const [open, setOpen] = useState(false);
+  const [ open, setOpen ] = useState(false);
   const { deleteTask } = useContext(TasksContext);
 
   const [isEditable, setIsEditable] = useState(false);
@@ -57,9 +48,10 @@ export const Task = ({ task }: Props) => {
         <IconButton
           edge="end"
           aria-label="delete"
+          color="secondary"
           onClick={toggleDeleteModal}
         >
-          <DeleteIcon className={classes.color} />
+          <DeleteIcon />
         </IconButton>
       }
     >
@@ -94,8 +86,11 @@ export const Task = ({ task }: Props) => {
         />
       )}
       <Link to={`/todo/${task.id}`}>
-        <IconButton aria-label="open">
-          <DescriptionIcon className={classes.color} />
+        <IconButton 
+          aria-label="open"
+          color="secondary"
+        >
+          <DescriptionIcon />
         </IconButton>
       </Link>
     </ListItem>
