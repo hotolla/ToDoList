@@ -1,7 +1,7 @@
-import { createContext, ReactNode, useReducer } from "react";
+import { createContext, ReactNode, useEffect, useReducer } from "react";
 import { ITask } from '../../types/task.types';
 import * as tasksApi from '../../api/tasks';
-import { reducer } from "./reducer";
+import { Action, reducer } from "./reducer";
 import { initialState, ITasksState } from './initialState';
 import { Types } from "./types";
 import { TasksFilter } from "./TasksFilter";
@@ -26,7 +26,7 @@ export const TasksContext = createContext<ITasksProviderValue>({
   fetchTasks: () => {}
 });
 
-export const TasksProvider = ({ children }: ITasksProviderProps) => {
+export const TasksProvider = ({ children }: ITasksProviderProps, action: Action) => {
   const [ state, dispatch ] = useReducer(reducer, initialState);
   
   const addTask = (task: ITask) => {
@@ -34,7 +34,7 @@ export const TasksProvider = ({ children }: ITasksProviderProps) => {
   };
 
   const deleteTask = (task: ITask) => {
-    dispatch({ type: Types.DeleteTask, payload: task });
+      dispatch({ type: Types.DeleteTask, payload: task });
   };
 
   const toggleFilter = (filter: TasksFilter) => {
@@ -55,6 +55,10 @@ export const TasksProvider = ({ children }: ITasksProviderProps) => {
     toggleFilter,
     fetchTasks
   };
+  
+  useEffect(() => {
+    fetchTasks();
+  }, []);
 
   return (
     <TasksContext.Provider value={providerValue}>

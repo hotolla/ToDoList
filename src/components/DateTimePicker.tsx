@@ -1,13 +1,13 @@
 import { Controller, useFormContext } from "react-hook-form";
-import TextField, { TextFieldProps } from '@mui/material/TextField';
-import { DateTimePicker  as MuiDateTimePicker} from '@mui/x-date-pickers';
-import moment from "moment";
+import { TextFieldProps } from '@mui/material/TextField';
+import { DateTimePicker as MuiDateTimePicker} from '@mui/x-date-pickers';
+import { TextField } from './TextField';
 
 type Props = TextFieldProps & {
   name: string;
 };
 
-export const DateTimePicker = ({ name, ...props }: Props) => {
+export const DateTimePicker = ({ name, margin, ...props }: Props) => {
   const { control } = useFormContext();
 
   return (
@@ -17,7 +17,7 @@ export const DateTimePicker = ({ name, ...props }: Props) => {
       render={({ field: { onChange, ref, ...field }, fieldState: { error } }) => (
         // @ts-ignore
         <MuiDateTimePicker
-          renderInput={(params) => <TextField {...params} />}
+          renderInput={(params) => <TextField name={name} margin={margin} {...params} />}
           error={!!error}
           helperText={error?.message}
           inputRef={ref}

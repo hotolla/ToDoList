@@ -15,6 +15,7 @@ import {
 import DeleteIcon from '@mui/icons-material/Delete';
 import DescriptionIcon from '@mui/icons-material/Description';
 import { ITask } from '../types/task.types';
+import * as tasksApi from '../api/tasks';
 import { TasksContext } from './TasksProvider';
 
 interface Props {
@@ -23,12 +24,16 @@ interface Props {
 
 export const Task = ({ task }: Props) => {
   const [ open, setOpen ] = useState(false);
+  const [ checked, setChecked ] = useState(false);
   const { deleteTask } = useContext(TasksContext);
+  const { toggleFilter } = useContext(TasksContext);
+  const [ isEditable, setIsEditable ] = useState(false);
+  const [ inputValue, setInputValue ] = useState(task.name);
 
-  const [isEditable, setIsEditable] = useState(false);
-  const [inputValue, setInputValue] = useState(task.name);
+  const toggleDeleteModal = () => {
+    setOpen((open) => !open);
+  };
 
-  const toggleDeleteModal = () => setOpen(!open)
   const toggleIsEditable = () => {
     setIsEditable((isEditable) => !isEditable);
   };
@@ -38,8 +43,17 @@ export const Task = ({ task }: Props) => {
 
   const handleBlur = () => {
     toggleIsEditable();
-    if (inputValue === task.name) return;
-    changeName(task);
+
+    if (inputValue === task.name) {
+      changeName(task);
+    }
+  };
+
+  const handleTaskDelete = () => {
+    tasksApi.deleteTask(task.id).then(() => {
+      deleteTask(task);
+      toggleDeleteModal();
+    });
   };
 
   return (
@@ -58,7 +72,7 @@ export const Task = ({ task }: Props) => {
       <Dialog open={open} onClose={toggleDeleteModal}>
         <DialogTitle>Delete task?</DialogTitle>
         <DialogActions>
-          <Button onClick={() => deleteTask(task)}>Yes</Button>
+          <Button onClick={handleTaskDelete}>Yes</Button>
           <Button onClick={toggleDeleteModal}>No</Button>
         </DialogActions>
       </Dialog>
@@ -67,7 +81,7 @@ export const Task = ({ task }: Props) => {
         <Checkbox
           edge="start"
           checked={task.isDone}
-          // onChange={() => dispatch(changeStatusTaskAction(task))}
+          // onChange={toggleFilter}
         />
       </ListItemIcon>
 

@@ -14,6 +14,7 @@ export const TextField = ({ name, ...props }: Props) => {
       control={control}
       render={({ field: { value, onChange }, fieldState: { error } }) => (
         <MuiTextField
+          fullWidth
           error={!!error}
           helperText={error?.message}
           value={value || ''}

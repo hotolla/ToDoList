@@ -1,5 +1,5 @@
 import { makeStyles } from '@mui/styles';
-import { Box, IconButton, Paper, Typography } from '@mui/material';
+import { IconButton, Paper, Typography } from '@mui/material';
 import { Link, useParams } from 'react-router-dom';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { scrollBarStyling } from '../config/theme';
@@ -11,6 +11,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: 30,
     padding: theme.spacing(3),
     overflowY: "auto",
+    overflowX: 'hidden',
     height: "60vh",
   },
 
@@ -67,7 +68,6 @@ export const TodoDetails = () => {
       <Typography className={classes.description}>
         {task?.time}
       </Typography>
-
     </Paper>
   );
 };
