@@ -24,9 +24,7 @@ interface Props {
 
 export const Task = ({ task }: Props) => {
   const [ open, setOpen ] = useState(false);
-  const [ checked, setChecked ] = useState(false);
-  const { deleteTask } = useContext(TasksContext);
-  const { toggleFilter } = useContext(TasksContext);
+  const { deleteTask, editTask } = useContext(TasksContext);
   const [ isEditable, setIsEditable ] = useState(false);
   const [ inputValue, setInputValue ] = useState(task.name);
 
@@ -56,12 +54,17 @@ export const Task = ({ task }: Props) => {
     });
   };
 
+  const changeTaskStatus = () => {
+    tasksApi.editTask({ ...task, isDone: !task.isDone }).then((task) => {
+      editTask(task);
+    });
+  };
+
   return (
     <ListItem
       secondaryAction={
         <IconButton
           edge="end"
-          aria-label="delete"
           color="secondary"
           onClick={toggleDeleteModal}
         >
@@ -81,7 +84,7 @@ export const Task = ({ task }: Props) => {
         <Checkbox
           edge="start"
           checked={task.isDone}
-          // onChange={toggleFilter}
+          onChange={changeTaskStatus}
         />
       </ListItemIcon>
 

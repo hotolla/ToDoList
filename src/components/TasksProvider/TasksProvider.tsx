@@ -15,6 +15,7 @@ interface ITasksProviderValue extends ITasksState {
   deleteTask: (task: ITask) => void;
   toggleFilter: (filter: TasksFilter) => void;
   fetchTasks: (tasks: ITask[]) => void;
+  editTask: (task: ITask) => void;
 }
 
 export const TasksContext = createContext<ITasksProviderValue>({
@@ -23,7 +24,8 @@ export const TasksContext = createContext<ITasksProviderValue>({
   addTask: () => {},
   deleteTask: () => {},
   toggleFilter: () => {},
-  fetchTasks: () => {}
+  fetchTasks: () => {},
+  editTask: () => {}
 });
 
 export const TasksProvider = ({ children }: ITasksProviderProps, action: Action) => {
@@ -46,6 +48,10 @@ export const TasksProvider = ({ children }: ITasksProviderProps, action: Action)
       dispatch({ type: Types.FetchTasks, payload: tasks });
     });
   };
+  
+  const editTask = (task: ITask) => {
+    dispatch({ type: Types.EditTask, payload: task });
+  };
 
   const providerValue = {
     ...state,
@@ -53,7 +59,8 @@ export const TasksProvider = ({ children }: ITasksProviderProps, action: Action)
     addTask,
     deleteTask,
     toggleFilter,
-    fetchTasks
+    fetchTasks,
+    editTask
   };
   
   useEffect(() => {

@@ -8,32 +8,20 @@ export const fetchTasks = (config?: AxiosRequestConfig) => {
   });
 };
 
+export const addTasks = (task: ITask, config?: AxiosRequestConfig) => {
+  return api.post("/tasks", task, config).then(({ data }) => {
+    return data;
+  });
+};
+
 export const deleteTask = (id: ITask["id"], config?: AxiosRequestConfig) => {
   return api.delete(`/tasks/${id}`, config).then(({ data }) => {
     return data;
   });
 };
 
-// need to fix
-export const changeStatusTask = (task: ITask, config?: AxiosRequestConfig) => {
-  return api.put(`/tasks/${task.id}`,  
-    {
-    ...task,
-    isDone: !task.isDone,
-    }, 
-    config).then(({ data }) => {
+export const editTask = (task: ITask, config?: AxiosRequestConfig) => {
+  return api.put(`/tasks/${task.id}`, task, config).then(({ data }) => {
     return data;
   });
 };
-// need to fix
-export const editTask = (task: ITask,  newName: string, config?: AxiosRequestConfig) => {
-  return api.put(`/tasks/${task.id}`, 
-    {
-    ...task,
-    name: newName,
-    }, 
-    config).then(({ data }) => {
-    return data;
-  });
-};
-

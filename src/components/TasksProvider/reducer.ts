@@ -6,13 +6,14 @@ import { Types } from "./types";
 export type Action =
   | { type: Types.AddTask; payload: ITask }
   | { type: Types.DeleteTask; payload: ITask }
+  | { type: Types.EditTask; payload: ITask }
   | { type: Types.FetchTasks; payload: ITask[] }
   | { type: Types.ToggleFilter; payload: TasksFilter };
 
 export const reducer = (state: ITasksState, action: Action) => {
   switch (action.type) {
     case Types.AddTask:
-      return { ...state, tasks: [ action.payload, ...state.tasks ] };
+      return { ...state, tasks: [ action.payload, ...state.tasks ]};
 
     case Types.DeleteTask:
       return { ...state, tasks: state.tasks.filter((task) => task.id != action.payload.id) };
@@ -22,8 +23,11 @@ export const reducer = (state: ITasksState, action: Action) => {
     
     case Types.FetchTasks:
       return { ...state, tasks: action.payload };
+
+    case Types.EditTask:
+      return { ...state, tasks: state.tasks.map((task) => task.id === action.payload.id ? action.payload : task) };
     
-    default: 
+    default:
       return state;
   };
 };
