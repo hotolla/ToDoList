@@ -10,22 +10,25 @@ export type Action =
   | { type: Types.FetchTasks; payload: ITask[] }
   | { type: Types.ToggleFilter; payload: TasksFilter };
 
-export const reducer = (state: ITasksState, action: Action) => {
-  switch (action.type) {
+export const reducer = (state: ITasksState, { type, payload }: Action) => {
+  switch (type) {
     case Types.AddTask:
-      return { ...state, tasks: [ action.payload, ...state.tasks ]};
+      // 1
+      // return { ... state, tasks: state.tasks.concat(payload)};
+      // 2
+      return { ... state, tasks: [...state.tasks, payload]};
 
     case Types.DeleteTask:
-      return { ...state, tasks: state.tasks.filter((task) => task.id != action.payload.id) };
+      return { ...state, tasks: state.tasks.filter((task) => task.id != payload.id) };
     
     case Types.ToggleFilter:
-      return { ...state, filter: action.payload };
+      return { ...state, filter: payload };
     
     case Types.FetchTasks:
-      return { ...state, tasks: action.payload };
+      return { ...state, tasks: payload };
 
     case Types.EditTask:
-      return { ...state, tasks: state.tasks.map((task) => task.id === action.payload.id ? action.payload : task) };
+      return { ...state, tasks: state.tasks.map((task) => task.id === payload.id ? payload : task) };
     
     default:
       return state;

@@ -8,7 +8,7 @@ export const fetchTasks = (config?: AxiosRequestConfig) => {
   });
 };
 
-export const addTasks = (task: ITask, config?: AxiosRequestConfig) => {
+export const addTask = (task: ITask, config?: AxiosRequestConfig) => {
   return api.post("/tasks", task, config).then(({ data }) => {
     return data;
   });

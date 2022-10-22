@@ -32,7 +32,9 @@ export const TasksProvider = ({ children }: ITasksProviderProps, action: Action)
   const [ state, dispatch ] = useReducer(reducer, initialState);
   
   const addTask = (task: ITask) => {
-    dispatch({ type: Types.AddTask, payload: task });
+    tasksApi.addTask(task).then(() => {
+      dispatch({ type: Types.AddTask, payload: task });
+    });
   };
 
   const deleteTask = (task: ITask) => {
