@@ -25,3 +25,9 @@ export const editTask = (task: ITask, config?: AxiosRequestConfig) => {
     return data;
   });
 };
+
+export const searchTask = (id: ITask["id"], config?: AxiosRequestConfig) => {
+  return api.put(`/tasks/${id}`, config).then(({ data }) => {
+    return data;
+  });
+};

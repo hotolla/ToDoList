@@ -11,7 +11,7 @@ import { TextField } from './TextField';
 import { DateTimePicker } from './DateTimePicker';
 
 interface Props {
-  closeModal: () => void;
+  onSubmited: () => void;
 };
 
 interface FormValues {
@@ -39,7 +39,7 @@ const schema = Yup.object({
   description: Yup.string().nullable().required(),
 });
 
-export const TaskCreationForm = ({ closeModal }: Props) => {
+export const TaskCreationForm = ({ onSubmited }: Props) => {
   const classes = useStyles();
   const { addTask } = useContext(TasksContext);
   const form = useForm({
@@ -48,10 +48,8 @@ export const TaskCreationForm = ({ closeModal }: Props) => {
   });
 
   const handleSubmit = (values: FormValues) => {
-    const task = { id: Date.now(), ...values };
-
-    addTask(task);
-    closeModal();
+    addTask(values);
+    onSubmited();
   };
 
   return (

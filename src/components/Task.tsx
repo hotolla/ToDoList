@@ -102,6 +102,7 @@ export const Task = ({ task }: Props) => {
           }}
         />
       )}
+      
       <Link to={`/todo/${task.id}`}>
         <IconButton 
           aria-label="open"

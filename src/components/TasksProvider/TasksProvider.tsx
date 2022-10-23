@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useEffect, useReducer } from "react";
+import { createContext, ReactNode, useEffect, useReducer, useState } from "react";
 import { ITask } from '../../types/task.types';
 import * as tasksApi from '../../api/tasks';
 import { Action, reducer } from "./reducer";
@@ -10,12 +10,16 @@ interface ITasksProviderProps {
   children: ReactNode;
 }
 
+interface IFilter {
+  name_like?: string;
+}
+
 interface ITasksProviderValue extends ITasksState {
   addTask: (task: ITask) => void;
   deleteTask: (task: ITask) => void;
   toggleFilter: (filter: TasksFilter) => void;
-  fetchTasks: (tasks: ITask[]) => void;
-  editTask: (task: ITask) => void;
+  fetchTasks: (filter: IFilter) => void;
+  editTask: (task: ITask) => void
 }
 
 export const TasksContext = createContext<ITasksProviderValue>({
@@ -32,7 +36,7 @@ export const TasksProvider = ({ children }: ITasksProviderProps, action: Action)
   const [ state, dispatch ] = useReducer(reducer, initialState);
   
   const addTask = (task: ITask) => {
-    tasksApi.addTask(task).then(() => {
+    tasksApi.addTask(task).then((task) => {
       dispatch({ type: Types.AddTask, payload: task });
     });
   };
@@ -45,12 +49,14 @@ export const TasksProvider = ({ children }: ITasksProviderProps, action: Action)
     dispatch({ type: Types.ToggleFilter, payload: filter });
   };
 
-  const fetchTasks = () => {
-    tasksApi.fetchTasks().then((tasks) => {
+  const fetchTasks = (filter?: IFilter) => {
+    tasksApi.fetchTasks({
+      params: filter
+    }).then((tasks) => {
       dispatch({ type: Types.FetchTasks, payload: tasks });
     });
   };
-  
+  // как отменить запрос с моневиз пример
   const editTask = (task: ITask) => {
     dispatch({ type: Types.EditTask, payload: task });
   };

@@ -8,15 +8,13 @@ export type Action =
   | { type: Types.DeleteTask; payload: ITask }
   | { type: Types.EditTask; payload: ITask }
   | { type: Types.FetchTasks; payload: ITask[] }
-  | { type: Types.ToggleFilter; payload: TasksFilter };
+  | { type: Types.ToggleFilter; payload: TasksFilter }
+  | { type: Types.SearchTask; payload: ITask };
 
 export const reducer = (state: ITasksState, { type, payload }: Action) => {
   switch (type) {
     case Types.AddTask:
-      // 1
-      // return { ... state, tasks: state.tasks.concat(payload)};
-      // 2
-      return { ... state, tasks: [...state.tasks, payload]};
+      return { ...state, tasks: state.tasks.concat(payload) };
 
     case Types.DeleteTask:
       return { ...state, tasks: state.tasks.filter((task) => task.id != payload.id) };
@@ -30,7 +28,10 @@ export const reducer = (state: ITasksState, { type, payload }: Action) => {
     case Types.EditTask:
       return { ...state, tasks: state.tasks.map((task) => task.id === payload.id ? payload : task) };
     
+    case Types.SearchTask:
+      return { ...state, tasks: state.tasks.filter((task) => task.id = payload.id) };
+    
     default:
-      return state;
+    return state;
   };
 };

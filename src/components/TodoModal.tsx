@@ -1,5 +1,4 @@
 import { Dialog, DialogTitle, IconButton } from '@mui/material';
-import { makeStyles } from '@mui/styles';
 import CloseIcon from '@mui/icons-material/Close';
 import { TaskCreationForm } from './TaskCreationForm';
 
@@ -8,31 +7,19 @@ type Props = {
   onClose: () => void;
 };
 
-const useStyles = makeStyles((theme) => ({
-  formContainer: {
-    display: "flex",
-    flexDirection: "column",
-  },
-  title: {
-    color: theme.palette.primary.main,
-  }
-}));
-
 export const TodoModal = ({ isOpen, onClose }: Props) => {
-  const classes = useStyles();
-
   return (
-    <Dialog open={isOpen} onClose={onClose} className={classes.formContainer}>
-      <DialogTitle className={classes.title}>
+    <Dialog open={isOpen} onClose={onClose}>
+      <DialogTitle color="primary">
         Create new Task
       
-        <IconButton 
+        <IconButton
+          color="primary"
           edge="end"
           sx={{
             position: 'absolute',
             right: 26,
-            top: 8,
-            color: (theme) => theme.palette.primary.main,
+            top: 8
           }}
           onClick={onClose}
         >
@@ -40,7 +27,7 @@ export const TodoModal = ({ isOpen, onClose }: Props) => {
         </IconButton>
       </DialogTitle>
       
-      <TaskCreationForm closeModal={onClose} />
+      <TaskCreationForm onSubmited={onClose} />
     </Dialog>
   );
 };

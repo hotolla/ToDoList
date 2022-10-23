@@ -5,6 +5,7 @@ import { List } from './List';
 import { Buttons } from './Buttons';
 import { TodoModal } from './TodoModal';
 import { TasksProvider } from './TasksProvider';
+import { Search } from './Search';
 
 const useStyles = makeStyles((theme) => ({
   listContainer: {
@@ -23,7 +24,6 @@ export const Main = () => {
   const [ open, setOpen ] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-
   const classes = useStyles();
 
   return (
@@ -35,6 +35,10 @@ export const Main = () => {
       </Box>
 
       <Box className={classes.listContainer}>
+        <div>
+          <Search />
+        </div>
+
         <List />
         
         <Button

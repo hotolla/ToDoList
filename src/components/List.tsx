@@ -7,15 +7,18 @@ import {
   Paper,
 } from '@mui/material';
 import { ITask } from '../types/task.types';
-import { Task } from './Task';
 import { scrollBarStyling } from '../config/theme';
 import { TasksContext } from './TasksProvider';
+import { Task } from './Task';
 
 const useStyles = makeStyles({
   container: {
     overflowY: 'auto',
     height: '60vh',
     ...scrollBarStyling
+  },
+  search: {
+    textAlign: 'center'
   }
 });
 
