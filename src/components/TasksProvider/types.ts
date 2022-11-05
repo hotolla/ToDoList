@@ -4,5 +4,4 @@ export enum Types {
   EditTask = 'EDIT_TASK',
   ToggleFilter = 'TOGGLE_FILTER',
   FetchTasks = 'FETCH_TASKS',
-  SearchTask = 'SEARCH_TASK'
 }

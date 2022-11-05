@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useEffect, useReducer, useState } from "react";
+import { createContext, ReactNode, useEffect, useReducer, useRef, useState } from "react";
 import { ITask } from '../../types/task.types';
 import * as tasksApi from '../../api/tasks';
 import { Action, reducer } from "./reducer";
@@ -32,9 +32,10 @@ export const TasksContext = createContext<ITasksProviderValue>({
   editTask: () => {}
 });
 
-export const TasksProvider = ({ children }: ITasksProviderProps, action: Action) => {
+export const TasksProvider = ({ children }: ITasksProviderProps, action: Action, filter: IFilter) => {
   const [ state, dispatch ] = useReducer(reducer, initialState);
-  
+  const fetchTasksAbortController = useRef(new AbortController());
+
   const addTask = (task: ITask) => {
     tasksApi.addTask(task).then((task) => {
       dispatch({ type: Types.AddTask, payload: task });
@@ -51,12 +52,15 @@ export const TasksProvider = ({ children }: ITasksProviderProps, action: Action)
 
   const fetchTasks = (filter?: IFilter) => {
     tasksApi.fetchTasks({
-      params: filter
+      params: filter,
+      signal: fetchTasksAbortController.current.signal
     }).then((tasks) => {
       dispatch({ type: Types.FetchTasks, payload: tasks });
+    }).catch((error) => {
+      console.error(`Download error: ${error.message}`);
     });
   };
-  // как отменить запрос с моневиз пример
+
   const editTask = (task: ITask) => {
     dispatch({ type: Types.EditTask, payload: task });
   };
@@ -73,6 +77,13 @@ export const TasksProvider = ({ children }: ITasksProviderProps, action: Action)
   
   useEffect(() => {
     fetchTasks();
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      fetchTasksAbortController.current.abort();
+      console.log("error");
+    };
   }, []);
 
   return (

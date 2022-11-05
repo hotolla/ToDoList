@@ -36,7 +36,9 @@ const defaultValues = {
 
 const schema = Yup.object({
   name: Yup.string().nullable().required(),
-  description: Yup.string().nullable().required(),
+  description: Yup.string().nullable(),
+  isDone: Yup.boolean().nullable(),
+  time: Yup.mixed().nullable()
 });
 
 export const TaskCreationForm = ({ onSubmited }: Props) => {
@@ -76,7 +78,6 @@ export const TaskCreationForm = ({ onSubmited }: Props) => {
           />
 
           <TextField
-            required
             fullWidth
             multiline
             name="description"
@@ -87,7 +88,6 @@ export const TaskCreationForm = ({ onSubmited }: Props) => {
           />
 
           <DateTimePicker
-            required
             fullWidth
             name="time"
             label="Due date"

@@ -74,9 +74,10 @@ export const Task = ({ task }: Props) => {
     >
       <Dialog open={open} onClose={toggleDeleteModal}>
         <DialogTitle>Delete task?</DialogTitle>
+        
         <DialogActions>
-          <Button onClick={handleTaskDelete}>Yes</Button>
           <Button onClick={toggleDeleteModal}>No</Button>
+          <Button onClick={handleTaskDelete}>Yes</Button>
         </DialogActions>
       </Dialog>
 

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { makeStyles } from '@mui/styles';
 import { Box, Button } from '@mui/material';
 import { List } from './List';
@@ -25,6 +25,12 @@ export const Main = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const classes = useStyles();
+
+  useEffect(() => {
+    return () => {
+      console.log("error");
+    };
+  }, []);
 
   return (
     <TasksProvider>
