@@ -18,8 +18,6 @@ export const TodoAppBar = () => {
         <IconButton edge="start" color="inherit">
           <MenuIcon />
         </IconButton>
-        {/* align="center"  почему не работает? и стили*/}
-        {/* className={classes.title} */}
         <Typography variant='h5' align="center">Website todo</Typography>
       </Toolbar>
     </AppBar>
