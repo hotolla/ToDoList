@@ -17,7 +17,7 @@
       "id": 1666201482747,
       "name": "3 push",
       "description": "3 push",
-      "isDone": false,
+      "isDone": true,
       "time": "2022-10-28T22:00:00.000Z"
     },
     {
@@ -58,7 +58,7 @@
     {
       "name": "task",
       "description": "task",
-      "isDone": true,
+      "isDone": false,
       "time": "2022-10-18T22:00:00.000Z",
       "id": 1666436583259
     },

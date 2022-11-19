@@ -6,31 +6,36 @@ import { Buttons } from './Buttons';
 import { TodoModal } from './TodoModal';
 import { TasksProvider } from './TasksProvider';
 import { Search } from './Search';
+// import { filter } from 'lodash';
+import { TasksFilter } from './TasksProvider/TasksFilter';
+import { useContext } from 'react';
+import { TasksContext } from './TasksProvider';
 
 const useStyles = makeStyles((theme) => ({
   listContainer: {
     display: 'flex',
-    flexDirection: 'column',
+    flexDirection: 'column'
   },
   button: {
     marginTop: '-5% !important',
     width: '50%',
     alignSelf: 'center',
-    borderRadius: '20px !important',
-  },
+    borderRadius: '20px !important'
+  }
 }));
 
 export const Main = () => {
   const [ open, setOpen ] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const { filter } = useContext(TasksContext);
   const classes = useStyles();
 
-  useEffect(() => {
-    return () => {
-      console.log("error");
-    };
-  }, []);
+  // useEffect(() => {
+  //   return () => {
+  //     console.log("error");
+  //   };
+  // }, []);
 
   return (
     <TasksProvider>

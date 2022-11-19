@@ -4,7 +4,7 @@ import {
   List as MuiList,
   Typography,
   CircularProgress,
-  Paper,
+  Paper
 } from '@mui/material';
 import { ITask } from '../types/task.types';
 import { scrollBarStyling } from '../config/theme';

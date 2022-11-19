@@ -12,6 +12,7 @@ interface ITasksProviderProps {
 
 interface IFilter {
   name_like?: string;
+  isDone?: boolean | null
 }
 
 interface ITasksProviderValue extends ITasksState {
@@ -43,11 +44,18 @@ export const TasksProvider = ({ children }: ITasksProviderProps, action: Action,
   };
 
   const deleteTask = (task: ITask) => {
-      dispatch({ type: Types.DeleteTask, payload: task });
+    dispatch({ type: Types.DeleteTask, payload: task });
   };
 
   const toggleFilter = (filter: TasksFilter) => {
-    dispatch({ type: Types.ToggleFilter, payload: filter });
+    tasksApi.fetchTasks({
+      params: filter,
+      signal: fetchTasksAbortController.current.signal
+    }).then((tasks) => {
+      dispatch({ type: Types.ToggleFilter, payload: filter });
+    }).catch((error) => {
+      console.error(`Download error: ${error.message}`);
+    });
   };
 
   const fetchTasks = (filter?: IFilter) => {

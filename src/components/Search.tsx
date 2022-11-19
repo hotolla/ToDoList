@@ -16,10 +16,11 @@ export const Search = () => {
   return (
     <>
       <InputBase 
-        placeholder="Search task"
-        sx={{ p: '10px' }}
+        placeholder="Search task..."
+        sx={{ p: 1 }}
         onChange={handleTaskSearch}
       />
+
       <IconButton>
         <SearchIcon color="secondary"/>
       </IconButton>

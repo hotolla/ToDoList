@@ -14,7 +14,7 @@ interface Props {
   onSubmited: () => void;
 };
 
-interface FormValues {
+ interface FormValues {
   name: string | null,
   description: string | null,
   isDone: boolean,

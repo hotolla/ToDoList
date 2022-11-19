@@ -11,11 +11,11 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: theme.palette.background.default,
+    backgroundColor: theme.palette.background.default
   },
   main: {
-    width: '30%',
-  },
+    width: '30%'
+  }
 }));
 
 function App() {

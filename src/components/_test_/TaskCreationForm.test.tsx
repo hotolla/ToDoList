@@ -6,13 +6,6 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
 
 describe('TaskCreationForm.tsx', () => {
-  const task = {
-    "id": 1657549282376,
-    "name": "тест модал",
-    "description": "кункге",
-    "isDone": true
-  };
-
   const props = {
     onSubmited: () => {}
   };
@@ -27,8 +20,7 @@ describe('TaskCreationForm.tsx', () => {
     );
     
     const taskName = screen.getByLabelText(/Name/i);
-    console.log(expect(taskName));
     
-    expect(taskName).toBeInTheDocument;
+    expect(taskName).toBeInTheDocument();
   });
 });

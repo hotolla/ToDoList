@@ -3,19 +3,19 @@ import { ComponentMeta, ComponentStory } from '@storybook/react';
 
 export default {
   title: 'Button',
-  component: Button,
+  component: Button
 } as ComponentMeta <typeof Button>;
 
 const Buttons: ComponentStory<typeof Button> = (props: ButtonProps) => {
-  return <Button {...props} color={'primary'} />
+  return <Button {...props} color={'primary'} />;
 };
 
 const Template = (props: ButtonProps) => <Buttons {...props} />;
 
 export const DefaultButton = Template.bind({});
 (DefaultButton as any).props = {
-   onClick(data: any) {
+  onClick(data: any) {
     console.log(data);
-   },
+  }
 };
 

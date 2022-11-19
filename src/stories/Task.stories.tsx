@@ -5,7 +5,7 @@ import { ITask } from '../types/task.types';
 
 export default {
   title: 'Task',
-  component: Task,
+  component: Task
 } as ComponentMeta<typeof Task>;
 
 const Template: ComponentStory<typeof Task> = (args) => {

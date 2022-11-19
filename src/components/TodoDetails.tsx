@@ -12,19 +12,19 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(3),
     overflowY: "auto",
     overflowX: 'hidden',
-    height: "60vh",
+    height: "60vh"
   },
 
   title: {
-    color: theme.palette.primary.main,
+    color: theme.palette.primary.main
   },
 
   colorButton: {
-    color: theme.palette.secondary.main,
+    color: theme.palette.secondary.main
   },
 
   description: {
-    wordBreak: "break-all",
+    wordBreak: "break-all"
   }
 }));
 
@@ -39,7 +39,7 @@ export const TodoDetails = () => {
         {task?.name}
 
         <Link to={`/`}>
-          <IconButton edge="end" sx={{left: 240}}>
+          <IconButton edge="end" sx={{ left: 240 }}>
             <ArrowBackIcon className={classes.colorButton} />
           </IconButton>
         </Link>
