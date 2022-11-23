@@ -14,10 +14,13 @@ export const DateTimePicker = ({ name, margin, ...props }: Props) => {
     <Controller
       name={name}
       control={control}
-      render={({ field: { onChange, ref, ...field }, fieldState: { error } }) => (
+      render={({ field: { onChange, ref, ...field }, 
+        fieldState: { error } }) => (
         // @ts-ignore
         <MuiDateTimePicker
-          renderInput={(params) => <TextField name={name} margin={margin} {...params} />}
+          disablePast
+          renderInput={(params) => <TextField 
+            name={name} margin={margin} {...params} />}
           error={!!error}
           helperText={error?.message}
           inputRef={ref}

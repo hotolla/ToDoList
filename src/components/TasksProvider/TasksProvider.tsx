@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useEffect, useReducer, useRef, useState } from "react";
+import { createContext, ReactNode, useEffect, useReducer, useRef } from "react";
 import { ITask } from '../../types/task.types';
 import * as tasksApi from '../../api/tasks';
 import { Action, reducer } from "./reducer";

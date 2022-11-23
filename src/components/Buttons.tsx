@@ -1,11 +1,9 @@
-import { useCallback, useContext } from 'react';
+import { useContext } from 'react';
 import { Button, ButtonGroup, Badge } from '@mui/material';
-import { ITask } from '../types/task.types';
 import { TasksContext } from './TasksProvider';
-import { ITasksState } from './TasksProvider/initialState';
 
 export const Buttons = () => {
-  const { toggleFilter, tasks, fetchTasks } = useContext(TasksContext);
+  const { tasks, fetchTasks } = useContext(TasksContext);
 
   const badge = {
     total: tasks.length,

@@ -103,6 +103,9 @@ export const Task = ({ task }: Props) => {
           }}
         />
       )}
+
+      {/* <ListItemText primary={`${(!!task.time) : task.time.split('.000Z') : " "}`}/> */}
+      <ListItemText primary={`${task.time}`.split('.000Z')} />
       
       <Link to={`/todo/${task.id}`}>
         <IconButton 
