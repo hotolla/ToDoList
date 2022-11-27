@@ -17,6 +17,7 @@ import DescriptionIcon from '@mui/icons-material/Description';
 import { ITask } from '../types/task.types';
 import * as tasksApi from '../api/tasks';
 import { TasksContext } from './TasksProvider';
+import { format } from 'date-fns';
 
 interface Props {
   task: ITask;
@@ -104,8 +105,9 @@ export const Task = ({ task }: Props) => {
         />
       )}
 
-      {/* <ListItemText primary={`${(!!task.time) : task.time.split('.000Z') : " "}`}/> */}
-      <ListItemText primary={`${task.time}`.split('.000Z')} />
+      {task.time && (
+        <ListItemText primary={format(Date.parse(task.time!), 'dd MMM yyyy')} />
+      )}
       
       <Link to={`/todo/${task.id}`}>
         <IconButton 
