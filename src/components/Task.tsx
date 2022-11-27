@@ -1,5 +1,6 @@
 import { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
+import moment from 'moment';
 import {
   ListItem,
   ListItemText,
@@ -17,7 +18,6 @@ import DescriptionIcon from '@mui/icons-material/Description';
 import { ITask } from '../types/task.types';
 import * as tasksApi from '../api/tasks';
 import { TasksContext } from './TasksProvider';
-import { format } from 'date-fns';
 
 interface Props {
   task: ITask;
@@ -91,7 +91,11 @@ export const Task = ({ task }: Props) => {
       </ListItemIcon>
 
       {!isEditable ? (
-        <ListItemText primary={task.name} onClick={toggleIsEditable} />
+        <ListItemText 
+          primary={task.name}
+          secondary={task.time && moment(task.time).format('L')}
+          onClick={toggleIsEditable} 
+        />
       ) : (
         <TextField
           autoFocus
@@ -105,10 +109,6 @@ export const Task = ({ task }: Props) => {
         />
       )}
 
-      {task.time && (
-        <ListItemText primary={format(Date.parse(task.time!), 'dd MMM yyyy')} />
-      )}
-      
       <Link to={`/todo/${task.id}`}>
         <IconButton 
           aria-label="open"

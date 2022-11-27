@@ -5,7 +5,7 @@
       "name": "тест модал",
       "description": "кункге",
       "time": "2022-10-20T01:15:00.000Z",
-      "isDone": true
+      "isDone": false
     },
     {
       "id": 1666201332775,
@@ -29,13 +29,6 @@
       "time": "2022-10-28T22:00:00.000Z"
     },
     {
-      "id": 1666251643769,
-      "name": "spred",
-      "description": "spred",
-      "isDone": false,
-      "time": "2022-10-26T23:05:00.000Z"
-    },
-    {
       "id": 1666436583256,
       "name": "task",
       "description": "task",
@@ -48,13 +41,6 @@
       "isDone": false,
       "time": "2022-10-23T01:14:00.000Z",
       "id": 1666436583257
-    },
-    {
-      "name": "task",
-      "description": "task",
-      "isDone": true,
-      "time": "2022-10-23T22:00:00.000Z",
-      "id": 1666436583258
     },
     {
       "name": "task",

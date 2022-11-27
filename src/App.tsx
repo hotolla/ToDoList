@@ -1,37 +1,34 @@
-import { Routes, Route } from 'react-router-dom';
-import { makeStyles } from '@mui/styles';
+import { useState } from 'react';
+import { CssBaseline, ThemeProvider } from '@mui/material';
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { TodoAppBar } from './components/TodoAppBar';
 import { Main } from './components/Main';
 import { TodoDetails } from './components/TodoDetails';
-
-const useStyles = makeStyles((theme) => ({
-  container: {
-    width: '100%',
-    minHeight: '100vh',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: theme.palette.background.default
-  },
-  main: {
-    width: '30%'
-  }
-}));
+import { darkTheme, lightTheme } from './themes/lightTheme';
+import { Layout } from './Layout';
 
 function App() {
-  const classes = useStyles();
+  const [ isDarkTheme, setIsDarkTheme ] = useState(false);
   
   return (
-    <div className={classes.container}>
-      <div className={classes.main}>
-        <TodoAppBar />
+    <ThemeProvider theme={isDarkTheme ? darkTheme : lightTheme}>
+      <CssBaseline />
 
-        <Routes>
-          <Route path="/" element={<Main />} />
-          <Route path="/todo/:id" element={<TodoDetails />} />
-        </Routes>
-      </div>
-    </div>
+      <LocalizationProvider dateAdapter={AdapterMoment}>
+        <BrowserRouter>
+          <Layout>
+            <TodoAppBar onThemetoggle={() => setIsDarkTheme(isDarkTheme => !isDarkTheme)}/>
+
+            <Routes>
+              <Route path="/" element={<Main />} />
+              <Route path="/todo/:id" element={<TodoDetails />} />
+            </Routes>
+          </Layout>
+        </BrowserRouter>
+      </LocalizationProvider>
+    </ThemeProvider>
   );
 }
 

@@ -33,7 +33,7 @@ export const TasksContext = createContext<ITasksProviderValue>({
   editTask: () => {}
 });
 
-export const TasksProvider = ({ children }: ITasksProviderProps, action: Action, filter: IFilter) => {
+export const TasksProvider = ({ children }: ITasksProviderProps) => {
   const [ state, dispatch ] = useReducer(reducer, initialState);
   const fetchTasksAbortController = useRef(new AbortController());
 

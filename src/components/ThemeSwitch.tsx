@@ -1,7 +1,11 @@
 import { styled } from '@mui/material/styles';
 import { Switch } from '@mui/material';
 
-const MaterialUISwitch = styled(Switch)(({ theme }) => ({
+export interface Props {
+  onChange(): void
+}
+
+export const ThemeSwitch = styled(Switch)(({ theme }) => ({
   width: 60,
   height: 34,
   padding: 7,
@@ -47,9 +51,3 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
     borderRadius: 20 / 2,
   },
 }));
-
-export const ThemeSwitch = () => {
-  return (
-    <MaterialUISwitch sx={{ m: 1 }} defaultChecked />
-  );
-}
