@@ -4,14 +4,16 @@ import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App';
-import { theme } from './config/theme';
+import { darkTheme, lightTheme } from './themes/lightTheme';
+import { useState } from 'react';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+  const [ isDarkTheme, setIsDarkTheme ] = useState(false);
 
 root.render(
-  <ThemeProvider theme={theme}>
+  <ThemeProvider theme={isDarkTheme ? darkTheme : lightTheme}>
     <CssBaseline />
 
     <LocalizationProvider dateAdapter={AdapterMoment}>

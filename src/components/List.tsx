@@ -7,7 +7,7 @@ import {
   Paper
 } from '@mui/material';
 import { ITask } from '../types/task.types';
-import { scrollBarStyling } from '../config/theme';
+import { scrollBarStyling } from '../themes/lightTheme';
 import { TasksContext } from './TasksProvider';
 import { Task } from './Task';
 
