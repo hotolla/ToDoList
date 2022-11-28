@@ -20,7 +20,7 @@ export const deleteTask = (id: ITask["id"], config?: AxiosRequestConfig) => {
   });
 };
 
-export const editTask = (task: ITask, config?: AxiosRequestConfig) => {
+export const editTask = (task: ITask , config?: AxiosRequestConfig) => {
   return api.put(`/tasks/${task.id}`, task, config).then(({ data }) => {
     return data;
   });

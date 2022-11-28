@@ -51,7 +51,7 @@ export const TasksProvider = ({ children }: ITasksProviderProps) => {
     tasksApi.fetchTasks({
       params: filter,
       signal: fetchTasksAbortController.current.signal
-    }).then((tasks) => {
+    }).then((filter) => {
       dispatch({ type: Types.ToggleFilter, payload: filter });
     }).catch((error) => {
       console.error(`Download error: ${error.message}`);
@@ -65,12 +65,12 @@ export const TasksProvider = ({ children }: ITasksProviderProps) => {
     }).then((tasks) => {
       dispatch({ type: Types.FetchTasks, payload: tasks });
     }).catch((error) => {
-      console.error(`Download error: ${error.message}`);
+      console.error(`Download error1: ${error.message}`);
     });
   };
 
   const editTask = (task: ITask) => {
-    dispatch({ type: Types.EditTask, payload: task });
+      dispatch({ type: Types.EditTask, payload: task });
   };
 
   const providerValue = {

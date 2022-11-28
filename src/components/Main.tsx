@@ -6,10 +6,6 @@ import { Buttons } from './Buttons';
 import { TodoModal } from './TodoModal';
 import { TasksProvider } from './TasksProvider';
 import { Search } from './Search';
-// import { filter } from 'lodash';
-import { TasksFilter } from './TasksProvider/TasksFilter';
-import { useContext } from 'react';
-import { TasksContext } from './TasksProvider';
 
 const useStyles = makeStyles((theme) => ({
   listContainer: {
@@ -28,14 +24,7 @@ export const Main = () => {
   const [ open, setOpen ] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const { filter } = useContext(TasksContext);
   const classes = useStyles();
-
-  // useEffect(() => {
-  //   return () => {
-  //     console.log("error");
-  //   };
-  // }, []);
 
   return (
     <TasksProvider>

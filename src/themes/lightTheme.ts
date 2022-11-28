@@ -38,6 +38,16 @@ export const lightTheme = createTheme({
       fontWeight: 600,
     },
   },
+  //TODO: styleOverrides for all themes fontSize for task.name
+  // components: {
+  //   MuiTypography: {
+  //     styleOverrides: {
+  //       body2: {
+  //         fontSize: '1.2rem'
+  //       }
+  //     }
+    // }
+  // }
 });
 
 export const darkTheme = createTheme({
@@ -51,7 +61,7 @@ export const darkTheme = createTheme({
       main: '#A659EE',
     },
     background: {
-      default: '#E4E9FF',
+      default: '#424242',
     },
     action: {
       disabledBackground: '#E4E9FF',
@@ -74,6 +84,22 @@ export const darkTheme = createTheme({
       fontWeight: 600,
     },
   },
+  components: {
+    MuiPaper: {
+      styleOverrides: {
+        root: {
+          backgroundColor: '#12121200'
+        }
+      }
+    },
+    MuiToolbar: {
+      styleOverrides: {
+        root: {
+          backgroundColor: '#AF7EEB'
+        }
+      }
+    }
+  }
 });
 
 
