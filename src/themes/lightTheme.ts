@@ -38,16 +38,6 @@ export const lightTheme = createTheme({
       fontWeight: 600,
     },
   },
-  //TODO: styleOverrides for all themes fontSize for task.name
-  // components: {
-  //   MuiTypography: {
-  //     styleOverrides: {
-  //       body2: {
-  //         fontSize: '1.2rem'
-  //       }
-  //     }
-    // }
-  // }
 });
 
 export const darkTheme = createTheme({
@@ -116,3 +106,28 @@ export const scrollBarStyling = {
     borderRadius: 10
   } 
 };
+// overrides: {
+//   MuiRadio: {
+//     root: {
+//       "&.Mui-disabled .MuiIconButton-label": {
+//         color: "transperent !important",
+//         boxShadow: `inset 0 0 0 1px black`,
+//         background: 'grey'
+
+//         "&::before": {
+//           content: '""',
+//           display: "block",
+//           position: "absolute",
+//           top: 1,
+//           left: 1,
+//           width: 20,
+//           height: 20,
+//           transform: "translate(50%, 50%)",
+//           borderRadius: "50%",
+//           background: "green"
+//         }
+//       }
+//     }
+//   }
+// }
+// });

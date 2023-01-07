@@ -1,12 +1,13 @@
 import { AppBar, Grid, IconButton, Toolbar, Typography } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { ThemeSwitch } from './ThemeSwitch';
+import { LangSwitcher } from './LangSwitcher';
 
 export interface Props {
   onThemetoggle(): void
 }
 
-export const TodoAppBar = (props: Props) => {
+export const Header = (props: Props) => {
   return (
     <AppBar position="sticky">
       <Toolbar>
@@ -23,7 +24,11 @@ export const TodoAppBar = (props: Props) => {
 
           <Grid item>
             <ThemeSwitch onChange={props.onThemetoggle}/>
-          </Grid>          
+          </Grid> 
+
+          <Grid item>
+            <LangSwitcher />         
+          </Grid>
         </Grid>
       </Toolbar>
     </AppBar>

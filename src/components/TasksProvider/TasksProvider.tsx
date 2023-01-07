@@ -70,8 +70,16 @@ export const TasksProvider = ({ children }: ITasksProviderProps) => {
   };
 
   const editTask = (task: ITask) => {
+    tasksApi.editTask(task).then((task) => {
       dispatch({ type: Types.EditTask, payload: task });
+    }).catch((error) => {
+      console.error(`Download error: ${error.message}`);
+    });
   };
+
+  // const editTask = (task: ITask) => {
+  //     dispatch({ type: Types.EditTask, payload: task });
+  // };
 
   const providerValue = {
     ...state,

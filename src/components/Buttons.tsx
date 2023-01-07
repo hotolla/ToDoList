@@ -1,9 +1,11 @@
 import { useContext } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Button, ButtonGroup, Badge } from '@mui/material';
 import { TasksContext } from './TasksProvider';
 
 export const Buttons = () => {
   const { tasks, fetchTasks } = useContext(TasksContext);
+  const { t } = useTranslation();
 
   const badge = {
     total: tasks.length,
@@ -26,10 +28,11 @@ export const Buttons = () => {
         sx={{ flexGrow: 1 }}
       >
         <Button
+          sx={{ marginRight: 1 }}
           variant={badge.total ? 'contained' : 'outlined'}
           onClick={handleToggleFilter(null)}
         >
-          ALL
+          {t('statuses.all')}
         </Button>
       </Badge>
   
@@ -40,10 +43,11 @@ export const Buttons = () => {
         sx={{ flexGrow: 1 }}
       >
         <Button
+          sx={{marginRight: 1}}
           variant={badge.isDone ? 'contained' : 'outlined'}
           onClick={handleToggleFilter(true)}
         >
-          DONE
+          {t('statuses.done')}
         </Button>
       </Badge>
   
@@ -57,7 +61,7 @@ export const Buttons = () => {
           variant={badge.inProgress ? 'contained' : 'outlined'}
           onClick={handleToggleFilter(false)}
         >
-          IN PROGRES
+          {t('statuses.progress')}
         </Button>
       </Badge>
     </ButtonGroup>

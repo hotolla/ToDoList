@@ -3,11 +3,11 @@ import { CssBaseline, ThemeProvider } from '@mui/material';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { TodoAppBar } from './components/TodoAppBar';
 import { Main } from './components/Main';
 import { TodoDetails } from './components/TodoDetails';
 import { darkTheme, lightTheme } from './themes/lightTheme';
 import { Layout } from './Layout';
+import { Header } from './components/Header';
 
 function App() {
   const [ isDarkTheme, setIsDarkTheme ] = useState(false);
@@ -19,7 +19,7 @@ function App() {
       <LocalizationProvider dateAdapter={AdapterMoment}>
         <BrowserRouter>
           <Layout>
-            <TodoAppBar onThemetoggle={() => setIsDarkTheme(isDarkTheme => !isDarkTheme)}/>
+            <Header onThemetoggle={() => setIsDarkTheme(isDarkTheme => !isDarkTheme)}/>
 
             <Routes>
               <Route path="/" element={<Main />} />
