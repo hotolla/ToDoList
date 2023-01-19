@@ -5,7 +5,7 @@
       "name": "тест модал",
       "description": "кункге",
       "time": "2022-10-20T01:15:00.000Z",
-      "isDone": false
+      "isDone": true
     },
     {
       "id": 1666201332775,
@@ -97,6 +97,13 @@
       "isDone": false,
       "time": null,
       "id": 1666436583267
+    },
+    {
+      "name": "TEST 2 TAB",
+      "description": null,
+      "isDone": false,
+      "time": null,
+      "id": 1666436583268
     }
   ]
 }

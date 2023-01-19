@@ -29,14 +29,12 @@ export const List = () => {
   return (
     <Paper className={classes.container}>
       <MuiList dense>
-        {loading && (
+        {loading ? (
           <CircularProgress
             size={36}
             style={{ marginLeft: '50%', marginTop: 12 }}
           />
-        )}
-
-        {!tasks.length ? (
+        ) : !tasks.length ? (
           <Typography align="center">No tasks found</Typography>
         ) : tasks.map((task: ITask) => (
           <Task key={task.id} task={task} />

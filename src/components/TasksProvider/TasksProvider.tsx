@@ -17,20 +17,22 @@ interface IFilter {
 
 interface ITasksProviderValue extends ITasksState {
   addTask: (task: ITask) => void;
+  addTasks: (tasks: ITask[]) => void;
   deleteTask: (task: ITask) => void;
   toggleFilter: (filter: TasksFilter) => void;
   fetchTasks: (filter: IFilter) => void;
-  editTask: (task: ITask) => void
+  editTask: (task: ITask) => void;
 }
 
 export const TasksContext = createContext<ITasksProviderValue>({
   ...initialState,
 
   addTask: () => {},
+  addTasks: () => {},
   deleteTask: () => {},
   toggleFilter: () => {},
   fetchTasks: () => {},
-  editTask: () => {}
+  editTask: () => {},
 });
 
 export const TasksProvider = ({ children }: ITasksProviderProps) => {
@@ -39,8 +41,12 @@ export const TasksProvider = ({ children }: ITasksProviderProps) => {
 
   const addTask = (task: ITask) => {
     tasksApi.addTask(task).then((task) => {
-      dispatch({ type: Types.AddTask, payload: task });
+      dispatch({type: Types.AddTask, payload: task });
     });
+  };
+
+  const addTasks = (tasks: ITask[]) => {
+    dispatch({ type: Types.AddTasks, payload: tasks });
   };
 
   const deleteTask = (task: ITask) => {
@@ -65,10 +71,11 @@ export const TasksProvider = ({ children }: ITasksProviderProps) => {
     }).then((tasks) => {
       dispatch({ type: Types.FetchTasks, payload: tasks });
     }).catch((error) => {
-      console.error(`Download error1: ${error.message}`);
+      console.error(`Download error: ${error.message}`);
     });
   };
 
+//fix it
   const editTask = (task: ITask) => {
     tasksApi.editTask(task).then((task) => {
       dispatch({ type: Types.EditTask, payload: task });
@@ -77,14 +84,11 @@ export const TasksProvider = ({ children }: ITasksProviderProps) => {
     });
   };
 
-  // const editTask = (task: ITask) => {
-  //     dispatch({ type: Types.EditTask, payload: task });
-  // };
-
   const providerValue = {
     ...state,
 
     addTask,
+    addTasks,
     deleteTask,
     toggleFilter,
     fetchTasks,
