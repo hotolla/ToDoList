@@ -21,12 +21,15 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export const DownloadTasks = () => {
-  const { addTasks } = useContext(TasksContext);
+  const { addTasks, fetchTasksRequest, fetchTasksSuccess } = useContext(TasksContext);
   const classes = useStyles();
 
   const handleTaskDowload = () => {
+    fetchTasksRequest();
+
     setTimeout((() => {
       addTasks(tasksMock);
+      fetchTasksSuccess();
     }), 2000)
   };
 
@@ -44,3 +47,4 @@ export const DownloadTasks = () => {
     </div>
   );
 };
+

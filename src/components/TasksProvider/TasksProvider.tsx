@@ -22,6 +22,8 @@ interface ITasksProviderValue extends ITasksState {
   toggleFilter: (filter: TasksFilter) => void;
   fetchTasks: (filter: IFilter) => void;
   editTask: (task: ITask) => void;
+  fetchTasksRequest: () => void;
+  fetchTasksSuccess: () => void;
 }
 
 export const TasksContext = createContext<ITasksProviderValue>({
@@ -33,6 +35,8 @@ export const TasksContext = createContext<ITasksProviderValue>({
   toggleFilter: () => {},
   fetchTasks: () => {},
   editTask: () => {},
+  fetchTasksRequest: () => {},
+  fetchTasksSuccess: () => {}
 });
 
 export const TasksProvider = ({ children }: ITasksProviderProps) => {
@@ -47,6 +51,14 @@ export const TasksProvider = ({ children }: ITasksProviderProps) => {
 
   const addTasks = (tasks: ITask[]) => {
     dispatch({ type: Types.AddTasks, payload: tasks });
+  };
+
+  const fetchTasksRequest = () => {
+    dispatch({ type: Types.FetchTasksRequest });
+  };
+
+  const fetchTasksSuccess = () => {
+    dispatch({ type: Types.FetchTasksSuccess });
   };
 
   const deleteTask = (task: ITask) => {
@@ -65,6 +77,8 @@ export const TasksProvider = ({ children }: ITasksProviderProps) => {
   };
 
   const fetchTasks = (filter?: IFilter) => {
+    fetchTasksRequest();
+    
     tasksApi.fetchTasks({
       params: filter,
       signal: fetchTasksAbortController.current.signal
@@ -72,7 +86,7 @@ export const TasksProvider = ({ children }: ITasksProviderProps) => {
       dispatch({ type: Types.FetchTasks, payload: tasks });
     }).catch((error) => {
       console.error(`Download error: ${error.message}`);
-    });
+    }).finally(fetchTasksSuccess);
   };
 
 //fix it
@@ -92,7 +106,9 @@ export const TasksProvider = ({ children }: ITasksProviderProps) => {
     deleteTask,
     toggleFilter,
     fetchTasks,
-    editTask
+    editTask,
+    fetchTasksRequest,
+    fetchTasksSuccess
   };
   
   useEffect(() => {

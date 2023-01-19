@@ -9,7 +9,9 @@ export type Action =
   | { type: Types.DeleteTask; payload: ITask }
   | { type: Types.EditTask; payload: ITask }
   | { type: Types.FetchTasks; payload: ITask[] }
+  | { type: Types.FetchTasksRequest, payload?: any }
   | { type: Types.ToggleFilter; payload: TasksFilter }
+  | { type: Types.FetchTasksSuccess; payload?: any }
 
 export const reducer = (state: ITasksState, { type, payload }: Action) => {
   switch (type) {
@@ -27,6 +29,12 @@ export const reducer = (state: ITasksState, { type, payload }: Action) => {
       
     case Types.FetchTasks:
       return { ...state, tasks: payload };
+
+    case Types.FetchTasksRequest:
+      return { ...state, loading: true };
+    
+    case Types.FetchTasksSuccess:
+      return { ...state, loading: false };
 
     case Types.EditTask:
       return { ...state, tasks: state.tasks.map((task) => task.id === payload.id ? payload : task) };
