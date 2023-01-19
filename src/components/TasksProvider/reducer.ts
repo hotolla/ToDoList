@@ -12,9 +12,11 @@ export type Action =
   | { type: Types.FetchTasksRequest, payload?: any }
   | { type: Types.ToggleFilter; payload: TasksFilter }
   | { type: Types.FetchTasksSuccess; payload?: any }
-
+//todo сделать три редюсера - один для таксков другой для фильтра третий для статуса загузки
+//отрефакторить остальной код под это разделение
 export const reducer = (state: ITasksState, { type, payload }: Action) => {
   switch (type) {
+    //todo оставить только один из двух экшенов - Types.AddTask или Types.AddTasks в редюсере
     case Types.AddTask:
       return { ...state, tasks: state.tasks.concat(payload) };
 
