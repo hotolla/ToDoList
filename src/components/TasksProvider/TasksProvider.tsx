@@ -1,10 +1,10 @@
 import { createContext, ReactNode, useEffect, useReducer, useRef } from "react";
 import { ITask } from '../../types/task.types';
 import * as tasksApi from '../../api/tasks';
-import { Action, reducer } from "./reducer";
 import { initialState, ITasksState } from './initialState';
 import { Types } from "./types";
 import { TasksFilter } from "./TasksFilter";
+import { reducer } from "./reducer";
 
 interface ITasksProviderProps {
   children: ReactNode;
@@ -40,29 +40,33 @@ export const TasksContext = createContext<ITasksProviderValue>({
 });
 
 export const TasksProvider = ({ children }: ITasksProviderProps) => {
-  const [ state, dispatch ] = useReducer(reducer, initialState);
+  const [ taskState, taskDispatch ] = useReducer(reducer.taskReducer, initialState);
+  const [ loadingState, loadingDispatch ] = useReducer(reducer.loadingReducer, initialState);
+  const [ filterState, filterDispatch ] = useReducer(reducer.filterReducer, initialState);
   const fetchTasksAbortController = useRef(new AbortController());
 
   const addTask = (task: ITask) => {
     tasksApi.addTask(task).then((task) => {
-      dispatch({type: Types.AddTask, payload: task });
+      console.log(task)
+      taskDispatch({ type: Types.AddTask, payload: task });
     });
   };
 
   const addTasks = (tasks: ITask[]) => {
-    dispatch({ type: Types.AddTasks, payload: tasks });
+    taskDispatch({ type: Types.AddTasks, payload: tasks });
   };
 
   const fetchTasksRequest = () => {
-    dispatch({ type: Types.FetchTasksRequest });
+    loadingDispatch({ type: Types.FetchTasksRequest });
   };
 
   const fetchTasksSuccess = () => {
-    dispatch({ type: Types.FetchTasksSuccess });
+    loadingDispatch({ type: Types.FetchTasksSuccess });
   };
-
+  
+//new tasks from download task cann't be deleted
   const deleteTask = (task: ITask) => {
-    dispatch({ type: Types.DeleteTask, payload: task });
+    taskDispatch({ type: Types.DeleteTask, payload: task });
   };
 
   const toggleFilter = (filter: TasksFilter) => {
@@ -70,7 +74,7 @@ export const TasksProvider = ({ children }: ITasksProviderProps) => {
       params: filter,
       signal: fetchTasksAbortController.current.signal
     }).then((filter) => {
-      dispatch({ type: Types.ToggleFilter, payload: filter });
+      filterDispatch({ type: Types.ToggleFilter, payload: filter });
     }).catch((error) => {
       console.error(`Download error: ${error.message}`);
     });
@@ -78,12 +82,12 @@ export const TasksProvider = ({ children }: ITasksProviderProps) => {
 
   const fetchTasks = (filter?: IFilter) => {
     fetchTasksRequest();
-    
+
     tasksApi.fetchTasks({
       params: filter,
       signal: fetchTasksAbortController.current.signal
     }).then((tasks) => {
-      dispatch({ type: Types.FetchTasks, payload: tasks });
+      taskDispatch({ type: Types.FetchTasks, payload: tasks });
     }).catch((error) => {
       console.error(`Download error: ${error.message}`);
     }).finally(fetchTasksSuccess);
@@ -92,14 +96,14 @@ export const TasksProvider = ({ children }: ITasksProviderProps) => {
 //fix it
   const editTask = (task: ITask) => {
     tasksApi.editTask(task).then((task) => {
-      dispatch({ type: Types.EditTask, payload: task });
+      taskDispatch({ type: Types.EditTask, payload: task });
     }).catch((error) => {
       console.error(`Download error: ${error.message}`);
     });
   };
 
   const providerValue = {
-    ...state,
+    ...taskState,
 
     addTask,
     addTasks,

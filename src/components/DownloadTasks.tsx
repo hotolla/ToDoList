@@ -3,8 +3,6 @@ import { makeStyles } from '@mui/styles';
 import { Button  } from '@mui/material';
 import DownloadIcon from '@mui/icons-material/Download';
 import { TasksContext } from './TasksProvider';
-import { ITask } from '../types/task.types';
-import * as tasksApi from '../api/tasks';
 import { tasksMock } from './tasksMock';
 
 const useStyles = makeStyles((theme) => ({
