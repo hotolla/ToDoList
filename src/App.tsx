@@ -50,7 +50,5 @@ function App() {
 }
 
 export default App;
-function useSelector(arg0: ({ theme }: { theme: any; }) => any) {
-  throw new Error('Function not implemented.');
-}
+
 
