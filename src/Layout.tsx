@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.default
   },
   main: {
-    width: '30%'
+    width: '47%'
   }
 }));
 

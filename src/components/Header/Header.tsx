@@ -1,13 +1,21 @@
-import { AppBar, Grid, IconButton, Toolbar, Typography } from '@mui/material';
+import { AppBar, Button, Grid, IconButton, Toolbar, Typography } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
+import LoginIcon from '@mui/icons-material/Login';
+import { useTranslation } from 'react-i18next';
 import { ThemeSwitch } from './ThemeSwitch';
 import { LangSwitcher } from './LangSwitcher';
+import { useState } from 'react';
 
 export interface Props {
   onThemetoggle(): void
 }
 
 export const Header = (props: Props) => {
+  const { t } = useTranslation();
+  const [ open, setOpen ] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
   return (
     <AppBar position="sticky">
       <Toolbar>
@@ -28,6 +36,16 @@ export const Header = (props: Props) => {
 
           <Grid item>
             <LangSwitcher />         
+          </Grid>
+
+          <Grid item>
+            <Button
+              color='inherit'
+              startIcon={<LoginIcon />}
+              onClick={handleOpen}
+            >
+              {t('menu.exit')}
+            </Button>
           </Grid>
         </Grid>
       </Toolbar>

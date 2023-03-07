@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column'
   },
   button: {
-    marginTop: '-5% !important',
+    marginTop: '-2% !important',
     width: '50%',
     alignSelf: 'center',
     borderRadius: '20px !important'

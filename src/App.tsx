@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
@@ -8,9 +8,26 @@ import { TodoDetails } from './components/TodoDetails';
 import { darkTheme, lightTheme } from './themes/lightTheme';
 import { Layout } from './Layout';
 import { Header } from './components/Header';
+import i18next from 'i18next';
 
 function App() {
   const [ isDarkTheme, setIsDarkTheme ] = useState(false);
+
+  // const [ locale, setLocale ] = useState(i18next.language);
+  // const currentTheme = useSelector(({ theme }) => theme.currentTheme);
+
+  // useEffect(() => {
+  //   const handleLanguageChange = () => {
+  //     setLocale(i18next.language);
+  //   };
+
+  //   i18next.on('languageChanged', handleLanguageChange);
+
+  //   return () => {
+  //     i18next.off('languageChanged', handleLanguageChange);
+  //   };
+  // }, []);
+
   
   return (
     <ThemeProvider theme={isDarkTheme ? darkTheme : lightTheme}>
@@ -33,3 +50,7 @@ function App() {
 }
 
 export default App;
+function useSelector(arg0: ({ theme }: { theme: any; }) => any) {
+  throw new Error('Function not implemented.');
+}
+
