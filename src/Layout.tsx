@@ -6,12 +6,11 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     minHeight: '100vh',
     display: 'flex',
-    alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: theme.palette.background.default
   },
   main: {
-    width: '47%'
+    width: '70%'
   }
 }));
 

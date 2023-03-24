@@ -1,7 +1,7 @@
 import { useCallback, useContext } from 'react';
 import { debounce } from 'lodash';
 import { makeStyles } from '@mui/styles';
-import { IconButton, InputAdornment, OutlinedInput } from '@mui/material';
+import { InputAdornment, OutlinedInput } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import { TasksContext } from './TasksProvider';
 
@@ -10,7 +10,10 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: theme.spacing(3)
+    margin: theme.spacing(1.5, 0, 3, 0)
+  },
+  inputSearch: {
+    minWidth: 500
   }
 }));
 
@@ -26,8 +29,10 @@ export const Search = () => {
 
   return (
     <div className={classes.container}>
-      <OutlinedInput color="primary"
+      <OutlinedInput
+        color="primary"
         size="small"
+        className={classes.inputSearch}
         placeholder="Search task..."
         endAdornment={
           <InputAdornment position="end">

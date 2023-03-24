@@ -2,7 +2,7 @@ import { makeStyles } from '@mui/styles';
 import { IconButton, Paper, Typography } from '@mui/material';
 import { Link, useParams } from 'react-router-dom';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import { scrollBarStyling } from '../themes/lightTheme';
+import { scrollBarStyling } from '../themes/themes';
 
 const useStyles = makeStyles((theme) => ({
   ...scrollBarStyling,

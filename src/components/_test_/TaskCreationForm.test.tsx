@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import { useState } from 'react';
 import { ThemeProvider } from '@mui/material';
 import { TaskCreationForm } from '../TaskCreationForm';
-import { lightTheme, darkTheme } from '../../themes/lightTheme';
+import { lightTheme, darkTheme } from '../../themes/themes';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
 

@@ -77,10 +77,6 @@ export const TasksProvider = ({ children }: ITasksProviderProps) => {
     });
   };
 
-  // const editTask = (task: ITask) => {
-  //     dispatch({ type: Types.EditTask, payload: task });
-  // };
-
   const providerValue = {
     ...state,
 
