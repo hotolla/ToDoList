@@ -7,13 +7,13 @@ import { TodoModal } from './TodoModal';
 import { TasksProvider } from './TasksProvider';
 import { Search } from './Search';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   listContainer: {
     display: 'flex',
-    flexDirection: 'column'
+    flexDirection: 'column',
   },
   button: {
-    marginTop: '-2% !important',
+    marginTop: '-1% !important',
     width: '50%',
     alignSelf: 'center',
     borderRadius: '20px !important'

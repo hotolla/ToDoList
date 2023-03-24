@@ -7,20 +7,21 @@ import {
   Paper
 } from '@mui/material';
 import { ITask } from '../types/task.types';
-import { scrollBarStyling } from '../themes/lightTheme';
+import { scrollBarStyling } from '../themes/themes';
 import { TasksContext } from './TasksProvider';
 import { Task } from './Task';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   container: {
     overflowY: 'auto',
     height: '60vh',
+    padding: theme.spacing(1.5),
     ...scrollBarStyling
   },
   search: {
     textAlign: 'center'
   }
-});
+}));
 
 export const List = () => {
   const classes = useStyles();

@@ -1,4 +1,4 @@
-export const en = {
+export const ru = {
   head: {
     title: 'Website todo',
   },
@@ -9,5 +9,17 @@ export const en = {
   },
   search: {
     placeholder: 'Поиск задачи...'
+  },
+  register: {
+    header: 'Регистация пользователя',
+    nameLabel: 'Имя',
+    namePlaceholder: 'Введите имя...',
+    emailLabel: 'E-mail адрес',
+    emailPlaceholder: 'Введите e-mail...',
+    passwordLabel: 'Пароль',
+    passwordPlaceholder: 'Введите пароль...',
+    passwordRepeatLabel: 'Повторите пароль',
+    passwordRepeatPlaceholder: 'Введите пароль...',
+    submitButton: 'Зарегестрироваться',
   }
 }

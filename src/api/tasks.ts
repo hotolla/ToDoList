@@ -31,6 +31,3 @@ export const toggleFilter = (config?: AxiosRequestConfig) => {
     return data;
   });
 };
-
-
-

@@ -1,42 +1,46 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
+import i18next from 'i18next';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Main } from './components/Main';
 import { TodoDetails } from './components/TodoDetails';
-import { darkTheme, lightTheme } from './themes/lightTheme';
+import { darkTheme, lightTheme } from './themes/themes';
 import { Layout } from './Layout';
 import { Header } from './components/Header';
-import i18next from 'i18next';
 
 function App() {
-  const [ isDarkTheme, setIsDarkTheme ] = useState(false);
+  const [ isDarkTheme, setIsDarkTheme ] = useState(() => {
+    return localStorage.getItem('isDarkTheme') === 'false';
+  });
+  const [ locale, setLocale ] = useState(i18next.language);
+  const handleChangeTheme  = useCallback(() => setIsDarkTheme((isDarkTheme) => {
+    localStorage.setItem('isDarkTheme', `${isDarkTheme}`);
+    return !isDarkTheme;
+  }), [isDarkTheme]);
 
-  // const [ locale, setLocale ] = useState(i18next.language);
-  // const currentTheme = useSelector(({ theme }) => theme.currentTheme);
+  useEffect(() => {
+    const handleLanguageChange = () => {
+      setLocale(i18next.language);
+    };
 
-  // useEffect(() => {
-  //   const handleLanguageChange = () => {
-  //     setLocale(i18next.language);
-  //   };
+    i18next.on('languageChanged', handleLanguageChange);
 
-  //   i18next.on('languageChanged', handleLanguageChange);
-
-  //   return () => {
-  //     i18next.off('languageChanged', handleLanguageChange);
-  //   };
-  // }, []);
+    return () => {
+      i18next.off('languageChanged', handleLanguageChange);
+    };
+  }, []);
 
   
   return (
     <ThemeProvider theme={isDarkTheme ? darkTheme : lightTheme}>
       <CssBaseline />
 
-      <LocalizationProvider dateAdapter={AdapterMoment}>
+      <LocalizationProvider dateAdapter={AdapterMoment} locale={locale}>
         <BrowserRouter>
           <Layout>
-            <Header onThemetoggle={() => setIsDarkTheme(isDarkTheme => !isDarkTheme)}/>
+            <Header onThemetoggle={handleChangeTheme}  />
 
             <Routes>
               <Route path="/" element={<Main />} />
@@ -50,5 +54,3 @@ function App() {
 }
 
 export default App;
-
-
