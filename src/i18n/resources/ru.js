@@ -21,5 +21,18 @@ export const ru = {
     passwordRepeatLabel: 'Повторите пароль',
     passwordRepeatPlaceholder: 'Введите пароль...',
     submitButton: 'Зарегестрироваться',
+  },
+  button: {
+    createTask: 'Создать задачу'
+  },
+  login: {
+    header: 'Вход в личный кабинет',
+    errorMessage: 'Данные для входа не верны',
+    emailLabel: 'E-mail адрес',
+    emailPlaceholder: 'Введите e-mail...',
+    passwordLabel: 'Пароль',
+    passwordPlaceholder: 'Введите пароль...',
+    submitButton: 'Войти',
+    registerLink: 'Создать новый аккаунт'
   }
 }

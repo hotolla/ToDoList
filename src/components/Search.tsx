@@ -4,6 +4,7 @@ import { makeStyles } from '@mui/styles';
 import { InputAdornment, OutlinedInput } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import { TasksContext } from './TasksProvider';
+import { useTranslation } from 'react-i18next';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -20,6 +21,7 @@ const useStyles = makeStyles((theme) => ({
 export const Search = () => {
   const { fetchTasks } = useContext(TasksContext);
   const classes = useStyles();
+  const { t } = useTranslation();
 
   const handleTaskSearch = useCallback(debounce(({ target: { value } }: React.ChangeEvent<HTMLInputElement>) => {
     fetchTasks({
@@ -33,7 +35,7 @@ export const Search = () => {
         color="primary"
         size="small"
         className={classes.inputSearch}
-        placeholder="Search task..."
+        placeholder={t('search.placeholder')}
         endAdornment={
           <InputAdornment position="end">
             <SearchIcon color="secondary"/>

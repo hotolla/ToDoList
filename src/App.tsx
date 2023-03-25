@@ -10,15 +10,21 @@ import { darkTheme, lightTheme } from './themes/themes';
 import { Layout } from './Layout';
 import { Header } from './components/Header';
 
+const isDarkThemeKey = 'isDarkTheme';
+
 function App() {
   const [ isDarkTheme, setIsDarkTheme ] = useState(() => {
-    return localStorage.getItem('isDarkTheme') === 'false';
+    return localStorage.getItem(isDarkThemeKey) === 'false';
   });
   const [ locale, setLocale ] = useState(i18next.language);
-  const handleChangeTheme  = useCallback(() => setIsDarkTheme((isDarkTheme) => {
-    localStorage.setItem('isDarkTheme', `${isDarkTheme}`);
-    return !isDarkTheme;
-  }), [isDarkTheme]);
+
+  const handleChangeTheme = useCallback(() => {
+    setIsDarkTheme((isDarkTheme) => {
+      localStorage.setItem(isDarkThemeKey, `${isDarkTheme}`);
+
+      return !isDarkTheme;
+    });
+  }, [ isDarkTheme ]);
 
   useEffect(() => {
     const handleLanguageChange = () => {
@@ -32,7 +38,6 @@ function App() {
     };
   }, []);
 
-  
   return (
     <ThemeProvider theme={isDarkTheme ? darkTheme : lightTheme}>
       <CssBaseline />
@@ -40,7 +45,7 @@ function App() {
       <LocalizationProvider dateAdapter={AdapterMoment} locale={locale}>
         <BrowserRouter>
           <Layout>
-            <Header onThemetoggle={handleChangeTheme}  />
+            <Header isDarkTheme={isDarkTheme} onThemeToggle={handleChangeTheme}  />
 
             <Routes>
               <Route path="/" element={<Main />} />

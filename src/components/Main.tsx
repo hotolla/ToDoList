@@ -6,6 +6,7 @@ import { Buttons } from './Buttons';
 import { TodoModal } from './TodoModal';
 import { TasksProvider } from './TasksProvider';
 import { Search } from './Search';
+import { useTranslation } from 'react-i18next';
 
 const useStyles = makeStyles(() => ({
   listContainer: {
@@ -25,6 +26,7 @@ export const Main = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const classes = useStyles();
+  const { t } = useTranslation();
 
   return (
     <TasksProvider>
@@ -47,7 +49,7 @@ export const Main = () => {
           color="primary"
           onClick={handleOpen}
         >
-          Create Task
+          {t('button.createTask')}
         </Button>
       </Box>
     </TasksProvider>

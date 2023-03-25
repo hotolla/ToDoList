@@ -1,18 +1,18 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { makeStyles } from '@mui/styles';
 import { List, useTheme } from '@mui/material';
-import Drawer from '@mui/material/Drawer';
-import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import ListItem from '@mui/material/ListItem';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
+import { ListItem , ListItemIcon, ListItemText, Theme, Drawer, Divider} from '@mui/material';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
-import { Theme } from '@mui/material';
 import clsx from 'clsx';
+import { useTranslation } from 'react-i18next';
+import ListIcon from '@mui/icons-material/List';
+import LoopIcon from '@mui/icons-material/Loop';
+import TaskAltIcon from '@mui/icons-material/TaskAlt';
+import { TasksContext } from '../TasksProvider';
 
 const drawerWidth = 260;
 
@@ -34,11 +34,6 @@ const useStyles = makeStyles((theme: Theme) => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
-    overflowX: 'hidden',
-    width: theme.spacing(7) + 1,
-    [theme.breakpoints.up('sm')]: {
-      width: theme.spacing(9) + 1,
-    },
   },
   toolbar: {
     display: 'flex',
@@ -46,10 +41,6 @@ const useStyles = makeStyles((theme: Theme) => ({
     justifyContent: 'flex-end',
     padding: theme.spacing(0, 1),
     ...theme.mixins.toolbar,
-  },
-  content: {
-    flexGrow: 1,
-    padding: theme.spacing(3),
   },
 }));
 
@@ -59,8 +50,17 @@ type Props = {
 };
 
 export const SideBar = ({ isOpen, onClose }: Props) => {
+  const { tasks, fetchTasks } = useContext(TasksContext);
   const classes = useStyles();
   const theme = useTheme();
+  const { t } = useTranslation();
+
+  const handleToggleFilter = (isDone: boolean | null) => () => {
+    fetchTasks({
+      isDone
+    });
+    console.log(tasks);
+  };
 
   return (
     <Drawer
@@ -92,12 +92,20 @@ export const SideBar = ({ isOpen, onClose }: Props) => {
       </List>
       <Divider />
       <List>
-        {['All tasks', 'Done', 'In progress'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
+        <ListItem button onClick={handleToggleFilter(null)}>
+          <ListItemIcon><ListIcon /></ListItemIcon>
+          <ListItemText primary={t('statuses.all')} />
+        </ListItem>
+
+        <ListItem button onClick={handleToggleFilter(true)}>
+          <ListItemIcon><TaskAltIcon /></ListItemIcon>
+          <ListItemText primary={t('statuses.done')} />
+        </ListItem>
+
+        <ListItem button onClick={handleToggleFilter(false)}>
+          <ListItemIcon><LoopIcon /></ListItemIcon>
+          <ListItemText primary={t('statuses.progress')} />
+        </ListItem>
       </List>
     </Drawer>
   );

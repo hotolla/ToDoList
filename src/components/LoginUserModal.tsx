@@ -8,12 +8,12 @@ type Props = {
   onClose: () => void;
 };
 
-export const LogoutModal = ({ isOpen, onClose }: Props) => {
+export const LoginUserModal = ({ isOpen, onClose }: Props) => {
   const { t } = useTranslation();
   return (
     <Dialog open={isOpen} onClose={onClose}>
       <DialogTitle color="primary">
-      {t('register.header')}
+      {t('login.header')}
       
         <IconButton
           color="primary"

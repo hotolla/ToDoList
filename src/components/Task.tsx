@@ -37,14 +37,12 @@ export const Task = ({ task }: Props) => {
     setIsEditable((isEditable) => !isEditable);
   };
 
-  const changeName = (task: ITask) => {
-  };
-
   const handleBlur = () => {
-    toggleIsEditable();
-
-    if (inputValue === task.name) {
-      changeName(task);
+    if (inputValue !== task.name) {
+      tasksApi.editTask({ ...task, name: inputValue }).then((task) => {
+        editTask(task);
+        toggleIsEditable();
+      });
     }
   };
 

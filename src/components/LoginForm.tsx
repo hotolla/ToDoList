@@ -6,20 +6,18 @@ import AddIcon from '@mui/icons-material/Add';
 import { makeStyles } from '@mui/styles';
 import { preventDefault } from '../helpers';
 import { Yup } from '../utils/validation';
-import { TasksContext } from './TasksProvider';
+import * as authApi from '../api/auth';
 import { TextField } from './TextField';
-import { DateTimePicker } from './DateTimePicker';
+import { useTranslation } from 'react-i18next';
 
 interface Props {
   onSubmited: () => void;
 };
 
  interface FormValues {
-  name: string | null,
-  description: string | null,
-  isDone: boolean,
-  time: string | null
-};
+  email: string | null,
+  password: string | null,
+ }
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -28,30 +26,30 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const defaultValues = {
-  name: null,
-  description: null,
-  isDone: false,
-  time: null
+  email: null,
+  password: null,
 };
 
-export const schema = Yup.object({
+const schema = Yup.object({
   name: Yup.string().nullable().required(),
-  description: Yup.string().nullable(),
-  isDone: Yup.boolean().nullable(),
-  time: Yup.mixed().nullable()
+  email: Yup.string().nullable().required(),
+  password: Yup.string().nullable().required(),
 });
 
-export const TaskCreationForm = ({ onSubmited }: Props) => {
+export const RegisterCreationForm = ({ onSubmited }: Props) => {
   const classes = useStyles();
-  const { addTask } = useContext(TasksContext);
+  const { t } = useTranslation();
+  // const {  } = useContext(TasksContext);
   const form = useForm({
     defaultValues,
     resolver: yupResolver(schema)
   });
 
   const handleSubmit = (values: FormValues) => {
-    addTask(values);
+      authApi.register(values).then((user) => {
+      });
     onSubmited();
+    console.log(values)
   };
 
   return (
@@ -69,31 +67,22 @@ export const TaskCreationForm = ({ onSubmited }: Props) => {
         <Grid item xs>
           <TextField
             required
-            fullWidth
-            name="name"
-            label="Name"
             margin="dense"
-            placeholder="Enter task name..."
-            variant="outlined"
+            multiline
+            type="email"
+            name="email"
+            label={t('register.emailLabel')}
+            placeholder={t('register.emailPlaceholder')}
+            maxRows={4}
           />
 
           <TextField
-            fullWidth
-            multiline
-            name="description"
-            label="Description"
+            required
             margin="dense"
-            maxRows={4}
-            placeholder="Enter description..."
-          />
-
-          <DateTimePicker
-            fullWidth
-            name="time"
-            label="Due date"
-            margin="dense"
-            placeholder="Enter due date..."
-            variant="outlined"
+            type="password"
+            name="password"
+            label={t('register.passwordLabel')}
+            placeholder={t('register.passwordPlaceholder')}
           />
         </Grid>
 
@@ -104,7 +93,7 @@ export const TaskCreationForm = ({ onSubmited }: Props) => {
             startIcon={<AddIcon />}
             size="large"
           >
-            Add
+            {t('register.submitButton')}
           </Button>
         </Grid>
       </Grid>
