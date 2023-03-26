@@ -99,7 +99,7 @@ export const Header = (props: Props) => {
                 startIcon={<LoginIcon />}
                 onClick={handleOpenLogout}
               >
-                {t('menu.exit')}
+                {t('login.header')}
               </Button>
             </Grid>
           </Grid>

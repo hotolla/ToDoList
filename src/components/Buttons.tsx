@@ -17,10 +17,11 @@ export const Buttons = () => {
     fetchTasks({
       isDone
     });
+    return localStorage.getItem("isDone") === 'false';
   };
 
   return (
-    <ButtonGroup fullWidth>
+    <ButtonGroup fullWidth >
       <Badge
         showZero
         badgeContent={badge.total}

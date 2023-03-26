@@ -4,6 +4,7 @@ export interface ITask {
   description: string | null;
   isDone: boolean;
   time: string | null;
+  priority: string | null
 };
 
 export interface TaskProgress {

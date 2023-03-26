@@ -26,8 +26,8 @@ export const editTask = (task: ITask , config?: AxiosRequestConfig) => {
   });
 };
 
-export const toggleFilter = (config?: AxiosRequestConfig) => {
-  return api.get("/tasks", config).then(({ data }) => {
+export const fetchTask = (id: ITask["id"], config?: AxiosRequestConfig) => {
+  return api.get(`/tasks/${id}`, config).then(({ data }) => {
     return data;
   });
 };

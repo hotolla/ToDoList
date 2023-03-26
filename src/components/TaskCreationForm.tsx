@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { useForm, FormProvider } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Grid, Button } from '@mui/material';
+import { Grid, Button, Select, InputLabel, MenuItem, FormControl } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import { makeStyles } from '@mui/styles';
 import { preventDefault } from '../helpers';
@@ -18,7 +18,8 @@ interface Props {
   name: string | null,
   description: string | null,
   isDone: boolean,
-  time: string | null
+  time: string | null,
+  priority: string | null
 };
 
 const useStyles = makeStyles((theme) => ({
@@ -31,7 +32,8 @@ const defaultValues = {
   name: null,
   description: null,
   isDone: false,
-  time: null
+  time: null,
+  priority: 'high'
 };
 
 export const schema = Yup.object({
@@ -95,6 +97,21 @@ export const TaskCreationForm = ({ onSubmited }: Props) => {
             placeholder="Enter due date..."
             variant="outlined"
           />
+          <FormControl variant="outlined" margin="dense" fullWidth>
+            {/* почему инпут лейбл надо добавлять? */}
+            <InputLabel id={`priority-label-${form.formState.defaultValues?.priority}`}>Priority</InputLabel>
+            <Select
+              name="priority"
+              label="Priority"
+              labelId={`priority-select-${form.formState.defaultValues?.priority}`}
+              // value={form.formState.defaultValues?.priority}
+            >
+              <MenuItem value={'high'}>high</MenuItem>
+              <MenuItem value={'medium'}>medium</MenuItem>
+              <MenuItem value={'low'}>low</MenuItem>
+            </Select>
+          </FormControl>
+
         </Grid>
 
         <Grid item>

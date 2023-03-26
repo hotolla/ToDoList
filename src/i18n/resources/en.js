@@ -1,5 +1,5 @@
 export const en = {
-  head: {
+  header: {
     title: 'Website todo',
     
   },

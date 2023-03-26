@@ -1,8 +1,12 @@
 import { makeStyles } from '@mui/styles';
-import { IconButton, Paper, Typography } from '@mui/material';
+import { IconButton, Paper, Typography, CircularProgress } from '@mui/material';
 import { Link, useParams } from 'react-router-dom';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { scrollBarStyling } from '../themes/themes';
+import { useContext, useEffect, useState } from 'react';
+import { TasksContext } from './TasksProvider';
+import { ITask } from '../types/task.types';
+import { fetchTask } from '../api/tasks';
 
 const useStyles = makeStyles((theme) => ({
   ...scrollBarStyling,
@@ -31,26 +35,41 @@ const useStyles = makeStyles((theme) => ({
 export const TodoDetails = () => {
   const classes = useStyles();
   const { id } = useParams();
-  const task = { id, name: 'Learn JS', description: 'very fast', isDone: true, time: "2 days" };
-  
-  return (
+  const [ task, setTask ] = useState<ITask | null>(null);
+
+  useEffect(() => {
+    // if (!id) {
+    //   return;
+    // }
+
+    if (id) fetchTask(+id).then((task) => {
+      setTask(task);
+    });
+  }, []);
+
+  return !task ? (
+    <CircularProgress
+      size={36}
+      style={{ marginLeft: '50%', marginTop: 12 }}
+    />
+  ) : (
     <Paper className={classes.container}>
       <Typography className={classes.title}>
-        {task?.name}
+        {task.name}
+      </Typography>
 
         <Link to={`/`}>
           <IconButton edge="end" sx={{ left: 240 }}>
             <ArrowBackIcon className={classes.colorButton} />
           </IconButton>
         </Link>
-      </Typography>
 
       <Typography className={classes.title}>
         Task status:
       </Typography>
 
       <Typography>
-        {(task?.isDone) ? "Done" : "In Progress"}
+        {(task.isDone) ? "Done" : "In Progress"}
       </Typography>
 
       <Typography className={classes.title}>
@@ -58,15 +77,23 @@ export const TodoDetails = () => {
       </Typography>
 
       <Typography className={classes.description}>
-        {task?.description}
+        {task.description}
       </Typography>
 
       <Typography className={classes.title}>
-        Description:
+        Due date:
       </Typography>
 
       <Typography className={classes.description}>
-        {task?.time}
+        {task.time}
+      </Typography>
+
+      <Typography className={classes.title}>
+        Priority:
+      </Typography>
+
+      <Typography className={classes.description}>
+        {task.priority}
       </Typography>
     </Paper>
   );

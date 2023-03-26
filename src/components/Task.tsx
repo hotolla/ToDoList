@@ -41,9 +41,10 @@ export const Task = ({ task }: Props) => {
     if (inputValue !== task.name) {
       tasksApi.editTask({ ...task, name: inputValue }).then((task) => {
         editTask(task);
-        toggleIsEditable();
       });
     }
+
+    toggleIsEditable();
   };
 
   const handleTaskDelete = () => {
@@ -91,7 +92,10 @@ export const Task = ({ task }: Props) => {
       {!isEditable ? (
         <ListItemText 
           primary={task.name}
-          secondary={task.time && moment(task.time).format('L')}
+          secondary={
+            `${task.time ? (moment(task.time).format('L') + ', ') : ''}
+            priority: ${task.priority || 'high'}`
+          }
           onClick={toggleIsEditable} 
         />
       ) : (
@@ -106,7 +110,7 @@ export const Task = ({ task }: Props) => {
           }}
         />
       )}
-
+      
       <Link to={`/todo/${task.id}`}>
         <IconButton 
           aria-label="open"

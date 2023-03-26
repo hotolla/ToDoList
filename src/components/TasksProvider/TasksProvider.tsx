@@ -59,6 +59,7 @@ export const TasksProvider = ({ children }: ITasksProviderProps) => {
   };
 
   const fetchTasks = (filter?: IFilter) => {
+  localStorage.setItem('badge', `${filter?.isDone}`);
     tasksApi.fetchTasks({
       params: filter,
       signal: fetchTasksAbortController.current.signal
@@ -70,11 +71,7 @@ export const TasksProvider = ({ children }: ITasksProviderProps) => {
   };
 
   const editTask = (task: ITask) => {
-    tasksApi.editTask(task).then((task) => {
-      dispatch({ type: Types.EditTask, payload: task });
-    }).catch((error) => {
-      console.error(`Download error: ${error.message}`);
-    });
+    dispatch({ type: Types.EditTask, payload: task });
   };
 
   const providerValue = {
