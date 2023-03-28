@@ -38,10 +38,6 @@ export const TodoDetails = () => {
   const [ task, setTask ] = useState<ITask | null>(null);
 
   useEffect(() => {
-    // if (!id) {
-    //   return;
-    // }
-
     if (id) fetchTask(+id).then((task) => {
       setTask(task);
     });
@@ -54,15 +50,15 @@ export const TodoDetails = () => {
     />
   ) : (
     <Paper className={classes.container}>
-      <Typography className={classes.title}>
-        {task.name}
-      </Typography>
-
         <Link to={`/`}>
-          <IconButton edge="end" sx={{ left: 240 }}>
+          <IconButton>
             <ArrowBackIcon className={classes.colorButton} />
           </IconButton>
         </Link>
+
+      <Typography className={classes.title} fontSize={22}>
+        {task.name}
+      </Typography>
 
       <Typography className={classes.title}>
         Task status:

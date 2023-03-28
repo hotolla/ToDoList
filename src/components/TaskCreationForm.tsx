@@ -9,6 +9,7 @@ import { Yup } from '../utils/validation';
 import { TasksContext } from './TasksProvider';
 import { TextField } from './TextField';
 import { DateTimePicker } from './DateTimePicker';
+import { values } from 'lodash';
 
 interface Props {
   onSubmited: () => void;
@@ -33,7 +34,7 @@ const defaultValues = {
   description: null,
   isDone: false,
   time: null,
-  priority: 'high'
+  priority: null
 };
 
 export const schema = Yup.object({
@@ -54,6 +55,7 @@ export const TaskCreationForm = ({ onSubmited }: Props) => {
   const handleSubmit = (values: FormValues) => {
     addTask(values);
     onSubmited();
+    console.log(values);
   };
 
   return (
@@ -98,13 +100,11 @@ export const TaskCreationForm = ({ onSubmited }: Props) => {
             variant="outlined"
           />
           <FormControl variant="outlined" margin="dense" fullWidth>
-            {/* почему инпут лейбл надо добавлять? */}
-            <InputLabel id={`priority-label-${form.formState.defaultValues?.priority}`}>Priority</InputLabel>
+            <InputLabel>Priority</InputLabel>
             <Select
               name="priority"
               label="Priority"
-              labelId={`priority-select-${form.formState.defaultValues?.priority}`}
-              // value={form.formState.defaultValues?.priority}
+              // value={}
             >
               <MenuItem value={'high'}>high</MenuItem>
               <MenuItem value={'medium'}>medium</MenuItem>
