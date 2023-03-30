@@ -1,10 +1,12 @@
+import { Priority } from "../modules/tasks/TaskPrioritiesSelect/Priority.enum";
+
 export interface ITask {
   id?: number;
   name: string | null;
   description: string | null;
   isDone: boolean;
   time: string | null;
-  priority: string | null
+  priority: Priority | null
 };
 
 export interface TaskProgress {
@@ -12,4 +14,3 @@ export interface TaskProgress {
   isDone: number;
   inProgress: number;
 };
- 

@@ -10,6 +10,8 @@ import { TasksContext } from './TasksProvider';
 import { TextField } from './TextField';
 import { DateTimePicker } from './DateTimePicker';
 import { values } from 'lodash';
+import { TaskPrioritiesSelect } from '../modules/tasks/TaskPrioritiesSelect';
+import { Priority } from '../modules/tasks/TaskPrioritiesSelect/Priority.enum';
 
 interface Props {
   onSubmited: () => void;
@@ -20,7 +22,7 @@ interface Props {
   description: string | null,
   isDone: boolean,
   time: string | null,
-  priority: string | null
+  priority: Priority | null
 };
 
 const useStyles = makeStyles((theme) => ({
@@ -41,7 +43,9 @@ export const schema = Yup.object({
   name: Yup.string().nullable().required(),
   description: Yup.string().nullable(),
   isDone: Yup.boolean().nullable(),
-  time: Yup.mixed().nullable()
+  time: Yup.mixed().nullable(),
+  priority: Yup.mixed().nullable(),
+  // priority: Yup.mixed<Priority | null>().oneOf(Object.values(Priority)).nullable(),
 });
 
 export const TaskCreationForm = ({ onSubmited }: Props) => {
@@ -57,6 +61,8 @@ export const TaskCreationForm = ({ onSubmited }: Props) => {
     onSubmited();
     console.log(values);
   };
+
+console.log(form);
 
   return (
     <FormProvider {...form}>
@@ -99,19 +105,13 @@ export const TaskCreationForm = ({ onSubmited }: Props) => {
             placeholder="Enter due date..."
             variant="outlined"
           />
-          <FormControl variant="outlined" margin="dense" fullWidth>
-            <InputLabel>Priority</InputLabel>
-            <Select
-              name="priority"
-              label="Priority"
-              // value={}
-            >
-              <MenuItem value={'high'}>high</MenuItem>
-              <MenuItem value={'medium'}>medium</MenuItem>
-              <MenuItem value={'low'}>low</MenuItem>
-            </Select>
-          </FormControl>
 
+          <TaskPrioritiesSelect
+            name="priority"
+            margin="dense"
+            variant="outlined"
+            label="Priority"
+          />
         </Grid>
 
         <Grid item>
