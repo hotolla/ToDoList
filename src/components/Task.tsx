@@ -94,7 +94,7 @@ export const Task = ({ task }: Props) => {
           primary={task.name}
           secondary={
             `${task.time ? (moment(task.time).format('L') + ', ') : ''}
-            priority: ${task.priority || 'high1231111111111111111111'}`
+            priority: ${task.priority || 'high'}`
           }
           onClick={toggleIsEditable} 
         />

@@ -79,8 +79,8 @@ export const darkTheme = createTheme({
       styleOverrides: {
         root: {
           backgroundColor: '#12121200'
-        }
-      }
+        },
+      },
     },
     MuiToolbar: {
       styleOverrides: {
@@ -88,7 +88,21 @@ export const darkTheme = createTheme({
           backgroundColor: '#AF7EEB'
         }
       }
-    }
+    },
+    MuiDialog: {
+      styleOverrides: {
+        paper: {
+          backgroundColor: '#424242'
+        }
+      },
+    },
+    MuiPopover: {
+      styleOverrides: {
+        paper: {
+          backgroundColor: '#424242'
+        }
+      },
+    },
   }
 });
 
