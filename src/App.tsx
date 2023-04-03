@@ -3,12 +3,13 @@ import i18next from 'i18next';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Main } from './components/Main';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { TasksPage } from './app/TasksPage/TasksPage';
 import { TodoDetails } from './components/TodoDetails';
 import { darkTheme, lightTheme } from './themes/themes';
 import { Layout } from './Layout';
 import { Header } from './components/Header';
+import { LoginPage } from './app/LoginPage';
 
 const isDarkThemeKey = 'isDarkTheme';
 
@@ -48,7 +49,9 @@ function App() {
             <Header isDarkTheme={isDarkTheme} onThemeToggle={handleChangeTheme}  />
 
             <Routes>
-              <Route path="/" element={<Main />} />
+              <Route path="/" element={<Navigate to="/todo" />} />
+              <Route path="/todo" element={<TasksPage />} />
+              <Route path="/login" element={<LoginPage />} />
               <Route path="/todo/:id" element={<TodoDetails />} />
             </Routes>
           </Layout>

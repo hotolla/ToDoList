@@ -1,18 +1,18 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { makeStyles } from '@mui/styles';
 import { List, useTheme } from '@mui/material';
 import IconButton from '@mui/material/IconButton';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import { ListItem , ListItemIcon, ListItemText, Theme, Drawer, Divider} from '@mui/material';
+import { ListItem , ListItemIcon, ListItemText, Theme, Drawer, Divider, ListItemButton } from '@mui/material';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
 import clsx from 'clsx';
 import { useTranslation } from 'react-i18next';
 import ListIcon from '@mui/icons-material/List';
 import LoopIcon from '@mui/icons-material/Loop';
 import TaskAltIcon from '@mui/icons-material/TaskAlt';
 import { TasksContext } from '../TasksProvider';
+import { Link } from 'react-router-dom';
 
 const drawerWidth = 260;
 
@@ -42,6 +42,10 @@ const useStyles = makeStyles((theme: Theme) => ({
     padding: theme.spacing(0, 1),
     ...theme.mixins.toolbar,
   },
+  link: {
+    textDecoration: 'none',
+    color: 'black',
+  }
 }));
 
 type Props = {
@@ -83,19 +87,31 @@ export const SideBar = ({ isOpen, onClose }: Props) => {
       </div>
       <Divider />
       <List>
-        {['Main', 'Task', 'Send email', 'Drafts'].map((text, index) => (
+      {/* {['Main', 'Task', 'Send email', 'Drafts'].map((text, index) => (
           <ListItem button key={text}>
             <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
             <ListItemText primary={text} />
           </ListItem>
-        ))}
-      </List>
-      <Divider />
-      <List>
-        <ListItem button onClick={handleToggleFilter(null)}>
-          <ListItemIcon><ListIcon /></ListItemIcon>
-          <ListItemText primary={t('statuses.all')} />
+        ))} */}
+        <ListItem disablePadding>
+          <ListItemButton component={Link} to="/">
+            <ListItemIcon>
+              <InboxIcon />
+            </ListItemIcon>
+            <ListItemText primary="Main" className={classes.link} />
+          </ListItemButton>
         </ListItem>
+      </List>
+
+      <Divider />
+      
+      <List>
+        <Link to="/">
+          <ListItem button onClick={handleToggleFilter(null)}>
+            <ListItemIcon><ListIcon /></ListItemIcon>
+            <ListItemText primary={t('statuses.all')} />
+          </ListItem>
+        </Link>
 
         <ListItem button onClick={handleToggleFilter(true)}>
           <ListItemIcon><TaskAltIcon /></ListItemIcon>

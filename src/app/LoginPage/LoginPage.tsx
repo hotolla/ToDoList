@@ -4,20 +4,16 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { Grid, Button } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import { makeStyles } from '@mui/styles';
-import { preventDefault } from '../helpers';
-import { Yup } from '../utils/validation';
-import * as authApi from '../api/auth';
-import { TextField } from './TextField';
+import { preventDefault } from '../../helpers';
+import { Yup } from '../../utils/validation';
+import * as authApi from '../../api/auth';
+import { TextField } from '../../components/TextField';
 import { useTranslation } from 'react-i18next';
 
-interface Props {
-  onSubmited: () => void;
-};
-
- interface FormValues {
+interface FormValues {
   email: string | null,
   password: string | null,
- }
+}
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -31,25 +27,21 @@ const defaultValues = {
 };
 
 const schema = Yup.object({
-  name: Yup.string().nullable().required(),
   email: Yup.string().nullable().required(),
   password: Yup.string().nullable().required(),
 });
 
-export const RegisterCreationForm = ({ onSubmited }: Props) => {
+export const LoginPage = () => {
   const classes = useStyles();
   const { t } = useTranslation();
-  // const {  } = useContext(TasksContext);
   const form = useForm({
     defaultValues,
     resolver: yupResolver(schema)
   });
 
   const handleSubmit = (values: FormValues) => {
-      authApi.register(values).then((user) => {
-      });
-    onSubmited();
-    console.log(values)
+    authApi.login(values).then((user) => {
+    });
   };
 
   return (
@@ -71,8 +63,8 @@ export const RegisterCreationForm = ({ onSubmited }: Props) => {
             multiline
             type="email"
             name="email"
-            label={t('register.emailLabel')}
-            placeholder={t('register.emailPlaceholder')}
+            label={t('login.emailLabel')}
+            placeholder={t('login.emailPlaceholder')}
             maxRows={4}
           />
 
@@ -81,8 +73,8 @@ export const RegisterCreationForm = ({ onSubmited }: Props) => {
             margin="dense"
             type="password"
             name="password"
-            label={t('register.passwordLabel')}
-            placeholder={t('register.passwordPlaceholder')}
+            label={t('login.passwordLabel')}
+            placeholder={t('login.passwordPlaceholder')}
           />
         </Grid>
 
@@ -90,10 +82,9 @@ export const RegisterCreationForm = ({ onSubmited }: Props) => {
           <Button
             type="submit"
             variant="contained"
-            startIcon={<AddIcon />}
             size="large"
           >
-            {t('register.submitButton')}
+            {t('login.submitButton')}
           </Button>
         </Grid>
       </Grid>

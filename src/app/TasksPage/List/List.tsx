@@ -6,10 +6,10 @@ import {
   CircularProgress,
   Paper
 } from '@mui/material';
-import { ITask } from '../types/task.types';
-import { scrollBarStyling } from '../themes/themes';
-import { TasksContext } from './TasksProvider';
-import { Task } from './Task';
+import { ITask } from '../../../types/task.types';
+import { scrollBarStyling } from '../../../themes/themes';
+import { TasksContext } from '../../../components/TasksProvider';
+import { Task } from './Task/Task';
 
 const useStyles = makeStyles((theme) => ({
   container: {

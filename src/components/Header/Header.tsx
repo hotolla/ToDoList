@@ -10,6 +10,7 @@ import { TasksProvider } from '../TasksProvider';
 import { SideBar } from './SideBar';
 import { makeStyles } from '@mui/styles';
 import clsx from 'clsx';
+import { Link } from 'react-router-dom';
 
 export interface Props {
   isDarkTheme: boolean,
@@ -95,9 +96,10 @@ export const Header = (props: Props) => {
 
             <Grid item>
               <Button
-                color='inherit'
+                color="inherit"
                 startIcon={<LoginIcon />}
-                onClick={handleOpenLogout}
+                component={Link}
+                to="/login"
               >
                 {t('login.header')}
               </Button>

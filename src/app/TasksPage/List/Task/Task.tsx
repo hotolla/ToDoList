@@ -15,9 +15,9 @@ import {
 } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import DescriptionIcon from '@mui/icons-material/Description';
-import { ITask } from '../types/task.types';
-import * as tasksApi from '../api/tasks';
-import { TasksContext } from './TasksProvider';
+import { ITask } from '../../../../types/task.types';
+import * as tasksApi from '../../../../api/tasks';
+import { TasksContext } from '../../../../components/TasksProvider';
 
 interface Props {
   task: ITask;
