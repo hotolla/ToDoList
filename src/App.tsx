@@ -1,41 +1,73 @@
-import { useState } from 'react';
-import { Container, CssBaseline } from '@mui/material';
-import { TaskCreationForm } from './TaskCreationForm';
-import { List } from './components/List/List';
-import { ITask } from "./types/task.types";
+import { useCallback, useEffect, useState } from 'react';
+import i18next from 'i18next';
+import { CssBaseline, ThemeProvider } from '@mui/material';
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { TasksPage } from './app/TasksPage/TasksPage';
+import { TodoDetails } from './components/TodoDetails';
+import { darkTheme, lightTheme } from './themes/themes';
+import { Layout } from './Layout';
+import { Header } from './components/Header';
+import { LoginPage } from './app/AuthPage/LoginPage';
+import { Registration } from './app/AuthPage/Registration';
+import { AuthGuard } from './components/AuthGuard';
+import { AuthProvider } from './components/AuthProvider';
+
+const isDarkThemeKey = 'isDarkTheme';
 
 function App() {
-  const [ tasks, setTasks ] = useState<ITask[]>([]);
+  const [ isDarkTheme, setIsDarkTheme ] = useState(() => {
+    return localStorage.getItem(isDarkThemeKey) === 'false';
+  });
+  const [ locale, setLocale ] = useState(i18next.language);
 
-  const createTask = (task: ITask) => {
-    setTasks([ ...tasks, task ]);
-  };
+  const handleChangeTheme = useCallback(() => {
+    setIsDarkTheme((isDarkTheme) => {
+      localStorage.setItem(isDarkThemeKey, `${isDarkTheme}`);
 
-  const deleteTask = (task: ITask) => {
-    setTasks((tasks) => tasks.filter(({ id }) => task.id !== id));
-  };
+      return !isDarkTheme;
+    });
+  }, [ isDarkTheme ]);
 
-  // const changeStatus = ({id}: ITask) => {
-  //   setTasks((tasks) => tasks.map((task) => {
-  //     return task.id === id ? { ...task, isDone: !task.isDone } : task;
-  //   }));
-  // };
+  useEffect(() => {
+    const handleLanguageChange = () => {
+      setLocale(i18next.language);
+    };
 
-  const editTask = (changedTask: ITask) => {
-    setTasks((tasks) => tasks.map((task) => task.id === changedTask.id ? changedTask : task));
-  };
+    i18next.on('languageChanged', handleLanguageChange);
+
+    return () => {
+      i18next.off('languageChanged', handleLanguageChange);
+    };
+  }, []);
 
   return (
-    <>
-      <Container maxWidth="xs" sx={{ mt: 2 }}>
-        <TaskCreationForm onCreate={createTask} />
-        <List tasks={tasks} onEdit={editTask} onDelete={deleteTask}/>
-      </Container>
-
+    <ThemeProvider theme={isDarkTheme ? darkTheme : lightTheme}>
       <CssBaseline />
-    </>
+
+      <LocalizationProvider dateAdapter={AdapterMoment} locale={locale}>
+        <BrowserRouter>
+          <AuthProvider>
+            <Layout>
+              <Header isDarkTheme={isDarkTheme} onThemeToggle={handleChangeTheme}  />
+
+              <Routes>
+                <Route path="/" element={<Navigate to="/todo" />} />
+                <Route path="/login" element={<LoginPage />} />
+                <Route path="/auth/registration" element={<Registration />} />
+
+                <Route element={<AuthGuard />}>
+                  <Route path="/todo" element={<TasksPage />} />
+                  <Route path="/todo/:id" element={<TodoDetails />} />
+                </Route>
+              </Routes>
+            </Layout>
+          </AuthProvider>
+        </BrowserRouter>
+      </LocalizationProvider>
+    </ThemeProvider>
   );
 }
 
 export default App;
- 
