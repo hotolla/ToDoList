@@ -33,6 +33,7 @@ export const ru = {
     passwordLabel: 'Пароль',
     passwordPlaceholder: 'Введите пароль...',
     submitButton: 'Войти',
-    registerLink: 'Создать новый аккаунт'
+    registerLink: 'Создать новый аккаунт',
+    forgotPassword: 'Забыли пароль?'
   }
 }

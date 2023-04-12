@@ -2,18 +2,24 @@ import { useContext } from 'react';
 import { useForm, FormProvider } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Grid, Button } from '@mui/material';
-import AddIcon from '@mui/icons-material/Add';
 import { makeStyles } from '@mui/styles';
-import { preventDefault } from '../../helpers';
-import { Yup } from '../../utils/validation';
-import * as authApi from '../../api/auth';
-import { TextField } from '../../components/TextField';
+import { preventDefault } from '../../../helpers';
+import { Yup } from '../../../utils/validation';
+import * as authApi from '../../../api/auth';
+import { TextField } from '../../../components/TextField';
 import { useTranslation } from 'react-i18next';
+import { AuthContext } from '../../../components/AuthProvider';
 
-interface FormValues {
+interface Props {
+  onSubmited: () => void;
+};
+
+ interface FormValues {
+  name: string | null,
   email: string | null,
   password: string | null,
-}
+  confirmPassword: string | null,
+ }
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -22,26 +28,32 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const defaultValues = {
+  name: null,
   email: null,
   password: null,
+  confirmPassword: null
 };
 
 const schema = Yup.object({
+  name: Yup.string().nullable().required(),
   email: Yup.string().nullable().required(),
   password: Yup.string().nullable().required(),
+  confirmPassword: Yup.string().nullable().required(),
 });
 
-export const LoginPage = () => {
+export const Registration = () => {
   const classes = useStyles();
   const { t } = useTranslation();
+  const { login} = useContext(AuthContext);
   const form = useForm({
     defaultValues,
     resolver: yupResolver(schema)
   });
 
   const handleSubmit = (values: FormValues) => {
-    authApi.login(values).then((user) => {
-    });
+    login(values);
+    // onSubmited();
+    console.log(values)
   };
 
   return (
@@ -60,11 +72,20 @@ export const LoginPage = () => {
           <TextField
             required
             margin="dense"
+            name="name"
+            label={t('register.nameLabel')}
+            placeholder={t('register.namePlaceholder')}
+            variant="outlined"
+          />
+          
+          <TextField
+            required
+            margin="dense"
             multiline
             type="email"
             name="email"
-            label={t('login.emailLabel')}
-            placeholder={t('login.emailPlaceholder')}
+            label={t('register.emailLabel')}
+            placeholder={t('register.emailPlaceholder')}
             maxRows={4}
           />
 
@@ -73,8 +94,17 @@ export const LoginPage = () => {
             margin="dense"
             type="password"
             name="password"
-            label={t('login.passwordLabel')}
-            placeholder={t('login.passwordPlaceholder')}
+            label={t('register.passwordLabel')}
+            placeholder={t('register.passwordPlaceholder')}
+          />
+
+          <TextField
+            required
+            type="password"
+            margin="dense"
+            name="passwordConfirmation"
+            label={t('register.passwordRepeatLabel')}
+            placeholder={t('register.passwordRepeatPlaceholder')}
           />
         </Grid>
 
@@ -84,7 +114,7 @@ export const LoginPage = () => {
             variant="contained"
             size="large"
           >
-            {t('login.submitButton')}
+            {t('register.submitButton')}
           </Button>
         </Grid>
       </Grid>

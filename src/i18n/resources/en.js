@@ -31,7 +31,8 @@ export const en = {
     passwordLabel: 'Password',
     passwordPlaceholder: 'Enter password...',
     submitButton: 'Login',
-    registerLink: 'Create a new account'
+    registerLink: 'Create a new account',
+    forgotPassword: 'Forgot your password?'
   },
   button: {
     createTask: 'Create Task'

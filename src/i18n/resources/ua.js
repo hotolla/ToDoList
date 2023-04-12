@@ -21,7 +21,8 @@ export const ua = {
     passwordRepeatLabel: 'Повторити пароль',
     passwordRepeatPlaceholder: 'Введіть пароль ...',
     submitButton: 'Зареєструватись',
-  },    login: {
+  },
+  login: {
     header: 'Вхід в особистий кабінет',
     errorMessage: 'Дані для входу не вірні',
     emailLabel: 'E-mail адреса',
@@ -29,7 +30,8 @@ export const ua = {
     passwordLabel: 'Пароль',
     passwordPlaceholder: 'Введіть пароль...',
     submitButton: 'Увійти',
-    registerLink: 'Створити новий акаунт'
+    registerLink: 'Створити новий акаунт',
+    forgotPassword: 'Забули пароль?'
   },
   button: {
     createTask: 'Створити Завдання'

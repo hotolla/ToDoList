@@ -1,6 +1,6 @@
 import { Dialog, DialogTitle, IconButton } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
-import { RegisterCreationForm } from './RegisterCreationForm';
+import { Registration } from '../app/AuthPage/Registration';
 import { useTranslation } from 'react-i18next';
 
 type Props = {
@@ -29,7 +29,7 @@ export const LoginUserModal = ({ isOpen, onClose }: Props) => {
         </IconButton>
       </DialogTitle>
       
-      <RegisterCreationForm onSubmited={onClose} />
+      <Registration />
     </Dialog>
   );
 };

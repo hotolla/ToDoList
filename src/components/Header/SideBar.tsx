@@ -87,12 +87,6 @@ export const SideBar = ({ isOpen, onClose }: Props) => {
       </div>
       <Divider />
       <List>
-      {/* {['Main', 'Task', 'Send email', 'Drafts'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))} */}
         <ListItem disablePadding>
           <ListItemButton component={Link} to="/">
             <ListItemIcon>

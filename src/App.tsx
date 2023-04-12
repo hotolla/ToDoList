@@ -9,7 +9,10 @@ import { TodoDetails } from './components/TodoDetails';
 import { darkTheme, lightTheme } from './themes/themes';
 import { Layout } from './Layout';
 import { Header } from './components/Header';
-import { LoginPage } from './app/LoginPage';
+import { LoginPage } from './app/AuthPage/LoginPage';
+import { Registration } from './app/AuthPage/Registration';
+import { AuthGuard } from './components/AuthGuard';
+import { AuthProvider } from './components/AuthProvider';
 
 const isDarkThemeKey = 'isDarkTheme';
 
@@ -45,16 +48,22 @@ function App() {
 
       <LocalizationProvider dateAdapter={AdapterMoment} locale={locale}>
         <BrowserRouter>
-          <Layout>
-            <Header isDarkTheme={isDarkTheme} onThemeToggle={handleChangeTheme}  />
+          <AuthProvider>
+            <Layout>
+              <Header isDarkTheme={isDarkTheme} onThemeToggle={handleChangeTheme}  />
 
-            <Routes>
-              <Route path="/" element={<Navigate to="/todo" />} />
-              <Route path="/todo" element={<TasksPage />} />
-              <Route path="/login" element={<LoginPage />} />
-              <Route path="/todo/:id" element={<TodoDetails />} />
-            </Routes>
-          </Layout>
+              <Routes>
+                <Route path="/" element={<Navigate to="/todo" />} />
+                <Route path="/login" element={<LoginPage />} />
+                <Route path="/auth/registration" element={<Registration />} />
+
+                <Route element={<AuthGuard />}>
+                  <Route path="/todo" element={<TasksPage />} />
+                  <Route path="/todo/:id" element={<TodoDetails />} />
+                </Route>
+              </Routes>
+            </Layout>
+          </AuthProvider>
         </BrowserRouter>
       </LocalizationProvider>
     </ThemeProvider>
