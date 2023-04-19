@@ -60,7 +60,7 @@ export const Task = ({ task, onEdit, onDelete }: Props) => {
           size="small"
           value={inputValue}
           onBlur={editTask}
-          onChange={(e) => {setInputValue(e.target.value)}}
+          onChange={(e) => {setInputValue(e.target.value);}}
         />
       )}
     </ListItem>

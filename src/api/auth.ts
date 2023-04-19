@@ -11,7 +11,7 @@ interface ILoginData {
 export const register = (user: IUser, config?: AxiosRequestConfig) => {
   return api.post("/users", user, config).then(({ data }) => {
     return data;
-  })
+  });
 // }).catch((data) => {
 //   throw data;
 // });;
@@ -29,6 +29,6 @@ export const login = (loginData: ILoginData, config?: AxiosRequestConfig) => {
       return user;
     }
 
-    throw { status: 401 };
+    // throw { status: 401 };
   });
 };

@@ -1,31 +1,20 @@
-import { useContext } from 'react';
 import { useForm, FormProvider } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Grid, Button } from '@mui/material';
-import { makeStyles } from '@mui/styles';
+import { Grid, Button, Box, Typography } from '@mui/material';
 import { preventDefault } from '../../../helpers';
 import { Yup } from '../../../utils/validation';
-import * as authApi from '../../../api/auth';
 import { TextField } from '../../../components/TextField';
 import { useTranslation } from 'react-i18next';
-import { AuthContext } from '../../../components/AuthProvider';
+import LockOpenIcon from '@mui/icons-material/LockOpen';
+import * as authApi from '../../../api/auth';
+import { useNavigate } from 'react-router-dom';
 
-interface Props {
-  onSubmited: () => void;
-};
-
- interface FormValues {
+interface FormValues {
   name: string | null,
   email: string | null,
   password: string | null,
-  confirmPassword: string | null,
- }
-
-const useStyles = makeStyles((theme) => ({
-  container: {
-    padding: theme.spacing(3)
-  }
-}));
+  confirmPassword: string | null
+};
 
 const defaultValues = {
   name: null,
@@ -36,28 +25,36 @@ const defaultValues = {
 
 const schema = Yup.object({
   name: Yup.string().nullable().required(),
-  email: Yup.string().nullable().required(),
+  email: Yup.string().nullable().email().required(),
   password: Yup.string().nullable().required(),
-  confirmPassword: Yup.string().nullable().required(),
+  confirmPassword: Yup.string().nullable().required()
 });
 
 export const Registration = () => {
-  const classes = useStyles();
   const { t } = useTranslation();
-  const { login} = useContext(AuthContext);
+  const navigate = useNavigate();
   const form = useForm({
     defaultValues,
     resolver: yupResolver(schema)
   });
 
   const handleSubmit = (values: FormValues) => {
-    login(values);
-    // onSubmited();
-    console.log(values)
+    authApi.register(values).then(() => {
+      navigate('/login');
+    }).catch((error) => {
+    });
   };
 
   return (
     <FormProvider {...form}>
+      <Box display="flex" flexDirection="column" alignItems="center">
+        <LockOpenIcon color="primary"/>
+
+        <Typography variant="h6" color="primary" mt={1}>
+          {t('auth.register.header')}
+        </Typography>
+      </Box>
+
       <Grid
         noValidate
         container
@@ -65,27 +62,25 @@ export const Registration = () => {
         alignItems="center"
         direction="column"
         component="form"
-        className={classes.container}
         onSubmit={preventDefault(form.handleSubmit(handleSubmit))}
       >
-        <Grid item xs>
+        <Grid item>
           <TextField
             required
             margin="dense"
             name="name"
-            label={t('register.nameLabel')}
-            placeholder={t('register.namePlaceholder')}
+            label={t('auth.register.nameLabel')}
+            placeholder={t('auth.register.namePlaceholder')}
             variant="outlined"
           />
           
           <TextField
             required
             margin="dense"
-            multiline
             type="email"
             name="email"
-            label={t('register.emailLabel')}
-            placeholder={t('register.emailPlaceholder')}
+            label={t('auth.register.emailLabel')}
+            placeholder={t('auth.register.emailPlaceholder')}
             maxRows={4}
           />
 
@@ -94,17 +89,17 @@ export const Registration = () => {
             margin="dense"
             type="password"
             name="password"
-            label={t('register.passwordLabel')}
-            placeholder={t('register.passwordPlaceholder')}
+            label={t('auth.register.passwordLabel')}
+            placeholder={t('auth.register.passwordPlaceholder')}
           />
 
           <TextField
             required
             type="password"
             margin="dense"
-            name="passwordConfirmation"
-            label={t('register.passwordRepeatLabel')}
-            placeholder={t('register.passwordRepeatPlaceholder')}
+            name="confirmPassword"
+            label={t('auth.register.passwordRepeatLabel')}
+            placeholder={t('auth.register.passwordRepeatPlaceholder')}
           />
         </Grid>
 
@@ -114,7 +109,7 @@ export const Registration = () => {
             variant="contained"
             size="large"
           >
-            {t('register.submitButton')}
+            {t('auth.register.submitButton')}
           </Button>
         </Grid>
       </Grid>

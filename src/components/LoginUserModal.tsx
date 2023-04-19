@@ -13,7 +13,7 @@ export const LoginUserModal = ({ isOpen, onClose }: Props) => {
   return (
     <Dialog open={isOpen} onClose={onClose}>
       <DialogTitle color="primary">
-      {t('login.header')}
+        {t('auth.login.header')}
       
         <IconButton
           color="primary"

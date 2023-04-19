@@ -21,6 +21,7 @@ function App() {
     return localStorage.getItem(isDarkThemeKey) === 'false';
   });
   const [ locale, setLocale ] = useState(i18next.language);
+  const [ openMenu, setOpenMenu ] = useState(false);
 
   const handleChangeTheme = useCallback(() => {
     setIsDarkTheme((isDarkTheme) => {
@@ -30,10 +31,21 @@ function App() {
     });
   }, [ isDarkTheme ]);
 
+  const handleCloseMenu = useCallback(() => {
+    setOpenMenu((openMenu) => {
+      // localStorage.setItem(isDarkThemeKey, `${isDarkTheme}`);
+      return !openMenu;
+    });
+  }, []);
+
   useEffect(() => {
+    localStorage.getItem('user');
+
     const handleLanguageChange = () => {
       setLocale(i18next.language);
     };
+
+    // setOpenMenu(false);
 
     i18next.on('languageChanged', handleLanguageChange);
 
@@ -46,11 +58,16 @@ function App() {
     <ThemeProvider theme={isDarkTheme ? darkTheme : lightTheme}>
       <CssBaseline />
 
-      <LocalizationProvider dateAdapter={AdapterMoment} locale={locale}>
+      <LocalizationProvider dateAdapter={AdapterMoment} adapterLocale={locale}>
         <BrowserRouter>
           <AuthProvider>
             <Layout>
-              <Header isDarkTheme={isDarkTheme} onThemeToggle={handleChangeTheme}  />
+              <Header
+                isDarkTheme={isDarkTheme}
+                onThemeToggle={handleChangeTheme}
+                openMenu={openMenu}
+                onMenuToggle={handleCloseMenu}
+              />
 
               <Routes>
                 <Route path="/" element={<Navigate to="/todo" />} />

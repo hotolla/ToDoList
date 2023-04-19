@@ -50,11 +50,11 @@ export const TodoDetails = () => {
     />
   ) : (
     <Paper className={classes.container}>
-        <Link to={`/`}>
-          <IconButton>
-            <ArrowBackIcon className={classes.colorButton} />
-          </IconButton>
-        </Link>
+      <Link to={`/`}>
+        <IconButton>
+          <ArrowBackIcon className={classes.colorButton} />
+        </IconButton>
+      </Link>
 
       <Typography className={classes.title} fontSize={22}>
         {task.name}

@@ -1,6 +1,6 @@
 export const ua = {
   head: {
-    title: 'Website todo',
+    title: 'Website todo'
   },
   statuses: {
     all: 'усі',
@@ -10,30 +10,33 @@ export const ua = {
   search: {
     placeholder: 'Пошук завдання...'
   },
-  register: {
-    header: 'Реєстрація аккаунту',
-    nameLabel: 'Ім\'я',
-    namePlaceholder: 'Введіть ім\'я ...',
-    emailLabel: 'Електронна пошта',
-    emailPlaceholder: 'Введіть e-mail ...',
-    passwordLabel: 'Пароль',
-    passwordPlaceholder: 'Введіть пароль ...',
-    passwordRepeatLabel: 'Повторити пароль',
-    passwordRepeatPlaceholder: 'Введіть пароль ...',
-    submitButton: 'Зареєструватись',
-  },
-  login: {
-    header: 'Вхід в особистий кабінет',
-    errorMessage: 'Дані для входу не вірні',
-    emailLabel: 'E-mail адреса',
-    emailPlaceholder: 'Введіть e-mail...',
-    passwordLabel: 'Пароль',
-    passwordPlaceholder: 'Введіть пароль...',
-    submitButton: 'Увійти',
-    registerLink: 'Створити новий акаунт',
-    forgotPassword: 'Забули пароль?'
+  auth: {
+    register: {
+      header: 'Регистация аккаунта',
+      emailConflict: 'Пользователь с такой почтой уже существует',
+      nameLabel: 'Имя',
+      namePlaceholder: 'Введите имя...',
+      emailLabel: 'E-mail адрес',
+      emailPlaceholder: 'Введите e-mail...',
+      passwordLabel: 'Пароль',
+      passwordPlaceholder: 'Введите пароль...',
+      passwordRepeatLabel: 'Повторите пароль',
+      passwordRepeatPlaceholder: 'Введите пароль...',
+      submitButton: 'Зарегестрироваться',
+      loginLink: 'Есть аккаунт? Войти'
+    },
+    login: {
+      header: 'Вход в личный кабинет',
+      errorMessage: 'Данные для входа не верны',
+      emailLabel: 'E-mail адрес',
+      emailPlaceholder: 'Введите e-mail...',
+      passwordLabel: 'Пароль',
+      passwordPlaceholder: 'Введите пароль...',
+      submitButton: 'Войти',
+      registerLink: 'Создать новый аккаунт'
+    }
   },
   button: {
     createTask: 'Створити Завдання'
   }
-}
+};

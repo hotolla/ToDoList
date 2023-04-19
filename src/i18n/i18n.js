@@ -12,7 +12,7 @@ const handleLangChange = (lang) => {
 
   document.documentElement.setAttribute('lang', lang);
   document.title = i18next.t('head.title');
-  document.querySelector('meta[name="description"]').setAttribute('content', i18next.t('head.description'));
+  document.querySelector('meta[name="description"]').setAttribute('content', i18next.t('head.title'));
 };
 
 i18next

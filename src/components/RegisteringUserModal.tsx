@@ -13,7 +13,7 @@ export const RegisteringUserModal = ({ isOpen, onClose }: Props) => {
   return (
     <Dialog open={isOpen} onClose={onClose}>
       <DialogTitle color="primary">
-      {t('register.header')}
+        {t('auth.register.submitButton')}
       
         <IconButton
           color="primary"

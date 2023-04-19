@@ -7,15 +7,15 @@ export type Action =
 
 export const reducer = (state: IAuthState, { type, payload }: Action) => {
   switch (type) {
-    case Types.Login:
-      return {
-        ...state,
+  case Types.Login:
+    return {
+      ...state,
 
-        isAuthenticated: true,
-        user: payload
-      };
+      isAuthenticated: true,
+      user: payload
+    };
 
-    default:
-      return state;
+  default:
+    return state;
   };
 };

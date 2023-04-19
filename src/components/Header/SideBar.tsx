@@ -18,33 +18,35 @@ const drawerWidth = 260;
 
 const useStyles = makeStyles((theme: Theme) => ({
   drawer: {
-    width: drawerWidth,
+    // width: drawerWidth,
     flexShrink: 0,
-    whiteSpace: 'nowrap',
+    whiteSpace: 'nowrap'
   },
   drawerOpen: {
     width: drawerWidth,
     transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
+      duration: theme.transitions.duration.enteringScreen
     }),
+    marginTop: theme.spacing(9)
   },
   drawerClose: {
     transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
+      duration: theme.transitions.duration.leavingScreen
     }),
+    marginTop: theme.spacing(9)
   },
   toolbar: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'flex-end',
     padding: theme.spacing(0, 1),
-    ...theme.mixins.toolbar,
+    ...theme.mixins.toolbar
   },
   link: {
     textDecoration: 'none',
-    color: 'black',
+    color: 'black'
   }
 }));
 
@@ -66,25 +68,31 @@ export const SideBar = ({ isOpen, onClose }: Props) => {
     console.log(tasks);
   };
 
+  const toggleMenu = () => {
+    // if 
+  };
+
   return (
     <Drawer
-    variant="permanent"
-    className={clsx(classes.drawer, {
-      [classes.drawerOpen]: isOpen,
-      [classes.drawerClose]: !isOpen,
-    })}
-    classes={{
-      paper: clsx({
+      open={isOpen}
+      onClick={onClose}
+      variant="permanent"
+      className={clsx(classes.drawer, {
         [classes.drawerOpen]: isOpen,
-        [classes.drawerClose]: !isOpen,
-      }),
-    }}
-  >
-      <div className={classes.toolbar}>
+        [classes.drawerClose]: !isOpen
+      })}
+      classes={{
+        paper: clsx({
+          [classes.drawerOpen]: isOpen,
+          [classes.drawerClose]: !isOpen
+        })
+      }}
+    >
+      {/* <div className={classes.toolbar}>
         <IconButton onClick={onClose}>
           {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
         </IconButton>
-      </div>
+      </div> */}
       <Divider />
       <List>
         <ListItem disablePadding>
@@ -119,4 +127,4 @@ export const SideBar = ({ isOpen, onClose }: Props) => {
       </List>
     </Drawer>
   );
-}
+};

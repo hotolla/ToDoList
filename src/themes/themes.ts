@@ -9,35 +9,35 @@ export const lightTheme = createTheme({
     mode: 'light',
 
     primary: {
-      main: '#AF7EEB',
+      main: '#AF7EEB'
     },
     secondary: {
-      main: '#A659EE',
+      main: '#A659EE'
     },
     background: {
-      default: '#E4E9FF',
+      default: '#E4E9FF'
     },
     action: {
-      disabledBackground: '#E4E9FF',
-    },
+      disabledBackground: '#E4E9FF'
+    }
   },
   typography: {
     caption: {
       fontFamily: 'Lato',
-      lineHeight: 1.92,
+      lineHeight: 1.92
     },
     fontWeightLight: 100,
     h1: {
       fontFamily: 'Lora',
-      lineHeight: 1.15,
+      lineHeight: 1.15
     },
     h2: {
-      fontFamily: 'Lato',
+      fontFamily: 'Lato'
     },
     button: {
-      fontWeight: 600,
-    },
-  },
+      fontWeight: 600
+    }
+  }
 });
 
 export const darkTheme = createTheme({
@@ -45,42 +45,42 @@ export const darkTheme = createTheme({
     mode: 'dark',
 
     primary: {
-      main: '#AF7EEB',
+      main: '#AF7EEB'
     },
     secondary: {
-      main: '#A659EE',
+      main: '#A659EE'
     },
     background: {
-      default: '#424242',
+      default: '#424242'
     },
     action: {
-      disabledBackground: '#E4E9FF',
-    },
+      disabledBackground: '#E4E9FF'
+    }
   },
   typography: {
     caption: {
       fontFamily: 'Lato',
-      lineHeight: 1.92,
+      lineHeight: 1.92
     },
     fontWeightLight: 100,
     h1: {
       fontFamily: 'Lora',
-      lineHeight: 1.15,
+      lineHeight: 1.15
     },
     h2: {
-      fontFamily: 'Lato',
+      fontFamily: 'Lato'
     },
     button: {
-      fontWeight: 600,
-    },
+      fontWeight: 600
+    }
   },
   components: {
     MuiPaper: {
       styleOverrides: {
         root: {
           backgroundColor: '#12121200'
-        },
-      },
+        }
+      }
     },
     MuiToolbar: {
       styleOverrides: {
@@ -94,15 +94,15 @@ export const darkTheme = createTheme({
         paper: {
           backgroundColor: '#424242'
         }
-      },
+      }
     },
     MuiPopover: {
       styleOverrides: {
         paper: {
           backgroundColor: '#424242'
         }
-      },
-    },
+      }
+    }
   }
 });
 

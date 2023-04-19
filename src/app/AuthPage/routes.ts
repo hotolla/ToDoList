@@ -25,4 +25,4 @@ export const routes = [
     path: '/todo/:id',
     component: TodoDetails
   }
-] 
+]; 

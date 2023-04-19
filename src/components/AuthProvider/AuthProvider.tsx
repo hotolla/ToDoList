@@ -15,17 +15,23 @@ interface IAuthProviderValues extends IAuthState {
 export const AuthContext = createContext<IAuthProviderValues>({
   ...initialState,
 
-  login: () => {},
+  login: () => {}
 });
 
 export const AuthProvider = ({ children } : IAuthProviderProps) => {
   const [ state, dispatch ] = useReducer(reducer, initialState);
 
   const login = (user: IUser) => {
+    // localStorage.user = user.name;
+    localStorage.setItem('user', `${user.name}`);
+
     dispatch({ type: Types.Login, payload: user });
-    // useEffect
-    // localStorage.setItem(isDarkThemeKey, `${isDarkTheme}`);
   };
+
+  useEffect(() => {
+    // localStorage.setItem('user', `${state.user?.name}`);
+    localStorage.getItem('user');
+  }, []);
 
   return (
     <AuthContext.Provider
@@ -37,5 +43,5 @@ export const AuthProvider = ({ children } : IAuthProviderProps) => {
     >
       {children}
     </AuthContext.Provider>
-  )
-}
+  );
+};

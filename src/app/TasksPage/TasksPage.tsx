@@ -11,11 +11,11 @@ import { useTranslation } from 'react-i18next';
 const useStyles = makeStyles(() => ({
   listContainer: {
     display: 'flex',
-    flexDirection: 'column',
+    flexDirection: 'column'
   },
   button: {
     transform: 'translateY(-50%)',
-    alignSelf: 'center',
+    alignSelf: 'center'
   }
 }));
 

@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { useForm, FormProvider } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Grid, Button, Select, InputLabel, MenuItem, FormControl } from '@mui/material';
+import { Grid, Button } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import { makeStyles } from '@mui/styles';
 import { preventDefault } from '../helpers';
@@ -9,7 +9,6 @@ import { Yup } from '../utils/validation';
 import { TasksContext } from './TasksProvider';
 import { TextField } from './TextField';
 import { DateTimePicker } from './DateTimePicker';
-import { values } from 'lodash';
 import { TaskPrioritiesSelect } from '../modules/tasks/TaskPrioritiesSelect';
 import { Priority } from '../modules/tasks/TaskPrioritiesSelect/Priority.enum';
 
@@ -44,8 +43,7 @@ export const schema = Yup.object({
   description: Yup.string().nullable(),
   isDone: Yup.boolean().nullable(),
   time: Yup.mixed().nullable(),
-  priority: Yup.mixed().nullable(),
-  // priority: Yup.mixed<Priority | null>().oneOf(Object.values(Priority)).nullable(),
+  priority: Yup.mixed().nullable()
 });
 
 export const TaskCreationForm = ({ onSubmited }: Props) => {
@@ -59,10 +57,7 @@ export const TaskCreationForm = ({ onSubmited }: Props) => {
   const handleSubmit = (values: FormValues) => {
     addTask(values);
     onSubmited();
-    console.log(values);
   };
-
-console.log(form);
 
   return (
     <FormProvider {...form}>

@@ -1,7 +1,7 @@
 import { createContext, ReactNode, useEffect, useReducer, useRef } from "react";
 import { ITask } from '../../types/task.types';
 import * as tasksApi from '../../api/tasks';
-import { Action, reducer } from "./reducer";
+import { reducer } from "./reducer";
 import { initialState, ITasksState } from './initialState';
 import { Types } from "./types";
 import { TasksFilter } from "./TasksFilter";
@@ -54,20 +54,18 @@ export const TasksProvider = ({ children }: ITasksProviderProps) => {
     }).then((filter) => {
       dispatch({ type: Types.ToggleFilter, payload: filter });
     }).catch((error) => {
-      console.error(`Download error: ${error.message}`);
     });
   };
 
   const fetchTasks = (filter?: IFilter) => {
-  localStorage.setItem('badge', `${filter?.isDone}`);
     tasksApi.fetchTasks({
       params: filter,
       signal: fetchTasksAbortController.current.signal
     }).then((tasks) => {
       dispatch({ type: Types.FetchTasks, payload: tasks });
     }).catch((error) => {
-      console.error(`Download error1: ${error.message}`);
     });
+  // .finally(() => localStorage.setItem('badge', `${state.filter}`));
   };
 
   const editTask = (task: ITask) => {
@@ -86,12 +84,12 @@ export const TasksProvider = ({ children }: ITasksProviderProps) => {
   
   useEffect(() => {
     fetchTasks();
+    // localStorage.setItem('badge', `${state.filter}`);
   }, []);
 
   useEffect(() => {
     return () => {
       fetchTasksAbortController.current.abort();
-      console.log("error");
     };
   }, []);
 

@@ -44,7 +44,7 @@ export const Buttons = () => {
         sx={{ flexGrow: 1 }}
       >
         <Button
-          sx={{marginRight: 1}}
+          sx={{ marginRight: 1 }}
           variant={badge.isDone ? 'contained' : 'outlined'}
           onClick={handleToggleFilter(true)}
         >

@@ -2,7 +2,7 @@ import { useContext, useState } from 'react';
 import { useForm, FormProvider } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Grid, Button, Typography} from '@mui/material';
+import { Grid, Button, Typography, Box } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { preventDefault } from '../../../helpers';
 import { Yup } from '../../../utils/validation';
@@ -10,6 +10,7 @@ import * as authApi from '../../../api/auth';
 import { TextField } from '../../../components/TextField';
 import { useTranslation } from 'react-i18next';
 import { AuthContext } from '../../../components/AuthProvider';
+import LockOpenIcon from '@mui/icons-material/LockOpen';
 
 interface FormValues {
   email: string | null,
@@ -24,12 +25,12 @@ const useStyles = makeStyles((theme) => ({
 
 const defaultValues = {
   email: null,
-  password: null,
+  password: null
 };
 
 const schema = Yup.object({
   email: Yup.string().nullable().required(),
-  password: Yup.string().nullable().required(),
+  password: Yup.string().nullable().required()
 });
 
 export const LoginPage = () => {
@@ -39,7 +40,6 @@ export const LoginPage = () => {
   const { t } = useTranslation();
   const [ isError, setIsError ] = useState(false);
   const { login } = useContext(AuthContext);
-
   const form = useForm({
     defaultValues,
     resolver: yupResolver(schema)
@@ -49,6 +49,7 @@ export const LoginPage = () => {
     authApi.login(values).then((user) => {
       login(user);
       navigate(location.state?.from?.pathname || '/', { replace: true });
+      // return console.log(localStorage.setItem('user', `${values.email}`));
     }).catch(() => {
       setIsError(true);
     });
@@ -56,6 +57,14 @@ export const LoginPage = () => {
 
   return (
     <FormProvider {...form}>
+
+      <Box display="flex" flexDirection="column" alignItems="center">
+        <LockOpenIcon  color='primary'/>
+        <Typography variant="h6" color='primary' mt={1}>
+          {t('auth.login.header')}
+        </Typography>
+      </Box>
+      
       <Grid
         noValidate
         container
@@ -66,15 +75,15 @@ export const LoginPage = () => {
         className={classes.container}
         onSubmit={preventDefault(form.handleSubmit(handleSubmit))}
       >
-        <Grid item xs>
+        <Grid item >
           <TextField
             required
             margin="dense"
             multiline
             type="email"
             name="email"
-            label={t('login.emailLabel')}
-            placeholder={t('login.emailPlaceholder')}
+            label={t('auth.login.emailLabel')}
+            placeholder={t('auth.login.emailPlaceholder')}
             maxRows={4}
           />
 
@@ -83,15 +92,15 @@ export const LoginPage = () => {
             margin="dense"
             type="password"
             name="password"
-            label={t('login.passwordLabel')}
-            placeholder={t('login.passwordPlaceholder')}
+            label={t('auth.login.passwordLabel')}
+            placeholder={t('auth.login.passwordPlaceholder')}
           />
         </Grid>
 
         {isError &&
           <>
             <Typography align="center" color="error">
-              {t('login.errorMessage')}
+              {t('auth.login.errorMessage')}
             </Typography>
           </>
         }
@@ -102,22 +111,20 @@ export const LoginPage = () => {
             variant="contained"
             size="large"
           >
-            {t('login.submitButton')}
+            {t('auth.login.submitButton')}
           </Button>
         </Grid>
 
-        <Grid container spacing={2} className={classes.container}>
-          <Grid item>
-            <Link to="/auth/registration">
-              {t('auth.login.forgotPassword')}
-            </Link>
-          </Grid>
+        <Grid item color='primary'>
+          <Link to="/auth/registration">
+            {t('auth.login.forgotPassword')}
+          </Link>
+        </Grid>
 
-          <Grid item>
-            <Link to="/auth/registration">
-              {t('auth.login.registerLink')}
-            </Link>
-          </Grid>
+        <Grid item>
+          <Link to="/auth/registration" color="secondary">
+            {t('auth.login.registerLink')}
+          </Link>
         </Grid>
       </Grid>
     </FormProvider>
