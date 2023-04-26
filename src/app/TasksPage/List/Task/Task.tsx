@@ -84,7 +84,7 @@ export const Task = ({ task }: Props) => {
       <ListItemIcon>
         <Checkbox
           edge="start"
-          checked={task.isDone}
+          checked={!!task.isDone}
           onChange={changeTaskStatus}
         />
       </ListItemIcon>

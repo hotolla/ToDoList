@@ -33,19 +33,14 @@ function App() {
 
   const handleCloseMenu = useCallback(() => {
     setOpenMenu((openMenu) => {
-      // localStorage.setItem(isDarkThemeKey, `${isDarkTheme}`);
       return !openMenu;
     });
   }, []);
 
   useEffect(() => {
-    localStorage.getItem('user');
-
     const handleLanguageChange = () => {
       setLocale(i18next.language);
     };
-
-    // setOpenMenu(false);
 
     i18next.on('languageChanged', handleLanguageChange);
 

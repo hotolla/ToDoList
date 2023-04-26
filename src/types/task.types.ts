@@ -1,10 +1,12 @@
 import { Priority } from "../modules/tasks/TaskPrioritiesSelect/Priority.enum";
+import { IUser } from "../modules/users";
 
 export interface ITask {
-  id?: number;
+  id?: number | string;
+  userId?: IUser['id'];
   name: string | null;
   description: string | null;
-  isDone: boolean;
+  isDone: boolean | null;
   time: string | null;
   priority: Priority | null
 };

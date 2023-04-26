@@ -6,8 +6,10 @@ export interface IAuthState {
   user: IUser | null
 };
 
+const stringifiedUser = localStorage.getItem('user');
+
 export const initialState: IAuthState = {
   isAuthenticated: false,
   authToken: null,
-  user: null
+  user: stringifiedUser ? JSON.parse(stringifiedUser) : null
 };

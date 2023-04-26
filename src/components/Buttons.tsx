@@ -2,6 +2,7 @@ import { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Button, ButtonGroup, Badge } from '@mui/material';
 import { TasksContext } from './TasksProvider';
+import { ITasksFilter } from './TasksProvider/ITasksFilter';
 
 export const Buttons = () => {
   const { tasks, fetchTasks } = useContext(TasksContext);
@@ -13,11 +14,10 @@ export const Buttons = () => {
     inProgress: tasks.filter((task) => !task.isDone).length
   };
 
-  const handleToggleFilter = (isDone: boolean | null) => () => {
+  const handleToggleFilter = (isDone: ITasksFilter['isDone']) => () => {
     fetchTasks({
       isDone
     });
-    return localStorage.getItem("isDone") === 'false';
   };
 
   return (

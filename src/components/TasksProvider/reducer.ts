@@ -1,6 +1,6 @@
 import { ITask } from "../../types/task.types";
 import { ITasksState } from './initialState';
-import { TasksFilter } from "./TasksFilter";
+import { ITasksFilter } from "./ITasksFilter";
 import { Types } from "./types";
 
 export type Action =
@@ -8,7 +8,7 @@ export type Action =
   | { type: Types.DeleteTask; payload: ITask }
   | { type: Types.EditTask; payload: ITask }
   | { type: Types.FetchTasks; payload: ITask[] }
-  | { type: Types.ToggleFilter; payload: TasksFilter }
+  | { type: Types.ApplyFilter; payload: ITasksFilter }
 
 export const reducer = (state: ITasksState, { type, payload }: Action) => {
   switch (type) {
@@ -16,9 +16,9 @@ export const reducer = (state: ITasksState, { type, payload }: Action) => {
     return { ...state, tasks: state.tasks.concat(payload) };
 
   case Types.DeleteTask:
-    return { ...state, tasks: state.tasks.filter((task) => task.id != payload.id) };
+    return { ...state, tasks: state.tasks.filter((task) => task.id !== payload.id) };
     
-  case Types.ToggleFilter:
+  case Types.ApplyFilter:
     return { ...state, filter: payload };
     
   case Types.FetchTasks:

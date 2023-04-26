@@ -1,14 +1,14 @@
 import { ITask } from "../../types/task.types";
-import { TasksFilter } from "./TasksFilter";
+import { ITasksFilter } from "./ITasksFilter";
 
 export interface ITasksState {
   tasks: ITask[];
-  filter: TasksFilter;
+  filter: ITasksFilter;
   loading: boolean;
 };
 
 export const initialState: ITasksState = {
   tasks: [],
-  filter: TasksFilter.Total,
+  filter: {},
   loading: false
 };

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { makeStyles } from '@mui/styles';
 import { Box, Fab } from '@mui/material';
 import { List } from './List/List';
