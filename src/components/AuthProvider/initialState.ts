@@ -7,9 +7,10 @@ export interface IAuthState {
 };
 
 const stringifiedUser = localStorage.getItem('user');
+const stringifiedisAuthenticated = localStorage.getItem('isAuthenticated');
 
 export const initialState: IAuthState = {
-  isAuthenticated: false,
+  isAuthenticated: stringifiedisAuthenticated ? JSON.parse(stringifiedisAuthenticated) : null,
   authToken: null,
   user: stringifiedUser ? JSON.parse(stringifiedUser) : null
 };

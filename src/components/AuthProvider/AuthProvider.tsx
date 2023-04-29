@@ -1,4 +1,4 @@
-import { ReactNode, createContext, useReducer } from "react";
+import { ReactNode, createContext, useEffect, useReducer } from "react";
 import { initialState, IAuthState } from "./initialState";
 import { reducer } from "./reducer";
 import { Types } from "./types";
@@ -25,6 +25,10 @@ export const AuthProvider = ({ children } : IAuthProviderProps) => {
 
     dispatch({ type: Types.Login, payload: user });
   };
+
+  useEffect(() => {
+    localStorage.setItem('isAuthenticated', JSON.stringify(state.isAuthenticated));
+  }, [ 'isAuthenticated', state.isAuthenticated ]);
 
   return (
     <AuthContext.Provider
