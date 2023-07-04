@@ -1,11 +1,11 @@
-import { createContext, ReactNode, useContext, useEffect, useReducer, useRef } from "react";
+import { createContext, ReactNode, useContext, useEffect, useReducer, useRef } from 'react';
 import { ITask } from '../../types/task.types';
 import * as tasksApi from '../../api/tasks';
-import { reducer } from "./reducer";
+import { reducer } from './reducer';
 import { initialState, ITasksState } from './initialState';
-import { Types } from "./types";
-import { ITasksFilter } from "./ITasksFilter";
-import { AuthContext } from "../AuthProvider";
+import { Types } from './types';
+import { ITasksFilter } from './ITasksFilter';
+import { AuthContext } from '../AuthProvider';
 
 interface ITasksProviderProps {
   children: ReactNode;
@@ -82,9 +82,7 @@ export const TasksProvider = ({ children }: ITasksProviderProps) => {
   
   useEffect(() => {
     fetchTasks();
-  }, []);
 
-  useEffect(() => {
     return () => {
       fetchTasksAbortController.current.abort();
     };

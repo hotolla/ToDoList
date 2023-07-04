@@ -1,12 +1,12 @@
-import { FormControl, InputLabel, FormHelperText } from "@mui/material";
-import { FormControlProps } from "@mui/material/FormControl";
-import { InputLabelProps } from "@mui/material/InputLabel";
-import MuiSelect from "@mui/material/Select";
-import { useController, useFormContext } from "react-hook-form";
+import { FormControl, InputLabel, FormHelperText } from '@mui/material';
+import { FormControlProps } from '@mui/material/FormControl';
+import { InputLabelProps } from '@mui/material/InputLabel';
+import MuiSelect from '@mui/material/Select';
+import { useController, useFormContext } from 'react-hook-form';
 
 export type SelectProps = FormControlProps & {
   name: string;
-  label: InputLabelProps["children"]
+  label: InputLabelProps['children']
 };
 
 export const Select = ({ name, label, children, ...props }: SelectProps) => {

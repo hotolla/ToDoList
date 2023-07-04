@@ -1,4 +1,4 @@
-import { BaseSyntheticEvent } from "react";
+import { BaseSyntheticEvent } from 'react';
 
 type Event = BaseSyntheticEvent<object, any, any> | undefined;
 

@@ -48,7 +48,7 @@ function App() {
       i18next.off('languageChanged', handleLanguageChange);
     };
   }, []);
-
+  
   return (
     <ThemeProvider theme={isDarkTheme ? darkTheme : lightTheme}>
       <CssBaseline />

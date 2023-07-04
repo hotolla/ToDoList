@@ -40,7 +40,8 @@
     "server": "json-server --watch db.json --port 3002",
     "dev": "concurrently \"npm run server\" \"npm start\"",
     "storybook": "start-storybook -p 6006 -s public",
-    "build-storybook": "build-storybook -s public"
+    "build-storybook": "build-storybook -s public",
+    "lint-fix": "eslint ./src --fix"
   },
   "eslintConfig": {
     "extends": [

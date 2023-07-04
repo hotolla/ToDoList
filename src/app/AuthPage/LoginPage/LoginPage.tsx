@@ -59,8 +59,8 @@ export const LoginPage = () => {
     <FormProvider {...form}>
 
       <Box display="flex" flexDirection="column" alignItems="center">
-        <LockOpenIcon  color='primary'/>
-        <Typography variant="h6" color='primary' mt={1}>
+        <LockOpenIcon  color="primary"/>
+        <Typography variant="h6" color="primary" mt={1}>
           {t('auth.login.header')}
         </Typography>
       </Box>
@@ -115,7 +115,7 @@ export const LoginPage = () => {
           </Button>
         </Grid>
 
-        <Grid item color='primary'>
+        <Grid item color="primary">
           <Link to="/auth/registration">
             {t('auth.login.forgotPassword')}
           </Link>

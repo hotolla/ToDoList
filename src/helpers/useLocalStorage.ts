@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
 
 function getStorageValue(key: string | boolean , defaultValue: string | boolean ){
   // @ts-ignore

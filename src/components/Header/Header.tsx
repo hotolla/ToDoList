@@ -4,7 +4,7 @@ import LoginIcon from '@mui/icons-material/Login';
 import { useTranslation } from 'react-i18next';
 import { ThemeSwitch } from './ThemeSwitch';
 import { LangSwitcher } from './LangSwitcher';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { RegisteringUserModal } from '../RegisteringUserModal';
 import { TasksProvider } from '../TasksProvider';
 import { SideBar } from './SideBar';
@@ -52,7 +52,6 @@ export const Header = ({ isDarkTheme, openMenu, onMenuToggle, onThemeToggle }: P
   const classes = useStyles();
   const { t } = useTranslation();
   const [ openLogout, setOpenLogout ] = useState(false);
-  // const [ openMenu, setOpenMenu ] = useState(false);
   const handleCloseLogout = () => setOpenLogout(false);
   // @ts-ignore
   const toggleMenu = () => onMenuToggle((openMenu) => !openMenu);

@@ -1,7 +1,7 @@
-import { AxiosRequestConfig } from "axios";
-import { IUser } from "../modules/users";
-import { api } from "./api";
-import { fetchUsers } from "./users";
+import { AxiosRequestConfig } from 'axios';
+import { IUser } from '../modules/users';
+import { api } from './api';
+import { fetchUsers } from './users';
 
 interface ILoginData {
   email: string | null,
@@ -9,7 +9,7 @@ interface ILoginData {
 };
 
 export const register = (user: IUser, config?: AxiosRequestConfig) => {
-  return api.post("/users", user, config).then(({ data }) => {
+  return api.post('/users', user, config).then(({ data }) => {
     return data;
   });
 // }).catch((data) => {

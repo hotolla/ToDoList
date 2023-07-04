@@ -3,8 +3,7 @@ import { IconButton, Paper, Typography, CircularProgress } from '@mui/material';
 import { Link, useParams } from 'react-router-dom';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { scrollBarStyling } from '../themes/themes';
-import { useContext, useEffect, useState } from 'react';
-import { TasksContext } from './TasksProvider';
+import { useEffect, useState } from 'react';
 import { ITask } from '../types/task.types';
 import { fetchTask } from '../api/tasks';
 
@@ -14,9 +13,9 @@ const useStyles = makeStyles((theme) => ({
   container: {
     marginTop: 30,
     padding: theme.spacing(3),
-    overflowY: "auto",
+    overflowY: 'auto',
     overflowX: 'hidden',
-    height: "60vh"
+    height: '60vh'
   },
 
   title: {
@@ -28,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   description: {
-    wordBreak: "break-all"
+    wordBreak: 'break-all'
   }
 }));
 
@@ -50,7 +49,7 @@ export const TodoDetails = () => {
     />
   ) : (
     <Paper className={classes.container}>
-      <Link to={`/`}>
+      <Link to={'/'}>
         <IconButton>
           <ArrowBackIcon className={classes.colorButton} />
         </IconButton>
@@ -65,7 +64,7 @@ export const TodoDetails = () => {
       </Typography>
 
       <Typography>
-        {(task.isDone) ? "Done" : "In Progress"}
+        {(task.isDone) ? 'Done' : 'In Progress'}
       </Typography>
 
       <Typography className={classes.title}>

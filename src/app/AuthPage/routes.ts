@@ -8,7 +8,7 @@ export const routes = [
     path: '/',
     exact: true,
     render: () => (
-      redirect ("/todo")
+      redirect ('/todo')
     )
   },
   {

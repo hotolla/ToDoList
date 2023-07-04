@@ -1,4 +1,4 @@
-import { IUser } from "../../modules/users";
+import { IUser } from '../../modules/users';
 
 export interface IAuthState {
   isAuthenticated: boolean,
@@ -6,11 +6,10 @@ export interface IAuthState {
   user: IUser | null
 };
 
-const stringifiedUser = localStorage.getItem('user');
-const stringifiedisAuthenticated = localStorage.getItem('isAuthenticated');
-
 export const initialState: IAuthState = {
-  isAuthenticated: stringifiedisAuthenticated ? JSON.parse(stringifiedisAuthenticated) : null,
+  isAuthenticated: false,
   authToken: null,
-  user: stringifiedUser ? JSON.parse(stringifiedUser) : null
+  user: null,
+
+  ...JSON.parse(localStorage.getItem('auth') || '{}')
 };

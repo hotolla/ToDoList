@@ -1,5 +1,5 @@
-import { Priority } from "../modules/tasks/TaskPrioritiesSelect/Priority.enum";
-import { IUser } from "../modules/users";
+import { Priority } from '../modules/tasks/TaskPrioritiesSelect/Priority.enum';
+import { IUser } from '../modules/users';
 
 export interface ITask {
   id?: number | string;

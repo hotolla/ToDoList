@@ -1,7 +1,7 @@
-import { ITask } from "../../types/task.types";
+import { ITask } from '../../types/task.types';
 import { ITasksState } from './initialState';
-import { ITasksFilter } from "./ITasksFilter";
-import { Types } from "./types";
+import { ITasksFilter } from './ITasksFilter';
+import { Types } from './types';
 
 export type Action =
   | { type: Types.AddTask; payload: ITask }

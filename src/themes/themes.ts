@@ -108,15 +108,15 @@ export const darkTheme = createTheme({
 
 
 export const scrollBarStyling = {
-  "&::-webkit-scrollbar": {
+  '&::-webkit-scrollbar': {
     width: 15
   },
-  "&::-webkit-scrollbar-track": {
-    boxShadow: "inset 0 0 8px grey",
+  '&::-webkit-scrollbar-track': {
+    boxShadow: 'inset 0 0 8px grey',
     borderRadius: 4
   },
-  "&::-webkit-scrollbar-thumb": {
-    background: "#AF7EEB",
+  '&::-webkit-scrollbar-thumb': {
+    background: '#AF7EEB',
     borderRadius: 10
   } 
 };

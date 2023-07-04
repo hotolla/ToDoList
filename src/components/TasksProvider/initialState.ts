@@ -1,5 +1,5 @@
-import { ITask } from "../../types/task.types";
-import { ITasksFilter } from "./ITasksFilter";
+import { ITask } from '../../types/task.types';
+import { ITasksFilter } from './ITasksFilter';
 
 export interface ITasksState {
   tasks: ITask[];

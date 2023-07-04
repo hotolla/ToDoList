@@ -19,6 +19,7 @@
     "no-debugger": "warn",
     "comma-dangle": [ "warn", "never" ],
     "import/no-anonymous-default-export": 0,
-    "indent": [ "warn", 2 ]
+    "quotes": [ "warn", "single" ],
+    "jsx-quotes": [ "warn", "prefer-double" ]
   }
 }
