@@ -1,5 +1,4 @@
 ![To Do](/public/img/img.png)
-To-Do List application based on the provided object structure fTo-Do List Application
 This To-Do List application is designed to help users manage their tasks efficiently.
 It features user authentication, allowing for personalized task management experiences. 
 Built with modern web technologies, it emphasizes simplicity, usability, and security.
@@ -8,6 +7,7 @@ Features
 User Authentication: Secure login and registration process with email and password.
 Task Management: Users can create, view, and delete tasks.
 Responsive Design: Ensures a seamless experience across various devices and screen sizes.
+
 Getting Started
 To get a local copy up and running, follow these simple steps.
 
@@ -17,7 +17,7 @@ Installation
 Clone the repository:
 sh
 Copy code
-git clone https://github.com/your_username_/Project-Name.git
+git clone https://github.com/hotolla/ToDoList
 Navigate to the project directory:
 sh
 Copy code
@@ -31,8 +31,10 @@ sh
 Copy code
 npm start
 The application should now be running on http://localhost:3000.
+
 Usage
-Register Account: Navigate to the registration page from the homepage. Fill in your name, email, and password to create an account.
+Register Account: Navigate to the registration page from the homepage.
+Fill in your name, email, and password to create an account.
 Log In: If you already have an account, use your email and password to log in.
 Create Task: Once logged in, you can create a new task by entering the task description and clicking on the "Create Task" button.
 View Tasks: Your tasks will be listed on the main dashboard.
