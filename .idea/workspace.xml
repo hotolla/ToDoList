@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="882f0161-0d27-461c-90e9-c0dda45494ae" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/db.json" beforeDir="false" afterPath="$PROJECT_DIR$/db.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/i18n/i18n.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/i18n/i18n.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/i18n/resources/en.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/i18n/resources/en.js" afterDir="false" />
-    </list>
+    <list default="true" id="882f0161-0d27-461c-90e9-c0dda45494ae" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -162,7 +158,7 @@
       <workItem from="1703082728073" duration="629000" />
       <workItem from="1706138408593" duration="657000" />
       <workItem from="1708084070515" duration="329000" />
-      <workItem from="1708464412822" duration="4059000" />
+      <workItem from="1708464412822" duration="4724000" />
     </task>
     <servers />
   </component>
