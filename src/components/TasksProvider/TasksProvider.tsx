@@ -61,6 +61,7 @@ export const TasksProvider = ({ children }: ITasksProviderProps) => {
       },
       signal: fetchTasksAbortController.current.signal
     }).then((tasks) => {
+      console.log(tasks)
       dispatch({ type: Types.FetchTasks, payload: tasks });
     }).catch((error) => {
     });

@@ -117,7 +117,7 @@ export const LoginPage = () => {
 
         <Grid item color="primary">
           <Link to="/auth/registration">
-            {t('auth.login.forgotPassword')}
+
           </Link>
         </Grid>
 

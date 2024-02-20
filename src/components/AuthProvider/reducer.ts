@@ -17,5 +17,5 @@ export const reducer = (state: IAuthState, { type, payload }: Action) => {
 
   default:
     return state;
-  };
+  }
 };

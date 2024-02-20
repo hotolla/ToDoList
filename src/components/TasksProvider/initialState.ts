@@ -5,7 +5,7 @@ export interface ITasksState {
   tasks: ITask[];
   filter: ITasksFilter;
   loading: boolean;
-};
+}
 
 export const initialState: ITasksState = {
   tasks: [],
