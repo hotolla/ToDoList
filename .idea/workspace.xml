@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="882f0161-0d27-461c-90e9-c0dda45494ae" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/db.json" beforeDir="false" afterPath="$PROJECT_DIR$/db.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/i18n/i18n.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/i18n/i18n.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/i18n/resources/en.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/i18n/resources/en.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <excluded-from-favorite>
+      <branch-storage>
+        <map>
+          <entry type="LOCAL">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="main" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </excluded-from-favorite>
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2Sq0QpWcrPlNzAVlEXwwknizIrA" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "D:/Work/ToDoList",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.standard": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.standard": "",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "ts.external.directory.path": "D:\\Work\\ToDoList\\node_modules\\typescript\\lib",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Work\ToDoList\src\components" />
+    </key>
+  </component>
+  <component name="RunManager" selected="npm.dev">
+    <configuration name="build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="build" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="dev" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="npm.dev" />
+        <item itemvalue="npm.start" />
+        <item itemvalue="npm.build" />
+        <item itemvalue="npm.start" />
+        <item itemvalue="npm.dev" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="882f0161-0d27-461c-90e9-c0dda45494ae" name="Changes" comment="" />
+      <created>1689858789771</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1689858789771</updated>
+      <workItem from="1689858790861" duration="1968000" />
+      <workItem from="1690232118070" duration="616000" />
+      <workItem from="1692804934102" duration="584000" />
+      <workItem from="1692913369869" duration="693000" />
+      <workItem from="1692955280657" duration="7218000" />
+      <workItem from="1692980507876" duration="2425000" />
+      <workItem from="1693043821339" duration="2960000" />
+      <workItem from="1693056588055" duration="57000" />
+      <workItem from="1693647531648" duration="351000" />
+      <workItem from="1694033318173" duration="595000" />
+      <workItem from="1696083631544" duration="1786000" />
+      <workItem from="1696108363456" duration="6203000" />
+      <workItem from="1698056238636" duration="1348000" />
+      <workItem from="1698057665643" duration="113000" />
+      <workItem from="1698057781444" duration="3707000" />
+      <workItem from="1698064654709" duration="3403000" />
+      <workItem from="1698156990312" duration="595000" />
+      <workItem from="1698223581873" duration="2303000" />
+      <workItem from="1698234407799" duration="767000" />
+      <workItem from="1698235878254" duration="345000" />
+      <workItem from="1698327068541" duration="564000" />
+      <workItem from="1699291784486" duration="3050000" />
+      <workItem from="1699526526369" duration="771000" />
+      <workItem from="1700064694865" duration="1286000" />
+      <workItem from="1700132251377" duration="20000" />
+      <workItem from="1700132447861" duration="1552000" />
+      <workItem from="1700220143707" duration="26000" />
+      <workItem from="1700220320729" duration="5141000" />
+      <workItem from="1700482008577" duration="4311000" />
+      <workItem from="1700742598879" duration="1289000" />
+      <workItem from="1700813206873" duration="13087000" />
+      <workItem from="1700835968444" duration="4244000" />
+      <workItem from="1700984746625" duration="4138000" />
+      <workItem from="1701072927746" duration="1193000" />
+      <workItem from="1701143413914" duration="3560000" />
+      <workItem from="1701165888578" duration="2732000" />
+      <workItem from="1701261805942" duration="907000" />
+      <workItem from="1701781661708" duration="1781000" />
+      <workItem from="1701852329647" duration="1108000" />
+      <workItem from="1702334917074" duration="836000" />
+      <workItem from="1702470002484" duration="143000" />
+      <workItem from="1702472155097" duration="95000" />
+      <workItem from="1703082728073" duration="629000" />
+      <workItem from="1706138408593" duration="657000" />
+      <workItem from="1708084070515" duration="329000" />
+      <workItem from="1708464412822" duration="4059000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

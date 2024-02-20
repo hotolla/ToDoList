@@ -11,7 +11,7 @@ const handleLangChange = (lang) => {
   moment.locale(lang);
 
   document.documentElement.setAttribute('lang', lang);
-  document.title = i18next.t('head.title');
+  document.title = i18next.t('To Do');
   document.querySelector('meta[name="description"]').setAttribute('content', i18next.t('head.title'));
 };
 
