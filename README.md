@@ -1,7 +1,4 @@
-
-Here's a README template for a To-Do List application based on the provided object structure for authentication, registration, and task creation features. You can customize this template further to match your application's specifics.
-
-To-Do List Application
+To-Do List application based on the provided object structure fTo-Do List Application
 This To-Do List application is designed to help users manage their tasks efficiently. It features user authentication, allowing for personalized task management experiences. Built with modern web technologies, it emphasizes simplicity, usability, and security.
 
 Features
