@@ -1,5 +1,8 @@
+![To Do](/public/img/img.png)
 To-Do List application based on the provided object structure fTo-Do List Application
-This To-Do List application is designed to help users manage their tasks efficiently. It features user authentication, allowing for personalized task management experiences. Built with modern web technologies, it emphasizes simplicity, usability, and security.
+This To-Do List application is designed to help users manage their tasks efficiently.
+It features user authentication, allowing for personalized task management experiences. 
+Built with modern web technologies, it emphasizes simplicity, usability, and security.
 
 Features
 User Authentication: Secure login and registration process with email and password.
