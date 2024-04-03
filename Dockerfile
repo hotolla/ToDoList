@@ -8,6 +8,7 @@ ENV REACT_APP_API_URL=$REACT_APP_API_URL
 # ENV PROXY END
 
 WORKDIR /app
+
 COPY package*.json ./
 
 RUN npm ci --include=dev --legacy-peer-deps
