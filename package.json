@@ -39,6 +39,7 @@
     "test": "react-scripts test",
     "server": "json-server --watch db.json --port 8000",
     "dev": "concurrently \"npm run server\" \"npm start\"",
+    "serve": "serve -s build",
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public",
     "lint-fix": "eslint ./src --fix"
