@@ -4,15 +4,15 @@ import { CssBaseline, ThemeProvider } from '@mui/material';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { TasksPage } from './app/TasksPage/TasksPage';
+import { TasksPage } from './app/TasksPage';
 import { TodoDetails } from './components/TodoDetails';
-import { darkTheme, lightTheme } from './themes/themes';
 import { Layout } from './Layout';
 import { Header } from './components/Header';
 import { LoginPage } from './app/AuthPage/LoginPage';
 import { Registration } from './app/AuthPage/Registration';
 import { AuthGuard } from './components/AuthGuard';
 import { AuthProvider } from './components/AuthProvider';
+import { darkTheme, lightTheme } from './themes/themes';
 
 const isDarkThemeKey = 'isDarkTheme';
 
@@ -50,6 +50,8 @@ function App() {
   }, []);
   
   return (
+
+
     <ThemeProvider theme={isDarkTheme ? darkTheme : lightTheme}>
       <CssBaseline />
 
