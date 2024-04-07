@@ -37,6 +37,8 @@
     "start": "vite",
     "build": "vite build",
     "serve": "vite preview",
+    "server": "json-server --watch db.json --port 8000",
+    "dev": "concurrently \"npm run server\" \"npm start\"",
     "lint-fix": "eslint ./src --fix"
   },
   "eslintConfig": {
