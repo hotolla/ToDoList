@@ -72,7 +72,7 @@ function App() {
                 <Route path="/auth/registration" element={<Registration />} />
 
                 <Route element={<AuthGuard />}>
-                  {/*<Route path="/todo" element={<TasksPage />} />*/}
+                  <Route path="/todo" element={<TasksPage />} />
                   <Route path="/todo/:id" element={<TodoDetails />} />
                 </Route>
               </Routes>
