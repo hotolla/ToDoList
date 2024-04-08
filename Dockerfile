@@ -2,8 +2,8 @@ FROM node:18-alpine AS development
 
 # ENV PROXY START (https://caprover.com/docs/app-configuration.html#environment-variables)
 
-ARG REACT_APP_API_URL
-ENV REACT_APP_API_URL=$REACT_APP_API_URL
+ARG VITE_APP_API_URL
+ENV VITE_APP_API_URL=$VITE_APP_API_URL
 
 # ENV PROXY END
 
