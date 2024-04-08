@@ -10,7 +10,7 @@ import { Layout } from './Layout';
 import { Header } from './components/Header';
 import { LoginPage } from './app/AuthPage/LoginPage';
 import { Registration } from './app/AuthPage/Registration';
-// import { AuthGuard } from './components/AuthGuard';
+import { AuthGuard } from './components/AuthGuard';
 import { AuthProvider } from './components/AuthProvider';
 import { darkTheme, lightTheme } from './themes/themes';
 
@@ -68,13 +68,13 @@ function App() {
 
               <Routes>
                 <Route path="/" element={<Navigate to="/todo" />} />
-                {/*<Route path="/login" element={<LoginPage />} />*/}
-                {/*<Route path="/auth/registration" element={<Registration />} />*/}
+                <Route path="/login" element={<LoginPage />} />
+                <Route path="/auth/registration" element={<Registration />} />
 
-                {/*<Route element={<AuthGuard />}>*/}
-                  {/*<Route path="/todo" element={<TasksPage />} />*/}
-                  {/*<Route path="/todo/:id" element={<TodoDetails />} />*/}
-                {/*</Route>*/}
+                <Route element={<AuthGuard />}>
+                  <Route path="/todo" element={<TasksPage />} />
+                  <Route path="/todo/:id" element={<TodoDetails />} />
+                </Route>
               </Routes>
             </Layout>
           </AuthProvider>
