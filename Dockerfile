@@ -17,5 +17,5 @@ COPY . .
 
 RUN npm run build
 
-CMD npm run server
+CMD npm run start
 
