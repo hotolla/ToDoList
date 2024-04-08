@@ -17,6 +17,7 @@ COPY . .
 
 RUN npm run build
 
-CMD npm run start
+EXPOSE 5174
 
+CMD npm run server
 
