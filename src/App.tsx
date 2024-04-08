@@ -68,12 +68,12 @@ function App() {
 
               <Routes>
                 <Route path="/" element={<Navigate to="/todo" />} />
-                <Route path="/login" element={<LoginPage />} />
-                <Route path="/auth/registration" element={<Registration />} />
+                {/*<Route path="/login" element={<LoginPage />} />*/}
+                {/*<Route path="/auth/registration" element={<Registration />} />*/}
 
                 <Route element={<AuthGuard />}>
-                  <Route path="/todo" element={<TasksPage />} />
-                  <Route path="/todo/:id" element={<TodoDetails />} />
+                  {/*<Route path="/todo" element={<TasksPage />} />*/}
+                  {/*<Route path="/todo/:id" element={<TodoDetails />} />*/}
                 </Route>
               </Routes>
             </Layout>
